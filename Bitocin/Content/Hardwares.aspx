@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Hardwares.aspx.cs" Inherits="Bitocin.Content.Hardwares" %>
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,7 +52,6 @@
           <option>Ethereum</option>
       </select>
                 <asp:Button ID="loadTableButton" Text="Recarregar Tabela" OnClick="loadTableButton_Click" runat="server" />
-                ESTOU ALTERANDO ISSO AQUI!!!!!!!!!!!!!!
             </div>
 
             <div class="background-branco">
@@ -72,8 +72,21 @@
                     </Columns>
                 </asp:GridView>
             </div>
-        </form>
+      
+         <div class="col-md-4">
+                Marca:
+                <input type="text" class="form-control" id="marca" name="marca" placeholder="marca" required="required"/>
+                <input type="text" class="form-control" id="modelo" name="modelo" placeholder="modelo" required="required"/>
+                <input type="text" class="form-control" id="tipo" name="tipo" placeholder="tipo" required="required"/>
+                <input type="text" class="form-control" id="consumo" name="consumo" placeholder="consumo" required="required"/>
+                <input type="text" class="form-control" id="preco" name="preco" placeholder="preco" required="required"/>
+                <input type="text" class="form-control" id="ano" name="ano" placeholder="ano" required="required"/>
+
+             <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server"/>
+            </div>
+              </form>
     </div>
+      
 </body>
 </html>
 <script>
