@@ -16,16 +16,7 @@ namespace Bitocin.Content {
         {
             valor = rodaQuery();
             GeraTabelaHardware("CPU");
-         //   Button1.Click(sender, e);
         }
-
-        //   MySqlConnection SQL_koneksi = new MySqlConnection("SERVER=localhost;PORT=3306;UID=root;PWD=;");
-        //   String nama_tabel = "twitter_clone.usuarios";
-        //   MySqlDataAdapter db_select;
-        //  DataSet db_data;
-        //   MySqlCommand SQL_cmd;
-        //   string Query;
-
 
         public string rodaQuery()
         {
@@ -44,25 +35,7 @@ namespace Bitocin.Content {
             }
             con.Close();
             return temp;
-
-            
         }
-
-
-//        protected void Button1_Click(object sender, EventArgs e)
-//        {
-//            //Get the data from database, and fill it to the datatable
-//            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Server=localhost;Port=3306;Database=cripto;Uid=root;Pwd=''"].ConnectionString);
-//        string sql = "SELECT * FROM hardwares";
-//        DataTable dt = new DataTable();
-//        SqlDataAdapter sda = new SqlDataAdapter(sql, conn);
-//        sda.Fill(dt);
- 
-//            //show the data to the GridView
-//            GridView2.DataSource = dt;
-//            GridView2.DataBind();
-//}
-
 
         public void GeraTabelaHardware(String filtro)
         {//"SERVER=localhost;PORT=3306;UID=root;PWD=;"
@@ -71,16 +44,11 @@ namespace Bitocin.Content {
             MySqlDataAdapter db_select;
             DataSet db_data;
 
-          //  filtro = Request.Form["selectHardware"];
-          //  MySqlCommand SQL_cmd;
-          //  string Query;
-
             try
             {
                 db_select = new MySqlDataAdapter("SELECT marca, modelo, consumo, preco, ano FROM " + name_tabel + " WHERE tipo='" + filtro + "'", SQL_conection);
                 db_data = new System.Data.DataSet();
                 db_select.Fill(db_data, name_tabel);
-               // db_select.Fill(db_data);
                 GridView2.DataSource = db_data;
                 GridView2.DataBind();
             }

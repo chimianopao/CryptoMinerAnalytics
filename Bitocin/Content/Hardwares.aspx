@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Hardwares.aspx.cs" Inherits="Bitocin.Content.Hardwares" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Hardwares.aspx.cs" Inherits="Bitocin.Content.Hardwares" EnableViewState="false" %>
 
 
 <!DOCTYPE html>
@@ -37,6 +37,7 @@
                 </li>
             </ul>
         </div>
+        <br /><br />
         <form id="form1" runat="server">
             <div>
                 Selecione o Hardware:
@@ -72,19 +73,19 @@
                     </Columns>
                 </asp:GridView>
             </div>
-      
+            <br /><br />
+            <h3>Cadastre um novo hardware:</h3>
          <div class="col-md-4">
-                Marca:
-                <input type="text" class="form-control" id="marca" name="marca" placeholder="marca" required="required"/>
-                <input type="text" class="form-control" id="modelo" name="modelo" placeholder="modelo" required="required"/>
-                <input type="text" class="form-control" id="tipo" name="tipo" placeholder="tipo" required="required"/>
-                <input type="text" class="form-control" id="consumo" name="consumo" placeholder="consumo" required="required"/>
-                <input type="text" class="form-control" id="preco" name="preco" placeholder="preco" required="required"/>
-                <input type="text" class="form-control" id="ano" name="ano" placeholder="ano" required="required"/>
+                <input type="text" class="form-control inlineClass" id="marca" name="marca" placeholder="marca"/>
+                <input type="text" class="form-control inlineClass" id="modelo" name="modelo" placeholder="modelo"/>
+                <input type="text" class="form-control" id="tipo" name="tipo" placeholder="tipo"/>
+                <input type="number" class="form-control" id="consumo" name="consumo" placeholder="consumo"/>
+                <input type="number" class="form-control" id="preco" name="preco" placeholder="preco" />
+                <input type="number" class="form-control" id="ano" name="ano" placeholder="ano" step="1" min="1975"/>
 
              <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server"/>
             </div>
-              </form>
+      </form>
     </div>
       
 </body>
