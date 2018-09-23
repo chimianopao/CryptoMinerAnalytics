@@ -81,12 +81,20 @@
   <ItemGroup>
     <Content Include="Content\CSS\bootstrap.css" />
     <Content Include="Content\CSS\estilo.css" />
+    <Content Include="Content\Moedas.aspx" />
     <Content Include="Content\Index.aspx" />
     <Content Include="Content\Hardwares.aspx" />
     <Content Include="scripts\JS\bootstrap.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Content\Moedas.aspx.cs">
+      <DependentUpon>Moedas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Moedas.aspx.designer.cs">
+      <DependentUpon>Moedas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Content\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

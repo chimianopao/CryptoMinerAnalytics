@@ -21,21 +21,21 @@
         </div>
         <div class="navigation-bar col-md-12">
             <ul>
-                <li><a href="index.aspx" data-toggle="tab">Home</a>
+                <li><a href="Index.aspx" data-toggle="tab">Home</a>
                 </li>
-                <li><a href="#profile-pills" data-toggle="tab">Comparativo</a>
+                <li><a href="Comparativo.aspx" data-toggle="tab">Comparativo</a>
                 </li>
-                <li><a href="#messages-pills" data-toggle="tab">Moedas</a>
+                <li><a href="Moedas.aspx" data-toggle="tab">Moedas</a>
                 </li>
-                <li class="active"><a href="hardwares.aspx" data-toggle="tab">Hardwares</a>
+                <li><a href="Hardwares.aspx" data-toggle="tab">Hardwares</a>
                 </li>
-                <li><a href="#settings-pills" data-toggle="tab">Energia</a>
+                <li><a href="Energia.aspx" data-toggle="tab">Energia</a>
                 </li>
-                <li><a href="#settings-pills" data-toggle="tab">FAQ</a>
+                <li><a href="Faq.aspx" data-toggle="tab">FAQ</a>
                 </li>
-                <li><a href="#settings-pills" data-toggle="tab">Sobre</a>
+                <li><a href="Sobre.aspx" data-toggle="tab">Sobre</a>
                 </li>
-            </ul>
+                </ul>
         </div>
         <br />
         <br />
