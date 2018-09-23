@@ -14,28 +14,11 @@ namespace Bitocin.Content {
         public string valor;
         protected void Page_Load(object sender, EventArgs e)
         {
-            valor = rodaQuery();
+ //           valor = rodaQuery();
             GeraTabelaHardware("CPU");
         }
 
-        public string rodaQuery()
-        {
-            string sql = " SELECT senha FROM usuarios  ";
-            MySqlConnection con = new MySqlConnection("host=localhost;user=root;password='';database=twitter_clone;SslMode=none");
-            MySqlCommand cmd = new MySqlCommand(sql, con);
-            string temp = "";
-            con.Open();
-
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                temp = reader.GetString("senha");
-
-            }
-            con.Close();
-            return temp;
-        }
+        
 
         public void GeraTabelaHardware(String filtro)
         {
