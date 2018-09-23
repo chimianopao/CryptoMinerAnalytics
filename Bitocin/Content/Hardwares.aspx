@@ -37,7 +37,8 @@
                 </li>
             </ul>
         </div>
-        <br /><br />
+        <br />
+        <br />
         <form id="form1" runat="server">
             <div>
                 Selecione o Hardware:
@@ -73,21 +74,26 @@
                     </Columns>
                 </asp:GridView>
             </div>
-            <br /><br />
+            <br />
+            <br />
             <h3>Cadastre um novo hardware:</h3>
-         <div class="col-md-4">
-                <input type="text" class="form-control inlineClass" id="marca" name="marca" placeholder="marca"/>
-                <input type="text" class="form-control inlineClass" id="modelo" name="modelo" placeholder="modelo"/>
-                <input type="text" class="form-control" id="tipo" name="tipo" placeholder="tipo"/>
-                <input type="number" class="form-control" id="consumo" name="consumo" placeholder="consumo"/>
-                <input type="number" class="form-control" id="preco" name="preco" placeholder="preco" />
-                <input type="number" class="form-control" id="ano" name="ano" placeholder="ano" step="1" min="1975"/>
-
-             <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server"/>
+            <div class="col-md-4">
+                <input type="text" class="form-control inlineClass" id="marca" name="marca" placeholder="marca" />
+                <input type="text" class="form-control inlineClass" id="modelo" name="modelo" placeholder="modelo" />
+                Tipo: 
+                <select id="selectTypeCreation" name="selectTypeCreation" runat="server">
+                    <option value="CPU">CPU</option>
+                    <option value="GPU">GPU</option>
+                    <option value="ASIC">ASIC</option>
+                </select>
+                <input type="number" class="form-control" id="consumo" name="consumo" placeholder="consumo" />
+                <input type="number" class="form-control" id="preco" name="preco" placeholder="preco" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" />
+                <input type="number" class="form-control" id="ano" name="ano" placeholder="ano" />
+                <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
             </div>
-      </form>
+        </form>
     </div>
-      
+
 </body>
 </html>
 <script>

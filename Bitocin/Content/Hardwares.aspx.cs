@@ -38,7 +38,7 @@ namespace Bitocin.Content {
         }
 
         public void GeraTabelaHardware(String filtro)
-        {//"SERVER=localhost;PORT=3306;UID=root;PWD=;"
+        {
             MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
             String name_tabel = "hardwares";
             MySqlDataAdapter db_select;
@@ -72,7 +72,7 @@ namespace Bitocin.Content {
 
             string marca = Request.Form["marca"];
             string modelo = Request.Form["modelo"];
-            string tipo = Request.Form["tipo"];
+            string tipo = Request.Form["selectTypeCreation"];
             string consumo = Request.Form["consumo"];
             string preco = Request.Form["preco"];
             string ano = Request.Form["ano"];
@@ -83,10 +83,12 @@ namespace Bitocin.Content {
                 MySqlCommand cmd = new MySqlCommand($"INSERT INTO {name_tabel} (marca,modelo,tipo,consumo,preco,ano,aprovado) VALUES ('{marca}','{modelo}','{tipo}',{consumo},{preco},{ano},0);", SQL_conection);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
+
+                Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Hardware cadastrado com sucesso');", true);
             }
             catch
             {
-                valor = "deu pau";
+                Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Erro ao cadastrar. Por favor, preencha todos os campos.');", true);
             }
         }
 
