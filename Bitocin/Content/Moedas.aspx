@@ -40,6 +40,8 @@
         <br />
         <br />
         <form id="form1" runat="server">
+            <asp:Button ID="ButtonCotacao" Text="Obter Cotação" OnClick="ButtonCotacao_Click" runat="server" />
+            
             <div class="background-branco">
                 <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed" AutoGenerateColumns="false">
                     <Columns>
@@ -49,6 +51,10 @@
                             HeaderText="Nome" />
                         <asp:BoundField DataField="algoritmo"
                             HeaderText="Algoritmo" />
+                        <asp:BoundField DataField="cotacao"
+                            HeaderText="Cotação" />
+                        <asp:BoundField DataField="dataCotacao"
+                            HeaderText="Data" />
                     </Columns>
                 </asp:GridView>
             </div>
