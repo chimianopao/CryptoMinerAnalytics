@@ -39,6 +39,8 @@ namespace Bitocin.Content {
 
         public void GeraTabelaHardware(String filtro)
         {
+            string tipo = Request.Form["selectHardware"];
+            string moeda = Request.Form["selectMoeda"];
             MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
             String name_tabel = "hardwares";
             MySqlDataAdapter db_select;
@@ -46,7 +48,10 @@ namespace Bitocin.Content {
 
             try
             {
-                db_select = new MySqlDataAdapter("SELECT marca, modelo, consumo, preco, ano FROM " + name_tabel + " WHERE tipo='" + filtro + "'", SQL_conection);
+                db_select = new MySqlDataAdapter("SELECT hw.marca, hw.modelo, pr.processamentPorSegundo, hw.consumo, hw.preco, hw.ano FROM hardwares hw " +
+                    "JOIN processamento pr ON hw.idHardware = pr.idHardware " +
+                    "JOIN criptomoedas cm ON cm.idCriptomoeda = pr.idCriptomoeda " +
+                    $"WHERE hw.tipo = '{tipo}' AND cm.nome = '{moeda}'; ", SQL_conection);
                 db_data = new System.Data.DataSet();
                 db_select.Fill(db_data, name_tabel);
                 GridView2.DataSource = db_data;

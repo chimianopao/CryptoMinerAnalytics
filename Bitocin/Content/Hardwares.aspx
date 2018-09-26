@@ -48,7 +48,7 @@
           <option value="ASIC">ASIC</option>
       </select>
                 Selecione a Moeda
-      <select>
+      <select id="selectMoeda" name="selectMoeda" runat="server">
           <option>Bitcoin</option>
           <option>Monero</option>
           <option>Ethereum</option>
@@ -62,7 +62,9 @@
                         <asp:BoundField DataField="marca"
                             HeaderText="Marca" />
                         <asp:BoundField DataField="modelo"
-                            HeaderText="Modelo" />
+                            HeaderText="Modelo" /> 
+                        <asp:BoundField DataField="processamentPorSegundo"
+                            HeaderText="H/s" />
                         <asp:BoundField DataField="consumo"
                             HeaderText="Consumo" />
                         <asp:BoundField DataField="preco"
