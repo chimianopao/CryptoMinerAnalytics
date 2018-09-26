@@ -11,31 +11,31 @@ using MySql.Data.MySqlClient;
 
 namespace Bitocin.Content {
     public partial class Hardwares : System.Web.UI.Page {
-        public string valor;
+        public string valor = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            valor = rodaQuery();
             GeraTabelaHardware("CPU");
         }
 
-        public string rodaQuery()
-        {
-            string sql = " SELECT senha FROM usuarios  ";
-            MySqlConnection con = new MySqlConnection("host=localhost;user=root;password='';database=twitter_clone;SslMode=none");
-            MySqlCommand cmd = new MySqlCommand(sql, con);
-            string temp = "";
-            con.Open();
+        
+        //public string rodaQuery()
+        //{
+        //    string sql = " SELECT senha FROM usuarios  ";
+        //    MySqlConnection con = new MySqlConnection("host=localhost;user=root;password='';database=twitter_clone;SslMode=none");
+        //    MySqlCommand cmd = new MySqlCommand(sql, con);
+        //    string temp = "";
+        //    con.Open();
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+        //    MySqlDataReader reader = cmd.ExecuteReader();
 
-            while (reader.Read())
-            {
-                temp = reader.GetString("senha");
+        //    while (reader.Read())
+        //    {
+        //        temp = reader.GetString("senha");
 
-            }
-            con.Close();
-            return temp;
-        }
+        //    }
+        //    con.Close();
+        //    return temp;
+        //}
 
         public void GeraTabelaHardware(String filtro)
         {

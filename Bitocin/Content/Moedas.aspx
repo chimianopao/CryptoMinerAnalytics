@@ -62,9 +62,10 @@
             <br />
             <h3>Cadastre uma nova Moeda:</h3>
             <div class="col-md-4">
-                <input type="text" class="form-control inlineClass" id="sigla" name="sigla" placeholder="sigla" />
-                <input type="text" class="form-control inlineClass" id="nome" name="nome" placeholder="nome" />
-                <input type="text" class="form-control" id="algoritmo" name="algoritmo" placeholder="algoritmo" />
+                <input type="text" class="form-control inlineClass" id="sigla" name="sigla" placeholder="Sigla" />
+                <input type="text" class="form-control inlineClass" id="nome" name="nome" placeholder="Nome" />
+                <input type="text" class="form-control" id="algoritmo" name="algoritmo" placeholder="Algoritmo" />
+                <input type="number" class="form-control" id="cotacao" name="cotacao" placeholder="Cotação atual" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any"/>
                 <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
             </div>
         </form>

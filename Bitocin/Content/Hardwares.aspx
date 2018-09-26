@@ -57,8 +57,6 @@
             </div>
 
             <div class="background-branco">
-                <input type="button" value="Total" onclick="Recupera();" />
-
                 <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="marca"
@@ -78,17 +76,17 @@
             <br />
             <h3>Cadastre um novo hardware:</h3>
             <div class="col-md-4">
-                <input type="text" class="form-control inlineClass" id="marca" name="marca" placeholder="marca" />
-                <input type="text" class="form-control inlineClass" id="modelo" name="modelo" placeholder="modelo" />
+                <input type="text" class="form-control inlineClass" id="marca" name="marca" placeholder="Marca" />
+                <input type="text" class="form-control inlineClass" id="modelo" name="modelo" placeholder="Modelo" />
                 Tipo: 
                 <select id="selectTypeCreation" name="selectTypeCreation" runat="server">
                     <option value="CPU">CPU</option>
                     <option value="GPU">GPU</option>
                     <option value="ASIC">ASIC</option>
                 </select>
-                <input type="number" class="form-control" id="consumo" name="consumo" placeholder="consumo" />
-                <input type="number" class="form-control" id="preco" name="preco" placeholder="preco" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" />
-                <input type="number" class="form-control" id="ano" name="ano" placeholder="ano" />
+                <input type="number" class="form-control" id="consumo" name="consumo" placeholder="Consumo" />
+                <input type="number" class="form-control" id="preco" name="preco" placeholder="Preço" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" />
+                <input type="number" class="form-control" id="ano" name="ano" placeholder="Ano" />
                 <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
             </div>
         </form>
@@ -97,6 +95,5 @@
 </body>
 </html>
 <script>
-    function Recupera() { alert('<%= valor %>'); }
-    function Gera() { GeraTabelaHardware('GPU'); }
+   <%-- function Recupera() { alert('<%= valor %>'); }--%>
 </script>
