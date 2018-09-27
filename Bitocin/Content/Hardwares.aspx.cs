@@ -11,10 +11,11 @@ using MySql.Data.MySqlClient;
 
 namespace Bitocin.Content {
     public partial class Hardwares : System.Web.UI.Page {
-        public string valor = "";
+        public string valor = "Bitcoin";
         protected void Page_Load(object sender, EventArgs e)
         {
-            GeraTabelaHardware("CPU");
+            CarregaMenuMoedas();
+            GeraTabelaHardware();
         }
 
         
@@ -37,10 +38,41 @@ namespace Bitocin.Content {
         //    return temp;
         //}
 
-        public void GeraTabelaHardware(String filtro)
+        public void CarregaMenuMoedas()
         {
-            string tipo = Request.Form["selectHardware"];
-            string moeda = Request.Form["selectMoeda"];
+                string ConnectString = "host=localhost;user=root;password='';database=cripto;SslMode=none";
+                string QueryString = "select nome from criptomoedas";
+
+                MySqlConnection myConnection = new MySqlConnection(ConnectString);
+                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, myConnection);
+                DataSet ds = new DataSet();
+                myCommand.Fill(ds, "nome");
+
+                selectMoeda.DataSource = ds;
+                selectMoeda.DataTextField = "nome";
+                selectMoeda.DataValueField = "nome";
+                selectMoeda.DataBind();
+                myConnection.Close();
+        }
+
+        public void GeraTabelaHardware()
+        {
+            string tipo = "";
+            string moeda = "";
+            string unidade = "";
+
+            if (Request.Form["selectHardware"] == null)
+            {
+                tipo = "ASIC";
+                moeda = "Bitcoin";
+                //unidade = "MH/s";
+                GridView2.Columns[2].HeaderText = "MH/s";
+            }
+            else
+            {
+                tipo = Request.Form["selectHardware"];
+                moeda = Request.Form["selectMoeda"];
+            }
             MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
             String name_tabel = "hardwares";
             MySqlDataAdapter db_select;
@@ -48,7 +80,7 @@ namespace Bitocin.Content {
 
             try
             {
-                db_select = new MySqlDataAdapter("SELECT hw.marca, hw.modelo, pr.processamentPorSegundo, hw.consumo, hw.preco, hw.ano FROM hardwares hw " +
+                db_select = new MySqlDataAdapter("SELECT hw.marca, hw.modelo, pr.processamentPorSegundo, hw.consumo, hw.preco, hw.ano, pr.unidade FROM hardwares hw " +
                     "JOIN processamento pr ON hw.idHardware = pr.idHardware " +
                     "JOIN criptomoedas cm ON cm.idCriptomoeda = pr.idCriptomoeda " +
                     $"WHERE hw.tipo = '{tipo}' AND cm.nome = '{moeda}'; ", SQL_conection);
@@ -56,9 +88,16 @@ namespace Bitocin.Content {
                 db_select.Fill(db_data, name_tabel);
                 GridView2.DataSource = db_data;
                 GridView2.DataBind();
+                //MySqlDataReader reader = db_select.ExecuteReader();
+                unidade = db_data.Tables[0].Rows[0]["unidade"].ToString();
+                GridView2.Columns[2].HeaderText = unidade;
+                SQL_conection.Close();
+
+                valor = moeda;
+                CarregaMenuMoedas();
             }
             catch {
-                valor = "deu pau";
+                valor = "Erro ao gerar tabela";
             }
 
 
@@ -66,7 +105,7 @@ namespace Bitocin.Content {
 
         public void loadTableButton_Click(Object sender, EventArgs e)
         {
-            GeraTabelaHardware(Request.Form["selectHardware"]);
+            GeraTabelaHardware();
         }
 
 

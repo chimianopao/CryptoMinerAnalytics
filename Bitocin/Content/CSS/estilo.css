@@ -19,18 +19,13 @@ body {
 .navigation-bar{
 margin: 10px auto;
 border: 1px solid red;
-/*margin-left: auto;
-margin-right: auto;
-padding-left: 28%;*/
+margin-left: 8%;
+padding-left: 58%;
   
 }
 
 
-.table-class{
-  border: 1px solid red;
-  width: 924px;
-  margin-left: 28%;
-}
+
 
 .navigation-bar ul {
     list-style-type: none;
@@ -63,6 +58,12 @@ padding-left: 28%;*/
 }
 .navigation-bar li a:hover {
     background-color: #111;
+}
+
+.table-class {
+    border: 1px solid red;
+    width: 924px;
+    margin-left: 28%;
 }
 
 /* The dropdown container */

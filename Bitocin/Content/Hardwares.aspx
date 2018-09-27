@@ -19,7 +19,7 @@
         <div class="logotipo">
             <img src="images/logo.png" />
         </div>
-        <div class="navigation-bar col-md-12">
+        <div class="navigation-bar col-md-10">
             <ul>
                 <li><a href="Index.aspx" data-toggle="tab">Home</a>
                 </li>
@@ -43,19 +43,20 @@
             <div>
                 Selecione o Hardware:
       <select id="selectHardware" name="selectHardware" runat="server">
+          <option value="ASIC">ASIC</option>
           <option value="CPU">CPU</option>
           <option value="GPU">GPU</option>
-          <option value="ASIC">ASIC</option>
       </select>
                 Selecione a Moeda
       <select id="selectMoeda" name="selectMoeda" runat="server">
-          <option>Bitcoin</option>
+          <%--<option>Bitcoin</option>
           <option>Monero</option>
           <option>Ethereum</option>
+          <option>Zcash</option>--%>
       </select>
                 <asp:Button ID="loadTableButton" Text="Recarregar Tabela" OnClick="loadTableButton_Click" runat="server" />
             </div>
-
+            <h3>Moeda: <%= valor %></h3>
             <div class="background-branco">
                 <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed" AutoGenerateColumns="false">
                     <Columns>
@@ -64,7 +65,7 @@
                         <asp:BoundField DataField="modelo"
                             HeaderText="Modelo" /> 
                         <asp:BoundField DataField="processamentPorSegundo"
-                            HeaderText="H/s" />
+                            HeaderText="" />
                         <asp:BoundField DataField="consumo"
                             HeaderText="Consumo" />
                         <asp:BoundField DataField="preco"
