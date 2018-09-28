@@ -45,58 +45,58 @@ namespace Bitocin.Content {
             }
         }
 
-        public void ButtonCadastro_Click(Object sender, EventArgs e)
-        {
-            MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
-            String name_table = "criptomoedas";
+        //public void ButtonCadastro_Click(Object sender, EventArgs e)
+        //{
+        //    MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
+        //    String name_table = "criptomoedas";
 
-            string sigla = Request.Form["sigla"];
-            string nome = Request.Form["nome"];
-            string algoritmo = Request.Form["algoritmo"];
-            string cotacao = Request.Form["cotacao"];
+        //    string sigla = Request.Form["sigla"];
+        //    string nome = Request.Form["nome"];
+        //    string algoritmo = Request.Form["algoritmo"];
+        //    string cotacao = Request.Form["cotacao"];
 
-            try
-            {
-                #region Insere moeda
-                SQL_conection.Open();
-                MySqlCommand cmd = new MySqlCommand($"INSERT INTO {name_table} (sigla,nome,algoritmo) VALUES ('{sigla}','{nome}','{algoritmo}');", SQL_conection);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-                SQL_conection.Close();
-                #endregion
+        //    try
+        //    {
+        //        #region Insere moeda
+        //        SQL_conection.Open();
+        //        MySqlCommand cmd = new MySqlCommand($"INSERT INTO {name_table} (sigla,nome,algoritmo) VALUES ('{sigla}','{nome}','{algoritmo}');", SQL_conection);
+        //        cmd.ExecuteNonQuery();
+        //        cmd.Dispose();
+        //        SQL_conection.Close();
+        //        #endregion
 
-                #region Pega idCriptomoeda da nova moeda
-                int idCriptomoeda;
-                string temp = "";
-                var dataCotacao = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        //        #region Pega idCriptomoeda da nova moeda
+        //        int idCriptomoeda;
+        //        string temp = "";
+        //        var dataCotacao = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                cmd = new MySqlCommand($"SELECT idCriptomoeda from criptomoedas WHERE nome = '{nome}';", SQL_conection);
-                SQL_conection.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
+        //        cmd = new MySqlCommand($"SELECT idCriptomoeda from criptomoedas WHERE nome = '{nome}';", SQL_conection);
+        //        SQL_conection.Open();
+        //        MySqlDataReader reader = cmd.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    temp = reader.GetString("idCriptomoeda");
-                }
-                SQL_conection.Close();
-                idCriptomoeda = int.Parse(temp);
-                #endregion
+        //        while (reader.Read())
+        //        {
+        //            temp = reader.GetString("idCriptomoeda");
+        //        }
+        //        SQL_conection.Close();
+        //        idCriptomoeda = int.Parse(temp);
+        //        #endregion
 
-                #region Insere cotação
-                SQL_conection.Open();
-                cmd = new MySqlCommand($"INSERT INTO historicocotacao (idCriptomoeda,cotacao,dataCotacao) VALUES ({idCriptomoeda}, '{cotacao}', '{dataCotacao}');", SQL_conection);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-                #endregion
+        //        #region Insere cotação
+        //        SQL_conection.Open();
+        //        cmd = new MySqlCommand($"INSERT INTO historicocotacao (idCriptomoeda,cotacao,dataCotacao) VALUES ({idCriptomoeda}, '{cotacao}', '{dataCotacao}');", SQL_conection);
+        //        cmd.ExecuteNonQuery();
+        //        cmd.Dispose();
+        //        #endregion
 
-                Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Moeda cadastrada com sucesso');", true);
-                GeraTabelaMoedas();
-            }
-            catch
-            {
-                Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Erro ao cadastrar. Por favor, preencha todos os campos.');", true);
-            }
-        }
+        //        Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Moeda cadastrada com sucesso');", true);
+        //        GeraTabelaMoedas();
+        //    }
+        //    catch
+        //    {
+        //        Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Erro ao cadastrar. Por favor, preencha todos os campos.');", true);
+        //    }
+        //}
 
 
 
