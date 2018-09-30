@@ -22,15 +22,6 @@ namespace Bitocin.Content {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// selectHardware control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect selectHardware;
-        
-        /// <summary>
         /// selectMoeda control.
         /// </summary>
         /// <remarks>
@@ -65,6 +56,24 @@ namespace Bitocin.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSelect selectTypeCreation;
+        
+        /// <summary>
+        /// selectMoedaCadastro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect selectMoedaCadastro;
+        
+        /// <summary>
+        /// labelUnidade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl labelUnidade;
         
         /// <summary>
         /// ButtonCadastro control.

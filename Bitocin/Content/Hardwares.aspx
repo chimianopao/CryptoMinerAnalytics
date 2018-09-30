@@ -41,12 +41,12 @@
         <br />
         <form id="form1" runat="server">
             <div>
-                Selecione o Hardware:
+<%--                Selecione o Hardware:
       <select id="selectHardware" name="selectHardware" runat="server">
           <option value="ASIC">ASIC</option>
           <option value="CPU">CPU</option>
           <option value="GPU">GPU</option>
-      </select>
+      </select>--%>
                 Selecione a Moeda
       <select id="selectMoeda" name="selectMoeda" runat="server">
           <%--<option>Bitcoin</option>
@@ -60,12 +60,14 @@
             <div class="background-branco">
                 <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed" AutoGenerateColumns="false">
                     <Columns>
+                        <asp:BoundField DataField="tipo"
+                            HeaderText="Tipo" />
                         <asp:BoundField DataField="marca"
                             HeaderText="Marca" />
                         <asp:BoundField DataField="modelo"
                             HeaderText="Modelo" /> 
-                        <asp:BoundField DataField="processamentPorSegundo"
-                            HeaderText="" />
+                        <asp:BoundField DataField="processamentoPorSegundo"
+                            HeaderText="MH/s" />
                         <asp:BoundField DataField="consumo"
                             HeaderText="Consumo" />
                         <asp:BoundField DataField="preco"
@@ -78,18 +80,22 @@
             <br />
             <br />
             <h3>Cadastre um novo hardware:</h3>
-            <div class="col-md-4">
-                <input type="text" class="form-control inlineClass" id="marca" name="marca" placeholder="Marca" />
-                <input type="text" class="form-control inlineClass" id="modelo" name="modelo" placeholder="Modelo" />
+            <div class="col-md-6">
+                <input type="text" class="form-control col-md-7" id="marca" name="marca" placeholder="Marca" />
+                <input type="text" class="form-control col-md-7" id="modelo" name="modelo" placeholder="Modelo" />
                 Tipo: 
                 <select id="selectTypeCreation" name="selectTypeCreation" runat="server">
                     <option value="CPU">CPU</option>
                     <option value="GPU">GPU</option>
                     <option value="ASIC">ASIC</option>
-                </select>
-                <input type="number" class="form-control" id="consumo" name="consumo" placeholder="Consumo" />
-                <input type="number" class="form-control" id="preco" name="preco" placeholder="Preço" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" />
-                <input type="number" class="form-control" id="ano" name="ano" placeholder="Ano" />
+                </select><br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="consumo" name="consumo" placeholder="Consumo" /> Watts<br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="preco" name="preco" placeholder="Preço" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" /> Reais<br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="ano" name="ano" placeholder="Ano" /><br />
+                Moeda:
+                <select id="selectMoedaCadastro" name="selectMoedaCadastro" runat="server"/><br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="processamento" name="processamento" placeholder="Processamento" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" />
+                <label id="labelUnidade" name="labelUnidade" class="inlineClass" runat="server">MH/s</label><br />
                 <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
             </div>
         </form>
