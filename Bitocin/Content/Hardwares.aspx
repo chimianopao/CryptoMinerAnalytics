@@ -93,7 +93,7 @@
                 <input type="number" class="form-control col-md-7 inlineClass" id="preco" name="preco" placeholder="Preço" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" /> Reais<br />
                 <input type="number" class="form-control col-md-7 inlineClass" id="ano" name="ano" placeholder="Ano" /><br />
                 Moeda:
-                <select id="selectMoedaCadastro" name="selectMoedaCadastro" runat="server"/><br />
+                <select id="selectMoedaCadastro" name="selectMoedaCadastro" runat="server" onclick="MoedaCadastroChange" onselect="MoedaCadastroChange" onchange="MoedaCadastroChange"/><br />
                 <input type="number" class="form-control col-md-7 inlineClass" id="processamento" name="processamento" placeholder="Processamento" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" />
                 <label id="labelUnidade" name="labelUnidade" class="inlineClass" runat="server">MH/s</label><br />
                 <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
@@ -105,4 +105,8 @@
 </html>
 <script>
    <%-- function Recupera() { alert('<%= valor %>'); }--%>
+    function f1() {
+        
+          form1.submit();
+      }
 </script>

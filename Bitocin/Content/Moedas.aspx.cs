@@ -33,7 +33,7 @@ namespace Bitocin.Content {
 
             try
             {
-                db_select = new MySqlDataAdapter("SELECT distinct cm.sigla as sigla, cm.nome, cm.algoritmo, hc.cotacao, hc.dataCotacao from criptomoedas cm JOIN historicocotacao hc on cm.idCriptomoeda = hc.idCriptomoeda order BY hc.dataCotacao desc;", SQL_conection);
+                db_select = new MySqlDataAdapter("SELECT distinct cm.sigla as sigla, cm.nome, cm.algoritmo, hc.cotacao, hc.dataCotacao from criptomoedas cm JOIN historicocotacao hc on cm.idCriptomoeda = hc.idCriptomoeda order BY hc.dataCotacao desc LIMIT 6;", SQL_conection);
                 db_data = new System.Data.DataSet();
                 db_select.Fill(db_data, name_table);
                 GridView2.DataSource = db_data;

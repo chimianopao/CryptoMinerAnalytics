@@ -94,8 +94,6 @@ namespace Bitocin.Content {
             catch (Exception e){
                 valor = "Erro ao gerar tabela:" + e.Message;
             }
-
-
         }
 
         public void loadTableButton_Click(Object sender, EventArgs e)
@@ -148,7 +146,7 @@ namespace Bitocin.Content {
                 temp = "";
                 cmd = new MySqlCommand($"SELECT cm.idCriptomoeda, pro.unidade from criptomoedas cm " +
                     $"JOIN processamento pro on cm.idCriptomoeda = pro.idCriptomoeda " +
-                    $"WHERE cm.nome = '{Request.Form["selectMoeda"]}';", SQL_conection);
+                    $"WHERE cm.nome = '{Request.Form["selectMoedaCadastro"]}';", SQL_conection);
                 SQL_conection.Open();
                 reader = cmd.ExecuteReader();
 
@@ -177,6 +175,11 @@ namespace Bitocin.Content {
             }
 
 
+        }
+
+        public void MoedaCadastroChange(Object sender, EventArgs e)
+        {
+            labelUnidade.InnerText = selectMoedaCadastro.Value;
         }
 
 

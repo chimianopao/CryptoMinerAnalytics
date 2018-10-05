@@ -52,7 +52,7 @@
                         <asp:BoundField DataField="algoritmo"
                             HeaderText="Algoritmo" />
                         <asp:BoundField DataField="cotacao"
-                            HeaderText="Cotação" />
+                            HeaderText="Cotação R$" />
                         <asp:BoundField DataField="dataCotacao"
                             HeaderText="Data" />
                     </Columns>
