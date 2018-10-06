@@ -108,6 +108,7 @@
   <ItemGroup>
     <Content Include="Content\CSS\bootstrap.css" />
     <Content Include="Content\CSS\estilo.css" />
+    <Content Include="Content\Energia.aspx" />
     <Content Include="Content\Moedas.aspx" />
     <Content Include="Content\Index.aspx" />
     <Content Include="Content\Hardwares.aspx" />
@@ -116,6 +117,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content\API\BraziliexAPI.cs" />
+    <Compile Include="Content\Energia.aspx.cs">
+      <DependentUpon>Energia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Energia.aspx.designer.cs">
+      <DependentUpon>Energia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Content\Moedas.aspx.cs">
       <DependentUpon>Moedas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
