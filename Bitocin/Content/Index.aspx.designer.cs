@@ -13,21 +13,39 @@ namespace Bitocin.Content {
     public partial class Index {
         
         /// <summary>
-        /// form1 control.
+        /// selectMoeda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect selectMoeda;
         
         /// <summary>
-        /// GridView2 control.
+        /// selectHardware control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect selectHardware;
+        
+        /// <summary>
+        /// selectCidade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect selectCidade;
+        
+        /// <summary>
+        /// ButtonCalcular control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonCalcular;
     }
 }

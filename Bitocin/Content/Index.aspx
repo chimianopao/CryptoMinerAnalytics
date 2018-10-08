@@ -5,20 +5,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Crypto Miner Analytics - Home</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <link href="CSS/Bootstrap.css" rel="stylesheet" />
-    <link href="CSS/estilo.css" rel="stylesheet">
+    <link href="CSS/estilo.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="container">
     <div class="logotipo">
-        <img src="images/logo.png">
+        <img src="images/logo.png"/>
     </div>
-</img>
     <div class="navigation-bar col-md-12">
         <ul>
             <li><a href="Index.aspx" data-toggle="tab">Home</a>
@@ -48,36 +47,35 @@
     </div>
   </div>  -->
 
-  <div>Selecione o Hardware:
-      <select>
-          <option>CPU</option>
-          <option>GPU</option>
-          <option>ASIC</option>
-      </select>
-      Selecione a Moeda
-      <select>
-          <option>Bitcoin</option>
-          <option>Monero</option>
-          <option>Ethereum</option>
-      </select>
+        <h2>Simulador</h2>
+        <form runat="server">
+      Moeda: 
+      <select id="selectMoeda" multiple="false" name="selectMoeda" runat="server"></select> <br />
+
+      Hardware: 
+        <select id="selectHardware" multiple="false" name="selectHardware" runat="server"></select>
+        Quantidade: <input type="text" name="quantidadeHw" value="" class="col-md-1" />
+        <br />
+     
+        Cidade: 
+        <select id="selectCidade" multiple="false" name="selectCidade" runat="server"></select><br />
+
+        <asp:Button ID="ButtonCalcular" Text="Calcular Rentabilidade" OnClick="ButtonCalcular_Click" runat="server" />
+
+        </form>
   </div>
 
-  
-</div>
-        tabela
-  
-    <form id="form1" runat="server">
-        <div>
-            <input type="button" value="Total" onclick="Recupera();" />
-
-             <asp:GridView ID="GridView2" runat="server"></asp:GridView>
-            
-        </div>
-        
-    </form>
     <div>
-            
-        </div>
+        Moeda: <label>haha</label><br />
+        Algoritmo: <label>haha</label><br />
+        Cotação do dia: <label>haha</label><br />
+        Hardware: <label>haha</label><br />
+        Cidade: <label>haha</label><br />
+        Custo de energia: <label>haha</label><br />
+        Poder total de processamento: <label>haha</label><br />
+        Consumo energético total: <label>haha</label><br />
+    </div>
+
 </body>
 </html>
 <script>

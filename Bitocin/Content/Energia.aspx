@@ -43,18 +43,19 @@
             <div>
             </div>
             <div class="background-branco">
-                <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed" AutoGenerateColumns="false">
-                    <Columns>
+                <%--AllowSorting="True" onsorting="GridView2_Sorting"--%>
+                <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed table-sm dataTable sorting" AllowSorting="True" onsorting="GridView2_Sorting" AutoGenerateColumns="false">
+                    <Columns> 
                         <asp:BoundField DataField="cidade"
-                            HeaderText="Cidade" />
+                            HeaderText="Cidade" sortexpression="cidade"/>
                         <asp:BoundField DataField="estado"
-                            HeaderText="Estado" />
+                            HeaderText="Estado"  SortExpression="Estado"/>
                         <asp:BoundField DataField="concessionaria"
-                            HeaderText="Concessionária" /> 
+                            HeaderText="Concessionária" sortexpression="concessionaria"/> 
                         <asp:BoundField DataField="custoKWh"
-                            HeaderText="Custo por KW/h" />
+                            HeaderText="Custo por KW/h" sortexpression="custoKWh"/>
                         <asp:BoundField DataField="emissaoCO2porWh"
-                            HeaderText="CO2/Wh" />
+                            HeaderText="CO2/Wh" sortexpression="emissaoCO2porWh"/>
                     </Columns>
                 </asp:GridView>
             </div>
@@ -72,6 +73,44 @@
         </form>
     </div>
 
+    <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Bar Chart Example
+                        </div>
+                        <!-- /.panel-heading -->
+                        
+                        <div class="panel-body">
+                            <div class="flot-chart">
+                                <div class="flot-chart-content" id="flot-bar-chart" style="padding: 0px; position: relative;">
+                                    <canvas class="flot-base" width="727" height="400" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 727px; height: 400px;"></canvas>
+                                    <div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);">
+                                        <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;">
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 108px; text-align: center;">12/05</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 215px; text-align: center;">12/07</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 322px; text-align: center;">12/09</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 430px; text-align: center;">12/11</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 537px; text-align: center;">12/13</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 644px; text-align: center;">12/15</div>
+
+                                        </div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;">
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 369px; left: 21px; text-align: right;">0</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 316px; left: 2px; text-align: right;">1000</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 264px; left: 2px; text-align: right;">2000</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 211px; left: 2px; text-align: right;">3000</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 158px; left: 2px; text-align: right;">4000</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 105px; left: 2px; text-align: right;">5000</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 53px; left: 2px; text-align: right;">6000</div>
+                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 0px; left: 2px; text-align: right;">7000</div>
+                                              </div></div><canvas class="flot-overlay" width="727" height="400" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 727px; height: 400px;"></canvas>
+
+                                </div>
+                            </div>
+                        </div><!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
 </body>
 </html>
 <script>
@@ -79,5 +118,5 @@
     function f1() {
         
           form1.submit();
-      }
+    }
 </script>

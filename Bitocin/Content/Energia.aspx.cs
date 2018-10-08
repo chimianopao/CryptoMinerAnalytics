@@ -12,6 +12,9 @@ using MySql.Data.MySqlClient;
 namespace Bitocin.Content {
     public partial class Energia : System.Web.UI.Page {
         public string valor = "Bitcoin";
+        private string m_strSortExp = "Estado";
+        private SortDirection m_SortDirection;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             GeraTabelaCidades();
@@ -104,6 +107,22 @@ namespace Bitocin.Content {
             }
 
 
+        }
+
+        protected void GridView2_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            Response.Write(GridView2.DataSource.GetType()); //Add this line
+
+            DataTable m_DataTable = GridView2.DataSource as DataTable;
+
+            if (m_DataTable != null)
+            {
+                DataView m_DataView = new DataView(m_DataTable);
+                m_DataView.Sort = e.SortExpression + " " + e.SortDirection;
+
+                GridView2.DataSource = m_DataView;
+                GridView2.DataBind();
+            }
         }
 
     }

@@ -14,8 +14,9 @@ namespace Bitocin.Content {
         public string valor;
         protected void Page_Load(object sender, EventArgs e)
         {
-            valor = rodaQuery();
-            tabelona();
+            CarregaMenuMoedas();
+            CarregaMenuHardwares();
+            CarregaMenuCidades();
          //   Button1.Click(sender, e);
         }
 
@@ -26,27 +27,85 @@ namespace Bitocin.Content {
         //   MySqlCommand SQL_cmd;
         //   string Query;
 
-
-        public string rodaQuery()
+        public void CarregaMenuMoedas()
         {
-            string sql = " SELECT senha FROM usuarios  ";
-            MySqlConnection con = new MySqlConnection("host=localhost;user=root;password='';database=twitter_clone;SslMode=none");
-            MySqlCommand cmd = new MySqlCommand(sql, con);
-            string temp = "";
-            con.Open();
+            string ConnectString = "host=localhost;user=root;password='';database=cripto;SslMode=none";
+            string QueryString = "select nome from criptomoedas";
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlConnection myConnection = new MySqlConnection(ConnectString);
+            MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, myConnection);
+            myConnection.Open();
+            DataSet ds = new DataSet();
+            myCommand.Fill(ds, "nome");
 
-            while (reader.Read())
-            {
-                temp = reader.GetString("senha");
+            selectMoeda.DataSource = ds;
+            selectMoeda.DataTextField = "nome";
+            selectMoeda.DataValueField = "nome";
+            selectMoeda.DataBind();
 
-            }
-            con.Close();
-            return temp;
+            myConnection.Close();
+        }
 
+        public void selectMoeda_onchange(Object sender, EventArgs e)
+        {
+            CarregaMenuHardwares();
             
         }
+
+        public void CarregaMenuHardwares()
+        {
+            string moeda = "Bitcoin";
+            if (Request.Form["selectMoeda"]!=null)
+            {
+                moeda = Request.Form["selectMoeda"];
+            }
+        //    string moeda = Request.Form["selectMoeda"];
+
+            string ConnectString = "host=localhost;user=root;password='';database=cripto;SslMode=none";
+            string QueryString = "select hw.modelo from hardwares hw " +
+                    "JOIN processamento pr ON hw.idHardware = pr.idHardware " +
+                    "JOIN criptomoedas cm ON cm.idCriptomoeda = pr.idCriptomoeda " +
+                    $"WHERE cm.nome = '{moeda}';";
+
+            MySqlConnection myConnection = new MySqlConnection(ConnectString);
+            MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, myConnection);
+            myConnection.Open();
+            DataSet ds = new DataSet();
+            myCommand.Fill(ds, "modelo");
+
+            selectHardware.DataSource = ds;
+            selectHardware.DataTextField = "modelo";
+            selectHardware.DataValueField = "modelo";
+            selectHardware.DataBind();
+
+            myConnection.Close();
+        }
+
+        public void CarregaMenuCidades()
+        {
+
+            string ConnectString = "host=localhost;user=root;password='';database=cripto;SslMode=none";
+            string QueryString = "select cidade from custoenergia;";
+
+            MySqlConnection myConnection = new MySqlConnection(ConnectString);
+            MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, myConnection);
+            myConnection.Open();
+            DataSet ds = new DataSet();
+            myCommand.Fill(ds, "cidade");
+
+            selectCidade.DataSource = ds;
+            selectCidade.DataTextField = "cidade";
+            selectCidade.DataValueField = "cidade";
+            selectCidade.DataBind();
+
+            myConnection.Close();
+        }
+
+        public void ButtonCalcular_Click(Object sender, EventArgs e)
+        {
+
+        }
+
 
 
 //        protected void Button1_Click(object sender, EventArgs e)
@@ -62,36 +121,6 @@ namespace Bitocin.Content {
 //            GridView2.DataSource = dt;
 //            GridView2.DataBind();
 //}
-
-
-        public void tabelona()
-        {//"SERVER=localhost;PORT=3306;UID=root;PWD=;"
-            MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
-            String name_tabel = "hardwares";
-            MySqlDataAdapter db_select;
-            DataSet db_data;
-          //  MySqlCommand SQL_cmd;
-          //  string Query;
-
-            try
-            {
-                db_select = new MySqlDataAdapter("SELECT * FROM " + name_tabel, SQL_conection);
-                db_data = new System.Data.DataSet();
-                db_select.Fill(db_data, name_tabel);
-               // db_select.Fill(db_data);
-                GridView2.DataSource = db_data;
-                GridView2.DataBind();
-            }
-            catch {
-                valor = "deu pau";
-            }
-
-
-        }
-
-
-   
-
 
 
     }
