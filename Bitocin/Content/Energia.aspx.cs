@@ -18,6 +18,7 @@ namespace Bitocin.Content {
         protected void Page_Load(object sender, EventArgs e)
         {
             GeraTabelaCidades();
+           // Geragrafico();
         }
 
         
@@ -62,9 +63,12 @@ namespace Bitocin.Content {
                 db_select.Fill(db_data, name_tabel);
                 GridView2.DataSource = db_data;
                 GridView2.DataBind();
-              //  string unidade = db_data.Tables[0].Rows[0]["unidade"].ToString();
-             //   GridView2.Columns[3].HeaderText = unidade;
-                SQL_conection.Close();
+
+         //   Chart1.DataSource = db_data;
+         //   Chart1.DataBind();
+
+
+            SQL_conection.Close();
 
                 valor = moeda;
             }
@@ -124,6 +128,27 @@ namespace Bitocin.Content {
                 GridView2.DataBind();
             }
         }
+
+
+        //public void Geragrafico()
+        //{
+        //    DataTable dt = new DataTable();
+        //    using (MySqlConnection cn = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none"))
+        //    {
+        //        string sql = "select * from custoenergia";
+        //        using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+        //        {
+        //            using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+        //            {
+        //                da.Fill(dt);
+        //            }
+
+        //        }
+        //    }
+        //    Chart1.DataSource = dt;
+        //    Chart1.DataBind();
+        //}
+
 
     }
 }

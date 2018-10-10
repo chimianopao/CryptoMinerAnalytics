@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Energia.aspx.cs" Inherits="Bitocin.Content.Energia" EnableViewState="false" %>
 
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
 
 <!DOCTYPE html>
 
@@ -73,7 +75,7 @@
         </form>
     </div>
 
-    <div class="col-lg-6">
+<%--    <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Bar Chart Example
@@ -109,7 +111,29 @@
                         </div><!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
-                </div>
+                </div>--%>
+
+<%--    <div>
+
+        <asp:Chart ID="Chart1" runat="server">
+            <Series>
+                <asp:Series Name="Series1"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade"></asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
+
+    </div>--%>
+
+<%--    <asp:Chart ID="Chart1" runat="server">
+        <Series>
+            <asp:Series Name="Series1"></asp:Series>
+        </Series>
+        <ChartAreas>
+            <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+        </ChartAreas>
+    </asp:Chart>--%>
 
 </body>
 </html>
