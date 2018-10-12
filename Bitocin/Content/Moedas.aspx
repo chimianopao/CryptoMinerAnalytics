@@ -51,8 +51,13 @@
                             HeaderText="Nome" />
                         <asp:BoundField DataField="algoritmo"
                             HeaderText="Algoritmo" />
-                        <asp:BoundField DataField="cotacao"
-                            HeaderText="Cotação R$" />
+
+                         <asp:TemplateField HeaderText="Cotação">
+                            <ItemTemplate>
+                                <asp:Label ID="lblCotacao" runat="server" Text='<%# String.Format("{0} {1}", "R$ ", Eval("cotacao")) %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
                         <asp:BoundField DataField="dataCotacao"
                             HeaderText="Data" />
                     </Columns>

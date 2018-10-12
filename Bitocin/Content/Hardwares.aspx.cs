@@ -85,8 +85,8 @@ namespace Bitocin.Content {
                 db_select.Fill(db_data, name_tabel);
                 GridView2.DataSource = db_data;
                 GridView2.DataBind();
-                string unidade = db_data.Tables[0].Rows[0]["unidade"].ToString();
-                GridView2.Columns[3].HeaderText = unidade;
+             //   string unidade = db_data.Tables[0].Rows[0]["unidade"].ToString(); botava a unidade no nome da coluna
+             //   GridView2.Columns[3].HeaderText = unidade;
                 SQL_conection.Close();
 
                 valor = moeda;

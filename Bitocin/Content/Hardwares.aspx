@@ -66,12 +66,25 @@
                             HeaderText="Marca" />
                         <asp:BoundField DataField="modelo"
                             HeaderText="Modelo" /> 
-                        <asp:BoundField DataField="processamentoPorSegundo"
-                            HeaderText="MH/s" />
-                        <asp:BoundField DataField="consumo"
-                            HeaderText="Consumo" />
-                        <asp:BoundField DataField="preco"
-                            HeaderText="Preço" />
+
+                        <asp:TemplateField HeaderText="Processamento">
+                            <ItemTemplate>
+                                <asp:Label ID="lblProcessamento" runat="server" Text='<%# String.Format("{0} {1}", Eval("processamentoPorSegundo"), Eval("unidade")) %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Consumo">
+                            <ItemTemplate>
+                                <asp:Label ID="lblConsumo" runat="server" Text='<%# String.Format("{0} {1}", Eval("consumo"), "Watts") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Preço">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPreco" runat="server" Text='<%# String.Format("{0} {1}", "R$ ", Eval("consumo")) %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
                         <asp:BoundField DataField="ano"
                             HeaderText="Ano" />
                     </Columns>

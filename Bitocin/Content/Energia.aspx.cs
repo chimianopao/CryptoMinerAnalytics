@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 
@@ -18,7 +19,13 @@ namespace Bitocin.Content {
         protected void Page_Load(object sender, EventArgs e)
         {
             GeraTabelaCidades();
-           // Geragrafico();
+            // Geragrafico();
+
+            //CleanChart(this.ColumnChart);
+
+            //var data = CreateSampleData();
+
+            //BindColumnChart(this.ColumnChart, SeriesChartType.Column, data);
         }
 
         
@@ -58,7 +65,7 @@ namespace Bitocin.Content {
 
             try
             {
-                db_select = new MySqlDataAdapter("SELECT * FROM custoenergia;", SQL_conection);
+                db_select = new MySqlDataAdapter("SELECT * FROM custoenergia ORDER BY cidade;", SQL_conection);
                 db_data = new System.Data.DataSet();
                 db_select.Fill(db_data, name_tabel);
                 GridView2.DataSource = db_data;
@@ -148,6 +155,77 @@ namespace Bitocin.Content {
         //    Chart1.DataSource = dt;
         //    Chart1.DataBind();
         //}
+
+        //private static ChartData[] CreateSampleData()
+        //{
+        //    ChartData[] data = new ChartData[8];
+
+        //    Random rnd = new Random(DateTime.Now.Millisecond);
+
+        //    for (int i = 0; i < data.Length; i++)
+        //    {
+        //        int index = i + 1;
+
+        //        ChartData currentChartData = data[i] = new ChartData();
+        //        currentChartData.X = index;
+        //        currentChartData.Y = rnd.Next(25) + rnd.NextDouble();
+        //        currentChartData.Legend = string.Format("Legend {0}", index);
+        //    }
+
+        //    return data;
+        //}
+
+        //public class ChartData {
+        //    public double X { get; set; }
+
+        //    public double Y { get; set; }
+
+        //    public string Legend { get; set; }
+        //}
+
+        //private static void CleanChart(Chart currentChart)
+        //{
+        //    foreach (var itemSerie in currentChart.Series)
+        //    {
+        //        if (itemSerie.Points != null)
+        //            itemSerie.Points.Clear();
+        //    }
+        //}
+
+        //private static void BindColumnChart(Chart currentChart, SeriesChartType chartType, params ChartData[] data)
+        //{
+        //    for (int i = 0; i < data.Length; i++)
+        //    {
+        //        if (currentChart.Series.Count <= i)
+        //            break;
+
+        //        ChartData currentChartData = data[i];
+
+        //        // Largura da barra
+        //        currentChart.Series[i]["PointWidth"] = "1.5";
+
+        //        currentChart.Series[i].XValueType = ChartValueType.Double;
+        //        currentChart.Series[i].YValueType = ChartValueType.Double;
+
+        //        currentChart.Series[i].Points.AddXY(currentChartData.X, currentChartData.Y);
+        //        currentChart.Series[i].Label = currentChartData.Y.ToString("F");
+        //        currentChart.Series[i].ChartType = chartType;
+        //        currentChart.Series[i].LegendText = currentChartData.Legend;
+        //    }
+
+        //    currentChart.DataBind();
+        //}
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
