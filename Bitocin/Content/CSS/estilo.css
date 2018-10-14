@@ -17,11 +17,14 @@ body {
   width: 924px;
 }
 .navigation-bar{
-margin: 10px auto;
 border: 1px solid red;
 margin-left: 8%;
-/*padding-left: 28%;*/
-  
+    top: -3px;
+    left: -76px;
+    text-align: center;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 

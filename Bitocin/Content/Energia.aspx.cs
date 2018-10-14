@@ -19,13 +19,13 @@ namespace Bitocin.Content {
         protected void Page_Load(object sender, EventArgs e)
         {
             GeraTabelaCidades();
-            // Geragrafico();
+            GeraGrafico();
 
-            //CleanChart(this.ColumnChart);
+            CleanChart(this.ColumnChart);
 
-            //var data = CreateSampleData();
+            var data = CreateSampleData();
 
-            //BindColumnChart(this.ColumnChart, SeriesChartType.Column, data);
+            BindColumnChart(this.ColumnChart, SeriesChartType.Column, data);
         }
 
         
@@ -137,84 +137,149 @@ namespace Bitocin.Content {
         }
 
 
-        //public void Geragrafico()
-        //{
-        //    DataTable dt = new DataTable();
-        //    using (MySqlConnection cn = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none"))
-        //    {
-        //        string sql = "select * from custoenergia";
-        //        using (MySqlCommand cmd = new MySqlCommand(sql, cn))
-        //        {
-        //            using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-        //            {
-        //                da.Fill(dt);
-        //            }
+        public void GeraGrafico()
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection cn = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none"))
+            {
+                string sql = "select * from custoenergia;";
+                using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                {
+                    //cmd.CommandType = CommandType.Text;
+                    //cmd.Connection = cn;
+                    //cn.Open();
+                    //int i = 0;
+                    //using (MySqlDataReader sdr = cmd.ExecuteReader())
+                    //{
+                    //    while (sdr.Read())
+                    //    {
+                    //        Chart1.Series[i].XValueType = ChartValueType.Double;
+                    //        Chart1.Series[i].YValueType = ChartValueType.String;
+                    //       // Chart1.Series[i].Legend = sdr["cidade"].ToString();
 
-        //        }
-        //    }
-        //    Chart1.DataSource = dt;
-        //    Chart1.DataBind();
-        //}
+                    //        Chart1.Series[i].Points.AddXY(sdr["custoKWh"], sdr["cidade"]);
+                    //        i++;
+                    //    }
+                    //}
+                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
 
-        //private static ChartData[] CreateSampleData()
-        //{
-        //    ChartData[] data = new ChartData[8];
+                }
+            }
+            //foreach (var item in dt.Rows)
+            //{
+            //    item.
+            //}
+            Chart1.DataSource = dt;
+            Chart1.Series["Default"].IsValueShownAsLabel = true;
+            Chart1.Series["Default"].XValueType = ChartValueType.String;
+            Chart1.Series["Default"].YValueType = ChartValueType.Double;
+            Chart1.Series["Default"].IsVisibleInLegend = true;
+            //int i = Chart1.Series.Count - 1;
+            //while (i!=0)
+            //{
+            //    Chart1.Series[i].Label = Chart1.Series[i].Name;
+            //    i--;
+            //}
 
-        //    Random rnd = new Random(DateTime.Now.Millisecond);
+            Chart1.DataBind();
+        }
 
-        //    for (int i = 0; i < data.Length; i++)
-        //    {
-        //        int index = i + 1;
 
-        //        ChartData currentChartData = data[i] = new ChartData();
-        //        currentChartData.X = index;
-        //        currentChartData.Y = rnd.Next(25) + rnd.NextDouble();
-        //        currentChartData.Legend = string.Format("Legend {0}", index);
-        //    }
+        public void GeraGrafico2()
+        {
+            DataTable table = new DataTable();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
 
-        //    return data;
-        //}
+            //Create a connection to SQL DataBase
+            MySqlConnection con = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
+            con.Open();
 
-        //public class ChartData {
-        //    public double X { get; set; }
+            //Select all the records in database
+            string command = "select * from custoenergia";
+            MySqlCommand cmd = new MySqlCommand(command, con);
+            adapter.SelectCommand = cmd;
 
-        //    public double Y { get; set; }
+            //Retrieve the records from database
+            adapter.Fill(table);
 
-        //    public string Legend { get; set; }
-        //}
+            //Set DataTable as data source to Chart
+            this.Chart1.DataSource = table;
 
-        //private static void CleanChart(Chart currentChart)
-        //{
-        //    foreach (var itemSerie in currentChart.Series)
-        //    {
-        //        if (itemSerie.Points != null)
-        //            itemSerie.Points.Clear();
-        //    }
-        //}
+            //Mapping a field with x-value of chart
+            this.Chart1.Series[0].XValueMember = "custoKWh";
 
-        //private static void BindColumnChart(Chart currentChart, SeriesChartType chartType, params ChartData[] data)
-        //{
-        //    for (int i = 0; i < data.Length; i++)
-        //    {
-        //        if (currentChart.Series.Count <= i)
-        //            break;
+            //Mapping a field with y-value of Chart
+            this.Chart1.Series[0].YValueMembers = "idCustoEnergia";
 
-        //        ChartData currentChartData = data[i];
+            //Bind the DataTable with Chart
+            this.Chart1.DataBind();
+        }
 
-        //        // Largura da barra
-        //        currentChart.Series[i]["PointWidth"] = "1.5";
 
-        //        currentChart.Series[i].XValueType = ChartValueType.Double;
-        //        currentChart.Series[i].YValueType = ChartValueType.Double;
 
-        //        currentChart.Series[i].Points.AddXY(currentChartData.X, currentChartData.Y);
-        //        currentChart.Series[i].Label = currentChartData.Y.ToString("F");
-        //        currentChart.Series[i].ChartType = chartType;
-        //        currentChart.Series[i].LegendText = currentChartData.Legend;
-        //    }
 
-        //    currentChart.DataBind();
-        //}
+        private static ChartData[] CreateSampleData()
+        {
+            ChartData[] data = new ChartData[8];
+
+            Random rnd = new Random(DateTime.Now.Millisecond);
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                int index = i + 1;
+
+                ChartData currentChartData = data[i] = new ChartData();
+                currentChartData.X = index;
+                currentChartData.Y = rnd.Next(25) + rnd.NextDouble();
+                currentChartData.Legend = string.Format("Legend {0}", index);
+            }
+
+            return data;
+        }
+
+        public class ChartData {
+            public double X { get; set; }
+
+            public double Y { get; set; }
+
+            public string Legend { get; set; }
+        }
+
+        private static void CleanChart(Chart currentChart)
+        {
+            foreach (var itemSerie in currentChart.Series)
+            {
+                if (itemSerie.Points != null)
+                    itemSerie.Points.Clear();
+            }
+        }
+
+        private static void BindColumnChart(Chart currentChart, SeriesChartType chartType, params ChartData[] data)
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (currentChart.Series.Count <= i)
+                    break;
+
+                ChartData currentChartData = data[i];
+
+                // Largura da barra
+                currentChart.Series[i]["PointWidth"] = "1.5";
+
+                currentChart.Series[i].XValueType = ChartValueType.Double;
+                currentChart.Series[i].YValueType = ChartValueType.Double;
+
+                currentChart.Series[i].Points.AddXY(currentChartData.X, currentChartData.Y);
+                currentChart.Series[i].Label = currentChartData.Y.ToString("F");
+                currentChart.Series[i].ChartType = chartType;
+                currentChart.Series[i].LegendText = currentChartData.Legend;
+            }
+
+            currentChart.DataBind();
+        }
 
 
 
