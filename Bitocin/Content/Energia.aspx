@@ -2,11 +2,6 @@
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
-<%--<%@ Register Assembly="DevExpress.Web.v12.1, Version=12.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxClasses" TagPrefix="dx" %>
-<%@ Register Assembly="DevExpress.XtraCharts.v16.1, Version=16.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraCharts" TagPrefix="dx" %>--%>
-
-
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -84,107 +79,9 @@
         </form>
     </div>
 
-<%--    <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Bar Chart Example
-                        </div>
-                        <!-- /.panel-heading -->
-                        
-                        <div class="panel-body">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-bar-chart" style="padding: 0px; position: relative;">
-                                    <canvas class="flot-base" width="727" height="400" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 727px; height: 400px;"></canvas>
-                                    <div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);">
-                                        <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;">
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 108px; text-align: center;">12/05</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 215px; text-align: center;">12/07</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 322px; text-align: center;">12/09</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 430px; text-align: center;">12/11</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 537px; text-align: center;">12/13</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 90px; top: 382px; left: 644px; text-align: center;">12/15</div>
-
-                                        </div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;">
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 369px; left: 21px; text-align: right;">0</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 316px; left: 2px; text-align: right;">1000</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 264px; left: 2px; text-align: right;">2000</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 211px; left: 2px; text-align: right;">3000</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 158px; left: 2px; text-align: right;">4000</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 105px; left: 2px; text-align: right;">5000</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 53px; left: 2px; text-align: right;">6000</div>
-                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 0px; left: 2px; text-align: right;">7000</div>
-                                              </div></div><canvas class="flot-overlay" width="727" height="400" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 727px; height: 400px;"></canvas>
-
-                                </div>
-                            </div>
-                        </div><!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>--%>
-
-    <div>
-
-        <asp:Chart ID="Chart1" runat="server" Palette="EarthTones" BackColor="Gray" Height="800px"  Width="900px">
-            <Legends>
-                <asp:Legend LegendStyle="Row" IsTextAutoFit="False" DockedToChartArea="ChartArea1"
-            Docking="Bottom" IsDockedInsideChartArea="False" Name="Default" BackColor="Transparent"
-            Alignment="Center">
-        </asp:Legend>
-            </Legends>
-            <Series>
-                <asp:Series Name="Default"  ChartType="Column" YValueMembers="custoKWh" XValueMember="cidade" YValueType="String" ChartArea="ChartArea1"></asp:Series>
-      <%--          <asp:Series Name="Series2"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series3"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series4"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series5"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series6"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series7"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series8"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series9"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series10"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series11"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series12"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series13"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series14"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series15"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series16"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series17"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series18"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series19"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series20"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series21"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>
-                <asp:Series Name="Series22"  ChartType="Bar" XValueMember="custoKWh" YValueMembers="cidade" ChartArea="ChartArea1"></asp:Series>--%>
-            </Series>
-            <ChartAreas>
-        <asp:ChartArea BackColor="Gainsboro" BackGradientStyle="TopBottom" BackSecondaryColor="White"
-            BorderColor="64, 64, 64, 64" Name="ChartArea1" ShadowColor="Transparent">
-            <AxisY2 Interval="25" IsLabelAutoFit="False">
-                <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
-                <MajorGrid Enabled="False" />
-            </AxisY2>
-            <AxisX2 Interval="25" IsLabelAutoFit="False">
-                <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
-                <MajorGrid Enabled="False" />
-            </AxisX2>
-            <Area3DStyle Inclination="15" IsClustered="False" IsRightAngleAxes="False" LightStyle="Realistic"
-                Rotation="10" WallWidth="0" />
-            <AxisY LineColor="64, 64, 64, 64">
-                <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
-                <MajorGrid LineColor="64, 64, 64, 64" />
-            </AxisY>
-            <AxisX LineColor="64, 64, 64, 64">
-                <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
-                <MajorGrid LineColor="64, 64, 64, 64" />
-            </AxisX>
-        </asp:ChartArea>
-    </ChartAreas>
-        </asp:Chart>
-
-    </div>
 
 
-    <div>
-<asp:Chart ID="ColumnChart" runat="server" BackColor="WhiteSmoke" BackGradientStyle="TopBottom"
+<%--<asp:Chart ID="ColumnChart" runat="server" BackColor="WhiteSmoke" BackGradientStyle="TopBottom"
     BackSecondaryColor="White" BorderColor="26, 59, 105" BorderlineDashStyle="Solid"
     BorderWidth="2" Height="350px" ImageLocation="~/TempImages/ChartPic_#SEQ(300,3)"
     Palette="BrightPastel" Width="900px">
@@ -240,19 +137,21 @@
         </div>
 
     <div>
-    </div>
+    </div>--%>
 
-
-<%--    <div>
-        <asp:Chart ID="Chart1" runat="server">
+    <div>
+       <asp:Chart ID="Chart2" runat="server" Width="900px" Height="900">
             <Series>
-                <asp:Series Name="Series1"></asp:Series>
             </Series>
             <ChartAreas>
                 <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
             </ChartAreas>
+            <Legends>
+                <asp:Legend Name="Legend1">
+                </asp:Legend>
+            </Legends>
         </asp:Chart>
-    </div>--%>
+    </div>
 
 </body>
 </html>

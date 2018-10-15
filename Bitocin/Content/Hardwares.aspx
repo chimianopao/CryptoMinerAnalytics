@@ -81,7 +81,7 @@
 
                         <asp:TemplateField HeaderText="Preço">
                             <ItemTemplate>
-                                <asp:Label ID="lblPreco" runat="server" Text='<%# String.Format("{0} {1}", "R$ ", Eval("consumo")) %>'></asp:Label>
+                                <asp:Label ID="lblPreco" runat="server" Text='<%# String.Format("{0} {1}", "R$ ", Eval("preco")) %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 

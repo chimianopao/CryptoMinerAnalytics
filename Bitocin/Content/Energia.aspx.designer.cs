@@ -40,24 +40,6 @@ namespace Bitocin.Content {
         protected global::System.Web.UI.WebControls.Button ButtonCadastro;
         
         /// <summary>
-        /// Chart1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
-        
-        /// <summary>
-        /// ColumnChart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart ColumnChart;
-        
-        /// <summary>
         /// Chart2 control.
         /// </summary>
         /// <remarks>
@@ -65,14 +47,5 @@ namespace Bitocin.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.DataVisualization.Charting.Chart Chart2;
-        
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }

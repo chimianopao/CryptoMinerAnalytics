@@ -11,6 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace Bitocin.Content {
     public partial class Hardwares : System.Web.UI.Page {
+        string ConnectString = "host=localhost;user=root;password='';database=cripto;SslMode=none";
         public string valor = "Bitcoin";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,7 +41,7 @@ namespace Bitocin.Content {
 
         public void CarregaMenuMoedas()
         {
-                string ConnectString = "host=localhost;user=root;password='';database=cripto;SslMode=none";
+                
                 string QueryString = "select nome from criptomoedas";
 
                 MySqlConnection myConnection = new MySqlConnection(ConnectString);
@@ -70,7 +71,7 @@ namespace Bitocin.Content {
             else
                 moeda = Request.Form["selectMoeda"];
 
-            MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
+            MySqlConnection SQL_conection = new MySqlConnection(ConnectString);
             String name_tabel = "hardwares";
             MySqlDataAdapter db_select;
             DataSet db_data;
@@ -104,7 +105,7 @@ namespace Bitocin.Content {
 
         public void ButtonCadastro_Click(Object sender, EventArgs e)
         {
-            MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
+            MySqlConnection SQL_conection = new MySqlConnection(ConnectString);
             String name_tabel = "hardwares";
 
             string marca = Request.Form["marca"];

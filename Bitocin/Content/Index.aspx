@@ -46,7 +46,7 @@
       <a href="#">ASIC</a>
     </div>
   </div>  -->
-
+        
         <h2>Simulador</h2>
         <form runat="server">
       Moeda: 
@@ -54,7 +54,7 @@
 
       Hardware: 
         <select id="selectHardware" multiple="false" name="selectHardware" runat="server"></select>
-        Quantidade: <input type="text" name="quantidadeHw" value="" class="col-md-1" />
+        Quantidade: <input type="number" id="quantidadeHw" name="quantidadeHw" value="1" class="col-md-1" runat="server" min="1"/>
         <br />
      
         Cidade: 
@@ -63,19 +63,21 @@
         <asp:Button ID="ButtonCalcular" Text="Calcular Rentabilidade" OnClick="ButtonCalcular_Click" runat="server" />
 
         </form>
-  </div>
 
-    <div>
-        Moeda: <label>haha</label><br />
-        Algoritmo: <label>haha</label><br />
-        Cotação do dia: <label>haha</label><br />
-        Hardware: <label>haha</label><br />
-        Cidade: <label>haha</label><br />
-        Custo de energia: <label>haha</label><br />
-        Poder total de processamento: <label>haha</label><br />
-        Consumo energético total: <label>haha</label><br />
-    </div>
-
+        <br />
+        <br />
+        <h2>Resultado</h2>
+        Moeda: <label id="labelMoeda" runat="server"></label><br />
+        Algoritmo: <label id="labelAlgoritmo" runat="server"></label><br />
+        Cotação do dia: R$ <label id="labelCotacao" runat="server"></label><br />
+        Hardware: <label id="labelHardware" runat="server"></label>
+        <label id="labelQuantidade" runat="server"></label> <br />
+        Cidade: <label id="labelCidade" name="labelCidade" runat="server"></label><br />
+        Custo de energia: R$ <label id="labelCusto" runat="server"></label><br />
+        Poder total de processamento: <label id="labelTotalProcessamento" runat="server"></label>  
+        <label id="labelUnidade" runat="server"></label><br />
+        Consumo energético total: <label id="labelTotalConsumo" runat="server"></label> Watts<br />
+</div>
 </body>
 </html>
 <script>
