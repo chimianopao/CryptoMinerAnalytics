@@ -13,6 +13,7 @@ using System.Web.Helpers;
 using System.Net;
 using Newtonsoft.Json;
 using static Bitocin.Content.API.BraziliexAPI;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace Bitocin.Content {
     public partial class Moedas : System.Web.UI.Page {
@@ -43,6 +44,8 @@ namespace Bitocin.Content {
             {
                 valor = "deu pau";
             }
+
+            GeraGraficoConsumo();
         }
 
         //public void ButtonCadastro_Click(Object sender, EventArgs e)
@@ -192,6 +195,50 @@ namespace Bitocin.Content {
         {
             return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(epoch).ToString("yyyy-MM-dd"); //.ToShortDateString();
         }
+
+        public void GeraGraficoConsumo()
+        {
+            if (ChartCotacao.Series.Count != 0)
+                ChartCotacao.Series.Clear();
+
+            DataTable dt = new DataTable();
+            using (MySqlConnection cn = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none"))
+            {
+                string sql = "SELECT distinct cm.sigla as sigla, cm.nome, cm.algoritmo, hc.cotacao, hc.dataCotacao from criptomoedas cm " +
+                    "JOIN historicocotacao hc on cm.idCriptomoeda = hc.idCriptomoeda order BY hc.dataCotacao desc LIMIT 6;"
+        ;
+                using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = cn;
+                    cn.Open();
+                    using (MySqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        dt.Columns.AddRange(new DataColumn[2] { new DataColumn("nome"), new DataColumn("cotacao") });
+                        while (sdr.Read())
+                        {
+                            dt.Rows.Add(sdr["nome"], sdr["cotacao"]);
+                        }
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+                            ChartCotacao.Series.Add(dt.Rows[i]["nome"].ToString());
+                            ChartCotacao.Series[dt.Rows[i]["nome"].ToString()].Points.AddY(Convert.ToDouble(dt.Rows[i]["cotacao"].ToString()));
+                            ChartCotacao.Series[i].ChartType = SeriesChartType.Bar;
+                            ChartCotacao.Series[i].Label = dt.Rows[i]["nome"].ToString() + " R$ " + dt.Rows[i]["cotacao"].ToString();
+
+                        }
+                    }
+
+
+                }
+            }
+
+
+        }
+
+
+
 
     }
 }

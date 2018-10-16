@@ -64,6 +64,21 @@
                 </asp:GridView>
             </div>
         </form>
+
+          <div>
+       <asp:Chart ID="ChartCotacao" runat="server" Width="900px" Height="900">
+            <Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+            <Legends>
+                <asp:Legend Name="Legend1">
+                </asp:Legend>
+            </Legends>
+        </asp:Chart>
+    </div>
+
     </div>
 </body>
 </html>

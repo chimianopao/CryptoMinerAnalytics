@@ -114,6 +114,35 @@
         </form>
     </div>
 
+        <div>
+       <asp:Chart ID="ChartProcessamento" runat="server" Width="900px" Height="500">
+            <Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+            <Legends>
+                <asp:Legend Name="Legend1">
+                </asp:Legend>
+            </Legends>
+        </asp:Chart>
+    </div>
+
+        <div>
+       <asp:Chart ID="ChartConsumo" runat="server" Width="900px" Height="500">
+            <Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+            <Legends>
+                <asp:Legend Name="Legend1">
+                </asp:Legend>
+            </Legends>
+        </asp:Chart>
+    </div>
+
+
 </body>
 </html>
 <script>
