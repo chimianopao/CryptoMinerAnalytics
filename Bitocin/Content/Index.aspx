@@ -58,7 +58,9 @@
         <br />
      
         Cidade: 
-        <select id="selectCidade" multiple="false" name="selectCidade" runat="server"></select><br />
+        <select id="selectCidade" multiple="false" name="selectCidade" runat="server"></select>
+        Consumo de outros components do hardware: <input type="number" id="ConsumoOutros" name="ConsumoOutros" class="col-md-1" runat="server" pattern="[0-9]+([,\.][0-9]+)?" step="any"/> Watts    
+        <br />
 
         <asp:Button ID="ButtonCalcular" Text="Calcular Rentabilidade" OnClick="ButtonCalcular_Click" runat="server" />
 

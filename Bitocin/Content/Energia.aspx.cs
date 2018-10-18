@@ -18,7 +18,7 @@ namespace Bitocin.Content {
         protected void Page_Load(object sender, EventArgs e)
         {
             GeraTabelaCidades();
-            GeraGrafico();
+            GeraGraficoCidades();
 
       
         }
@@ -132,12 +132,12 @@ namespace Bitocin.Content {
         }
 
 
-        public void GeraGrafico()
+        public void GeraGraficoCidades()
         {
             DataTable dt = new DataTable();
             using (MySqlConnection cn = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none"))
             {
-                string sql = "select * from custoenergia;";
+                string sql = "select * from custoenergia ORDER BY custoKWh;";
                 using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                 {
                     cmd.CommandType = CommandType.Text;
