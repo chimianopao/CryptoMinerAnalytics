@@ -59,7 +59,7 @@
      
         Cidade: 
         <select id="selectCidade" multiple="false" name="selectCidade" runat="server"></select>
-        Consumo de outros components do hardware: <input type="number" id="ConsumoOutros" name="ConsumoOutros" class="col-md-1" runat="server" pattern="[0-9]+([,\.][0-9]+)?" step="any"/> Watts    
+        Consumo de outros components do hardware: <input type="number" id="ConsumoOutros" name="ConsumoOutros" class="col-md-1" runat="server" pattern="[0-9]+([,\.][0-9]+)?" step="any" value="0" min="0"/> Watts    
         <br />
 
         <asp:Button ID="ButtonCalcular" Text="Calcular Rentabilidade" OnClick="ButtonCalcular_Click" runat="server" />
@@ -79,6 +79,15 @@
         Poder total de processamento: <label id="labelTotalProcessamento" runat="server"></label>  
         <label id="labelUnidade" runat="server"></label><br />
         Consumo energético total: <label id="labelTotalConsumo" runat="server"></label> Watts<br />
+        <br /><br />
+
+        Custo aquisitivo do hardware: R$ <label id="labelCustoAquisitivo" runat="server" /><br />
+
+        Remuneração por dia:<br />
+Estimativa de ganho na mineração: <label id="labelGanhoDia" runat="server" /><br />
+Gasto com energia: R$ <label id="labelCustoDia" runat="server" /><br />
+Estimativa de lucro: R$ <label id="labelLucroDia" runat="server" /><br />
+
 </div>
 </body>
 </html>

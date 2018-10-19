@@ -92,7 +92,41 @@
             </div>
             <br />
             <br />
-            <h3>Cadastre um novo hardware:</h3>
+            
+        
+   
+      <br /><br />  
+        <div>
+            <h2>Gráfico de poder de processamento</h2>
+       <asp:Chart ID="ChartProcessamento" runat="server" Width="900px" Height="800">
+            <Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+            <Legends>
+                <asp:Legend Name="Legend1">
+                </asp:Legend>
+            </Legends>
+        </asp:Chart>
+    </div>
+  <br />
+        <div>
+            <h2>Gráfico de consumo energético</h2>
+       <asp:Chart ID="ChartConsumo" runat="server" Width="900px" Height="800">
+            <Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+            <Legends>
+                <asp:Legend Name="Legend1">
+                </asp:Legend>
+            </Legends>
+        </asp:Chart>
+    </div>
+            <br /><br />
+    <h3>Cadastre um novo hardware:</h3>
             <div class="col-md-6">
                 <input type="text" class="form-control col-md-7" id="marca" name="marca" placeholder="Marca" />
                 <input type="text" class="form-control col-md-7" id="modelo" name="modelo" placeholder="Modelo" />
@@ -111,38 +145,9 @@
                 <label id="labelUnidade" name="labelUnidade" class="inlineClass" runat="server">MH/s</label><br />
                 <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
             </div>
-        </form>
-    </div>
 
-        <div>
-       <asp:Chart ID="ChartProcessamento" runat="server" Width="900px" Height="500">
-            <Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-            </ChartAreas>
-            <Legends>
-                <asp:Legend Name="Legend1">
-                </asp:Legend>
-            </Legends>
-        </asp:Chart>
-    </div>
-
-        <div>
-       <asp:Chart ID="ChartConsumo" runat="server" Width="900px" Height="500">
-            <Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-            </ChartAreas>
-            <Legends>
-                <asp:Legend Name="Legend1">
-                </asp:Legend>
-            </Legends>
-        </asp:Chart>
-    </div>
-
-
+    </form>
+         </div>
 </body>
 </html>
 <script>

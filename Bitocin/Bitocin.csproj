@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Content\API\BraziliexAPI.cs" />
+    <Compile Include="Content\API\CoinWarzAPI.cs" />
     <Compile Include="Content\Energia.aspx.cs">
       <DependentUpon>Energia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -4,10 +4,13 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
+using static Bitocin.Content.API.CoinWarzAPI;
 
 namespace Bitocin.Content {
     public partial class Index : System.Web.UI.Page {
@@ -18,7 +21,8 @@ namespace Bitocin.Content {
             CarregaMenuMoedas();
             CarregaMenuHardwares();
             CarregaMenuCidades();
-         //   Button1.Click(sender, e);
+            GetCotacao();
+            //   Button1.Click(sender, e);
         }
 
         //   MySqlConnection SQL_koneksi = new MySqlConnection("SERVER=localhost;PORT=3306;UID=root;PWD=;");
@@ -49,17 +53,17 @@ namespace Bitocin.Content {
         public void selectMoeda_onchange(Object sender, EventArgs e)
         {
             CarregaMenuHardwares();
-            
+
         }
 
         public void CarregaMenuHardwares()
         {
             string moeda = "Bitcoin";
-            if (Request.Form["selectMoeda"]!=null)
+            if (Request.Form["selectMoeda"] != null)
             {
                 moeda = Request.Form["selectMoeda"];
             }
-        //    string moeda = Request.Form["selectMoeda"];
+            //    string moeda = Request.Form["selectMoeda"];
 
             string QueryString = "select hw.modelo from hardwares hw " +
                     "JOIN processamento pr ON hw.idHardware = pr.idHardware " +
@@ -106,11 +110,12 @@ namespace Bitocin.Content {
             string algoritmo = "";
             string cotacao = "";
             int quantidade = int.Parse(Request.Form["quantidadeHw"]);
+            double custoKWh = 0;
 
             labelMoeda.InnerText = moeda;
             labelHardware.InnerText = hardware;
             labelCidade.InnerText = cidade;
-            labelQuantidade.InnerText = " x "+quantidade.ToString();
+            labelQuantidade.InnerText = " x " + quantidade.ToString();
 
             using (MySqlConnection cn = new MySqlConnection(ConnectString))
             {
@@ -161,6 +166,7 @@ namespace Bitocin.Content {
                         while (sdr.Read())
                         {
                             labelCusto.InnerText = sdr["custoKWh"].ToString();
+                            custoKWh = double.Parse(sdr["custoKWh"].ToString());
                         }
                     }
                     cn.Close();
@@ -168,7 +174,7 @@ namespace Bitocin.Content {
                 #endregion
 
                 #region busca processamento, unidade e consumo
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT pro.processamentoPorSegundo, pro.unidade, hw.consumo FROM hardwares hw " +
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT pro.processamentoPorSegundo, pro.unidade, hw.consumo, hw.preco FROM hardwares hw " +
                     $"JOIN processamento pro ON hw.idHardware = pro.idHardware WHERE hw.modelo = '{hardware}';", cn))
                 {
                     cmd.CommandType = CommandType.Text;
@@ -183,11 +189,16 @@ namespace Bitocin.Content {
                             labelTotalProcessamento.InnerText = p.ToString();
 
                             double.TryParse(sdr["consumo"].ToString(), out double c);
-                            c = c * quantidade;
+                            c = (c * quantidade) + double.Parse(ConsumoOutros.Value);
+
+                            labelCustoAquisitivo.InnerText = (sdr["preco"].ToString());
+
+
                             labelTotalConsumo.InnerText = c.ToString();
 
                             labelUnidade.InnerText = sdr["unidade"].ToString();
-                            
+
+                            CalculaConsumo(c, quantidade, custoKWh);
                         }
                     }
                     cn.Close();
@@ -197,21 +208,93 @@ namespace Bitocin.Content {
         }
 
 
+        public void CalculaConsumo(double consumoTotal, int quantidade, double custoKWh)
+        {
+            double consumoOutros = double.Parse(ConsumoOutros.Value);
+            consumoTotal = (consumoTotal * quantidade) + consumoOutros;
 
-        //        protected void Button1_Click(object sender, EventArgs e)
-        //        {
-        //            //Get the data from database, and fill it to the datatable
-        //            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Server=localhost;Port=3306;Database=cripto;Uid=root;Pwd=''"].ConnectionString);
-        //        string sql = "SELECT * FROM hardwares";
-        //        DataTable dt = new DataTable();
-        //        SqlDataAdapter sda = new SqlDataAdapter(sql, conn);
-        //        sda.Fill(dt);
+            consumoTotal = consumoTotal / 1000;  //kWh
+            consumoTotal = consumoTotal * 24; //final kWh
 
-        //            //show the data to the GridView
-        //            GridView2.DataSource = dt;
-        //            GridView2.DataBind();
-        //}
+            labelCustoDia.InnerText = (consumoTotal * custoKWh).ToString();
+            labelGanhoDia.InnerText = "sei la";
+            labelLucroDia.InnerText = "asdasdasd";
+
+        }
 
 
+ 
+        
+    
+        public void GetCotacao()
+        {
+            Rootobject cotacao = _download_serialized_json_data<Rootobject>("https://www.coinwarz.com/v1/api/profitability/?apikey=a8bb5bb5ebb44218b75b8130410d77ca&algo=all");
+
+            float dificuldade = cotacao.Data[0].Difficulty;
+            float blockReward = cotacao.Data[0].BlockReward;
+            Bitcoin bit = new Bitcoin();
+
+
+            foreach (var item in cotacao.Data)
+            {
+                if (item.CoinName.Equals("Bitcoin")) {
+                bit.BlockReward = item.BlockReward;
+                bit.Difficulty = item.Difficulty;
+            }
+            }
+            
+         
+
+            //switch (idmoeda)
+            //{
+            //    case 1:
+            //        novo = Decimal.Round(cotacao.btc_brl.last, 2);
+            //        break;
+            //    case 2:
+            //        novo = Decimal.Round(cotacao.eth_brl.last, 2);
+            //        break;
+            //    case 3:
+            //        novo = Decimal.Round(cotacao.ltc_brl.last, 2);
+            //        break;
+            //    case 4:
+            //        novo = Decimal.Round(cotacao.xmr_brl.last, 2);
+            //        break;
+            //    case 5:
+            //        novo = Decimal.Round(cotacao.dash_brl.last, 2);
+            //        break;
+            //    case 6:
+            //        novo = Decimal.Round(cotacao.zec_brl.last, 2);
+            //        break;
+            //}
+
+        }
+
+
+        private static T _download_serialized_json_data<T>(string url) where T : new()
+        {
+            using (var w = new WebClient())
+            {
+                var json_data = string.Empty;
+                // attempt to download JSON data as a string
+                try
+                {
+                    json_data = w.DownloadString(url);
+                }
+                catch (Exception) { }
+                // if string with JSON data is not empty, deserialize it to class and return its instance 
+                return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data) : new T();
+            }
+        }
+
+        private class Bitcoin{
+            public string Name;
+        public float Difficulty { get; set; }
+        public float BlockReward { get; set; }
+            public Bitcoin()
+            {
+
+            }
     }
+
+}
 }

@@ -64,8 +64,10 @@
                 </asp:GridView>
             </div>
         </form>
-
+        <br />
+        <br />
           <div>
+           <h2>Gráfico de cotação das Moedas</h2>   
        <asp:Chart ID="ChartCotacao" runat="server" Width="900px" Height="900">
             <Series>
             </Series>

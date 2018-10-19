@@ -241,7 +241,7 @@ namespace Bitocin.Content {
                 string sql = "SELECT hw.tipo, hw.marca, hw.modelo, pr.processamentoPorSegundo, hw.consumo, hw.preco, hw.ano, pr.unidade FROM hardwares hw " +
                     "JOIN processamento pr ON hw.idHardware = pr.idHardware " +
                     "JOIN criptomoedas cm ON cm.idCriptomoeda = pr.idCriptomoeda " +
-                    $"WHERE cm.nome = '{moeda}' ORDER BY pr.processamentoPorSegundo;";
+                    $"WHERE cm.nome = '{moeda}' ORDER BY hw.consumo;";
                 using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                 {
                     cmd.CommandType = CommandType.Text;

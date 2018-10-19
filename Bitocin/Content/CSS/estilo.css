@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #A9A9A9;
+  background-color: red;
 }
 .logotipo{
   display: block;
@@ -39,7 +39,7 @@ margin-left: 8%;
     overflow: hidden;
 }
 .active{
-    background-color: #008000;
+    background-color: red;
     color: white;
 }
 .navigation-bar li {

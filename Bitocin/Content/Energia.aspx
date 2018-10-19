@@ -67,17 +67,9 @@
             </div>
             <br />
             <br />
-            <h3>Cadastre uma nova cidade:</h3>
-            <div class="col-md-6">
-                <input type="text" class="form-control col-md-7" id="cidade" name="cidade" placeholder="Cidade" />
-                <input type="text" class="form-control col-md-7" id="estado" name="estado" placeholder="UF" />
-                <input type="text" class="form-control col-md-7" id="concessionaria" name="concessionaria" placeholder="Concessionária" /> 
-                <input type="number" class="form-control col-md-7 inlineClass" id="custo" name="custo" placeholder="Custo por KW/h" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" /> Reais<br />
-                <input type="number" class="form-control col-md-7 inlineClass" id="co2" name="co2" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" placeholder="CO2/Wh" /><br />
-                <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
-            </div>
-        </form>
-    </div>
+            
+        
+   
 
 
 
@@ -138,8 +130,9 @@
 
     <div>
     </div>--%>
-
+            <br />
     <div>
+        <h2>Gráfico de custo energético das cidades</h2>
        <asp:Chart ID="Chart2" runat="server" Width="900px" Height="900">
             <Series>
             </Series>
@@ -152,7 +145,19 @@
             </Legends>
         </asp:Chart>
     </div>
+            <br />
+    <h3>Cadastre uma nova cidade:</h3>
+            <div class="col-md-6">
+                <input type="text" class="form-control col-md-7" id="cidade" name="cidade" placeholder="Cidade" />
+                <input type="text" class="form-control col-md-7" id="estado" name="estado" placeholder="UF" />
+                <input type="text" class="form-control col-md-7" id="concessionaria" name="concessionaria" placeholder="Concessionária" /> 
+                <input type="number" class="form-control col-md-7 inlineClass" id="custo" name="custo" placeholder="Custo por KW/h" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" /> Reais<br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="co2" name="co2" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" placeholder="CO2/Wh" /><br />
+                <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
+            </div>
 
+</form>
+     </div>
 </body>
 </html>
 <script>
