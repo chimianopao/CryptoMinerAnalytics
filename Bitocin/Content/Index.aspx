@@ -49,8 +49,13 @@
         
         <h2>Simulador</h2>
         <form runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+</asp:ScriptManager>
+        <asp:UpdatePanel id="UpdatePanel1" runat="server">
+<ContentTemplate>
+        
       Moeda: 
-      <select id="selectMoeda" multiple="false" name="selectMoeda" runat="server"></select> <br />
+        <asp:DropDownList ID="selectMoeda" runat="server" AutoPostBack="true" OnSelectedIndexChanged="moedaDropDown_Change" AppendDataBoundItems="true"></asp:DropDownList>
 
       Hardware: 
         <select id="selectHardware" multiple="false" name="selectHardware" runat="server"></select>
@@ -58,14 +63,18 @@
         <br />
      
         Cidade: 
+        
         <select id="selectCidade" multiple="false" name="selectCidade" runat="server"></select>
         Consumo de outros components do hardware: <input type="number" id="ConsumoOutros" name="ConsumoOutros" class="col-md-1" runat="server" pattern="[0-9]+([,\.][0-9]+)?" step="any" value="0" min="0"/> Watts    
         <br />
 
-        <asp:Button ID="ButtonCalcular" Text="Calcular Rentabilidade" OnClick="ButtonCalcular_Click" runat="server" />
+        
 
-        </form>
-
+        
+    </ContentTemplate>
+            </asp:UpdatePanel>
+            <asp:Button ID="ButtonCalcular" Text="Calcular Rentabilidade" OnClick="ButtonCalcular_Click" runat="server" />
+            </form>
         <br />
         <br />
         <h2>Resultado</h2>
@@ -83,7 +92,7 @@
 
         Custo aquisitivo do hardware: R$ <label id="labelCustoAquisitivo" runat="server" /><br />
 
-        Remuneração por dia:<br />
+        Remuneração por hora:<br />
 Estimativa de ganho na mineração: <label id="labelGanhoDia" runat="server" /><br />
 Gasto com energia: R$ <label id="labelCustoDia" runat="server" /><br />
 Estimativa de lucro: R$ <label id="labelLucroDia" runat="server" /><br />

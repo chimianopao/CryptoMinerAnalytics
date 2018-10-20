@@ -21,7 +21,6 @@ namespace Bitocin.Content {
             CarregaMenuMoedas();
             CarregaMenuHardwares();
             CarregaMenuCidades();
-            GetCotacao();
             //   Button1.Click(sender, e);
         }
 
@@ -34,23 +33,26 @@ namespace Bitocin.Content {
 
         public void CarregaMenuMoedas()
         {
-            string QueryString = "select nome from criptomoedas";
+            if (!IsPostBack)
+            {
+                string QueryString = "select nome from criptomoedas";
 
-            MySqlConnection myConnection = new MySqlConnection(ConnectString);
-            MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, myConnection);
-            myConnection.Open();
-            DataSet ds = new DataSet();
-            myCommand.Fill(ds, "nome");
+                MySqlConnection myConnection = new MySqlConnection(ConnectString);
+                MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, myConnection);
+                myConnection.Open();
+                DataSet ds = new DataSet();
+                myCommand.Fill(ds, "nome");
 
-            selectMoeda.DataSource = ds;
-            selectMoeda.DataTextField = "nome";
-            selectMoeda.DataValueField = "nome";
-            selectMoeda.DataBind();
+                selectMoeda.DataSource = ds;
+                selectMoeda.DataTextField = "nome";
+                selectMoeda.DataValueField = "nome";
+                selectMoeda.DataBind();
 
-            myConnection.Close();
+                myConnection.Close();
+            }
         }
 
-        public void selectMoeda_onchange(Object sender, EventArgs e)
+        public void moedaDropDown_Change(Object sender, EventArgs e)
         {
             CarregaMenuHardwares();
 
@@ -235,12 +237,13 @@ namespace Bitocin.Content {
         {
             //a8bb5bb5ebb44218b75b8130410d77ca
             //dcd1f4eac4584a9eb7f6e8009a4af9b7
+            //16d28c2ba974467494b30c53dec66b21
 
-            Rootobject cotacao = _download_serialized_json_data<Rootobject>("https://www.coinwarz.com/v1/api/profitability/?apikey=dcd1f4eac4584a9eb7f6e8009a4af9b7&algo=all");
+            Rootobject cotacao = _download_serialized_json_data<Rootobject>("https://www.coinwarz.com/v1/api/profitability/?apikey=16d28c2ba974467494b30c53dec66b21ca&algo=all");
 
             foreach (var item in cotacao.Data)
             {
-                if (item.CoinName.Equals("Bitcoin")) {
+                if (item.CoinName.Equals(Request.Form["selectMoeda"])) {
                     return item;
             }
             }
