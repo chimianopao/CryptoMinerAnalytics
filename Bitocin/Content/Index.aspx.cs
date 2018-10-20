@@ -198,7 +198,7 @@ namespace Bitocin.Content {
 
                             labelUnidade.InnerText = sdr["unidade"].ToString();
 
-                            CalculaConsumo(c, quantidade, custoKWh);
+                            CalculaConsumo(c, quantidade, custoKWh, p);
                         }
                     }
                     cn.Close();
@@ -208,17 +208,22 @@ namespace Bitocin.Content {
         }
 
 
-        public void CalculaConsumo(double consumoTotal, int quantidade, double custoKWh)
+        public void CalculaConsumo(double consumoTotal, int quantidade, double custoKWh, double poderProcessamento)
         {
             double consumoOutros = double.Parse(ConsumoOutros.Value);
             consumoTotal = (consumoTotal * quantidade) + consumoOutros;
 
             consumoTotal = consumoTotal / 1000;  //kWh
-            consumoTotal = consumoTotal * 24; //final kWh
+          //  consumoTotal = consumoTotal * 24; //final kWh
+
+            var moeda = GetCotacao();
+
+            //  decimal resultado = ( ((decimal)poderProcessamento/51041010300000) * moeda.BlockReward * moeda.BlockTimeInSeconds * moeda.ExchangeRate) - ((decimal)custoKWh * (decimal)consumoTotal);
+            decimal resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600;
 
             labelCustoDia.InnerText = (consumoTotal * custoKWh).ToString();
-            labelGanhoDia.InnerText = "sei la";
-            labelLucroDia.InnerText = "asdasdasd";
+            labelGanhoDia.InnerText = resultado.ToString();
+            labelLucroDia.InnerText = (resultado-(decimal)(custoKWh*consumoTotal)).ToString();
 
         }
 
@@ -226,22 +231,20 @@ namespace Bitocin.Content {
  
         
     
-        public void GetCotacao()
+        public Datum GetCotacao()
         {
-            Rootobject cotacao = _download_serialized_json_data<Rootobject>("https://www.coinwarz.com/v1/api/profitability/?apikey=a8bb5bb5ebb44218b75b8130410d77ca&algo=all");
+            //a8bb5bb5ebb44218b75b8130410d77ca
+            //dcd1f4eac4584a9eb7f6e8009a4af9b7
 
-            float dificuldade = cotacao.Data[0].Difficulty;
-            float blockReward = cotacao.Data[0].BlockReward;
-            Bitcoin bit = new Bitcoin();
-
+            Rootobject cotacao = _download_serialized_json_data<Rootobject>("https://www.coinwarz.com/v1/api/profitability/?apikey=dcd1f4eac4584a9eb7f6e8009a4af9b7&algo=all");
 
             foreach (var item in cotacao.Data)
             {
                 if (item.CoinName.Equals("Bitcoin")) {
-                bit.BlockReward = item.BlockReward;
-                bit.Difficulty = item.Difficulty;
+                    return item;
             }
             }
+            return null;
             
          
 
@@ -286,15 +289,7 @@ namespace Bitocin.Content {
             }
         }
 
-        private class Bitcoin{
-            public string Name;
-        public float Difficulty { get; set; }
-        public float BlockReward { get; set; }
-            public Bitcoin()
-            {
-
-            }
-    }
+       
 
 }
 }
