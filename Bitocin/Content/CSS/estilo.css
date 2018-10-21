@@ -11,16 +11,17 @@ body {
 }
 .logotipo{
   display: block;
- border: 1px solid red;
+ /*border: 1px solid red;*/
   margin-left: auto;
   margin-right: auto;
   width: 924px;
 }
 .navigation-bar{
-border: 1px solid red;
-margin-left: 8%;
-    top: -3px;
-    left: -76px;
+margin-left: 17%;
+   /* top: -3px;*/
+    /*left: -73px;*/
+    align-self: center;
+    align-content: center;
     text-align: center;
     margin-right: auto;
     margin-top: 10px;
@@ -38,8 +39,8 @@ margin-left: 8%;
     padding: 0;
     overflow: hidden;
 }
-.active{
-    background-color: red;
+.navigation-bar li a.active {
+    background-color: black;
     color: white;
 }
 .navigation-bar li {

@@ -22,7 +22,7 @@
         </div>
         <div class="navigation-bar col-md-10">
             <ul>
-                <li><a href="Index.aspx" data-toggle="tab">Home</a>
+                <li><a href="Index.aspx" data-toggle="tab">Simulador</a>
                 </li>
                 <li><a href="Comparativo.aspx" data-toggle="tab">Comparativo</a>
                 </li>
@@ -30,7 +30,7 @@
                 </li>
                 <li><a href="Hardwares.aspx" data-toggle="tab">Hardwares</a>
                 </li>
-                <li><a href="Energia.aspx" data-toggle="tab">Energia</a>
+                <li><a href="Energia.aspx" data-toggle="tab" class="active">Energia</a>
                 </li>
                 <li><a href="Faq.aspx" data-toggle="tab">FAQ</a>
                 </li>

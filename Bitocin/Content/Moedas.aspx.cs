@@ -14,6 +14,7 @@ using System.Net;
 using Newtonsoft.Json;
 using static Bitocin.Content.API.BraziliexAPI;
 using System.Web.UI.DataVisualization.Charting;
+using Bitocin.Content.API;
 
 namespace Bitocin.Content {
     public partial class Moedas : System.Web.UI.Page {
@@ -22,6 +23,7 @@ namespace Bitocin.Content {
         {
 
             GeraTabelaMoedas();
+            GetHistorico(20);
         }
 
 
@@ -172,8 +174,145 @@ namespace Bitocin.Content {
         }
 
 
+        public void GetHistorico(int quantidade)
+        {
+            //IList<string> listaSiglas = new List<string>{ "BTC", "ETH" };
+            //IList<DataTable> listaDatatable = new List<DataTable>();
+
+            //foreach (var item in listaSiglas)
+            //{
+            //    CryptoCompareAPI.Rootobject historico = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym={item}&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
+            //    DataTable dt = new DataTable();
+            //    dt.Columns.AddRange(new DataColumn[3] { new DataColumn("close"), new DataColumn("time"), new DataColumn("conversionSymbol") });
+            //    listaDatatable.Add(dt);
+            //    foreach (var item2 in historico.Data)
+            //    {
+            //        dt.Rows.Add(item2.close.ToString(), epoch2string(item2.time).ToString(),historico.ConversionType.conversionSymbol);
+            //    }
+            //}
+            CryptoCompareAPI.Rootobject historicoBitcoin = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
+            DataTable dtBitcoin = new DataTable();
+            dtBitcoin.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
+
+            foreach (var item in historicoBitcoin.Data)
+            {
+                dtBitcoin.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
+            }
+
+            CryptoCompareAPI.Rootobject historicoEthereum = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=ETH&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
+            DataTable dtEthereum = new DataTable();
+            dtEthereum.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
+
+            foreach (var item in historicoEthereum.Data)
+            {
+                dtEthereum.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
+            }
+
+            CryptoCompareAPI.Rootobject historicoMonero = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=XMR&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
+            DataTable dtMonero = new DataTable();
+            dtMonero.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
+
+            foreach (var item in historicoMonero.Data)
+            {
+                dtMonero.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
+            }
+
+            CryptoCompareAPI.Rootobject historicoDash = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=DASH&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
+            DataTable dtDash = new DataTable();
+            dtDash.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
+
+            foreach (var item in historicoDash.Data)
+            {
+                dtDash.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
+            }
+
+            CryptoCompareAPI.Rootobject historicoZcash = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=ZEC&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
+            DataTable dtZcash = new DataTable();
+            dtZcash.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
+
+            foreach (var item in historicoZcash.Data)
+            {
+                dtZcash.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
+            }
+
+            CryptoCompareAPI.Rootobject historicoLitecoin = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=LTC&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
+            DataTable dtLitecoin = new DataTable();
+            dtLitecoin.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
+
+            foreach (var item in historicoLitecoin.Data)
+            {
+                dtLitecoin.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
+            }
 
 
+
+            //return listaDatatable;
+
+
+            //public void GeraGraficoHistorico() {
+
+            //var listDT = GetHistorico(20);
+
+            //foreach (var item in listDT)
+            //{
+            //    switch (item.Rows[0]["conversionSymbol"].ToString())
+            //    {
+            //        case "BTC":
+            //            {
+            //                ChartHistorico.Series.Add("Bitcoin");
+            //                break;
+            //            }
+
+            //        case "ETH":
+            //            {
+            //                ChartHistorico.Series.Add("Ethereum");
+            //                break;
+            //            }
+            //    }
+
+            ChartHistorico.Series.Add("Bitcoin");
+            ChartHistorico.Series[0].ChartType = SeriesChartType.Line;
+            ChartHistorico.Series[0].IsValueShownAsLabel = true;
+            ChartHistorico.Series[0].MarkerStep = 1;
+
+            ChartHistorico.Series.Add("Ethereum");
+            ChartHistorico.Series[1].ChartType = SeriesChartType.Line;
+            ChartHistorico.Series[1].IsValueShownAsLabel = true;
+            ChartHistorico.Series[1].MarkerStep = 1;
+
+            ChartHistorico.Series.Add("Monero");
+            ChartHistorico.Series[2].ChartType = SeriesChartType.Line;
+            ChartHistorico.Series[2].IsValueShownAsLabel = true;
+            ChartHistorico.Series[2].MarkerStep = 1;
+
+            ChartHistorico.Series.Add("Dash");
+            ChartHistorico.Series[3].ChartType = SeriesChartType.Line;
+            ChartHistorico.Series[3].IsValueShownAsLabel = true;
+            ChartHistorico.Series[3].MarkerStep = 1;
+
+            ChartHistorico.Series.Add("Zcash");
+            ChartHistorico.Series[4].ChartType = SeriesChartType.Line;
+            ChartHistorico.Series[4].IsValueShownAsLabel = true;
+            ChartHistorico.Series[4].MarkerStep = 1;
+
+            ChartHistorico.Series.Add("Litecoin");
+            ChartHistorico.Series[5].ChartType = SeriesChartType.Line;
+            ChartHistorico.Series[5].IsValueShownAsLabel = true;
+            ChartHistorico.Series[5].MarkerStep = 1;
+
+
+            for (int i = 0; i < dtBitcoin.Rows.Count; i++)
+            {
+             //   ChartHistorico.Series[0].Points.AddXY(dtBitcoin.Rows[i]["time"].ToString(), Convert.ToDouble(dtBitcoin.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[1].Points.AddXY(dtEthereum.Rows[i]["time"].ToString(), Convert.ToDouble(dtEthereum.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[2].Points.AddXY(dtMonero.Rows[i]["time"].ToString(), Convert.ToDouble(dtMonero.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[3].Points.AddXY(dtDash.Rows[i]["time"].ToString(), Convert.ToDouble(dtDash.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[4].Points.AddXY(dtZcash.Rows[i]["time"].ToString(), Convert.ToDouble(dtZcash.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[5].Points.AddXY(dtLitecoin.Rows[i]["time"].ToString(), Convert.ToDouble(dtLitecoin.Rows[i]["close"].ToString()));
+            }
+
+
+        }
 
         private static T _download_serialized_json_data<T>(string url) where T : new()
         {

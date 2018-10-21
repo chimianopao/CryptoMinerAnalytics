@@ -21,11 +21,11 @@
         </div>
         <div class="navigation-bar col-md-12">
             <ul>
-                <li><a href="Index.aspx" data-toggle="tab">Home</a>
+                <li><a href="Index.aspx" data-toggle="tab">Simulador</a>
                 </li>
                 <li><a href="Comparativo.aspx" data-toggle="tab">Comparativo</a>
                 </li>
-                <li><a href="Moedas.aspx" data-toggle="tab">Moedas</a>
+                <li><a href="Moedas.aspx" data-toggle="tab" class="active">Moedas</a>
                 </li>
                 <li><a href="Hardwares.aspx" data-toggle="tab">Hardwares</a>
                 </li>
@@ -69,6 +69,19 @@
           <div>
            <h2>Gráfico de cotação das Moedas</h2>   
        <asp:Chart ID="ChartCotacao" runat="server" Width="900px" Height="900">
+            <Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+            <Legends>
+                <asp:Legend Name="Legend1">
+                </asp:Legend>
+            </Legends>
+        </asp:Chart>
+
+                  <h2>Gráfico de histórico de cotações</h2>   
+       <asp:Chart ID="ChartHistorico" runat="server" Width="1300px" Height="500" AlternateText="olaaaaaa">
             <Series>
             </Series>
             <ChartAreas>
