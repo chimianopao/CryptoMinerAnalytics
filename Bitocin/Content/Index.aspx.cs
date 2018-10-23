@@ -193,7 +193,7 @@ namespace Bitocin.Content {
                             double.TryParse(sdr["consumo"].ToString(), out double c);
                             c = (c * quantidade) + double.Parse(ConsumoOutros.Value);
 
-                            labelCustoAquisitivo.InnerText = (sdr["preco"].ToString());
+                            labelCustoAquisitivo.InnerText = ((double.Parse(sdr["preco"].ToString())*quantidade).ToString());
 
 
                             labelTotalConsumo.InnerText = c.ToString();
@@ -221,7 +221,25 @@ namespace Bitocin.Content {
             var moeda = GetCotacao();
 
             //  decimal resultado = ( ((decimal)poderProcessamento/51041010300000) * moeda.BlockReward * moeda.BlockTimeInSeconds * moeda.ExchangeRate) - ((decimal)custoKWh * (decimal)consumoTotal);
-            decimal resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600;
+            // decimal resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600;
+
+            //decimal resultado = (decimal)(poderProcessamento * 3600) / ((decimal)Math.Pow(2,32) * moeda.Difficulty);
+            //resultado = resultado * moeda.BlockReward;
+            //resultado = resultado * 24449;
+
+            //decimal resultado = (((decimal)poderProcessamento*1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
+            //resultado = resultado * 24449;
+            decimal resultado = 0;
+            if (Request.Form["selectMoeda"].Equals("Zcash") || Request.Form["selectMoeda"].Equals("Ethereum"))
+            {
+                resultado = ((decimal)poderProcessamento * 1000000) / 19006000000000 * (3600 / moeda.BlockTimeInSeconds * moeda.BlockReward) * moeda.ExchangeRate;
+                resultado = resultado * 573;
+            }
+            else
+            {
+                resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
+                resultado = resultado * 24449;
+            }
 
             labelCustoDia.InnerText = (consumoTotal * custoKWh).ToString();
             labelGanhoDia.InnerText = resultado.ToString();
@@ -238,8 +256,19 @@ namespace Bitocin.Content {
             //a8bb5bb5ebb44218b75b8130410d77ca
             //dcd1f4eac4584a9eb7f6e8009a4af9b7
             //16d28c2ba974467494b30c53dec66b21
+            string KEY1 = "a8bb5bb5ebb44218b75b8130410d77ca";
+            string KEY2 = "dcd1f4eac4584a9eb7f6e8009a4af9b7";
+            string KEY3 = "16d28c2ba974467494b30c53dec66b21";
 
-            Rootobject cotacao = _download_serialized_json_data<Rootobject>("https://www.coinwarz.com/v1/api/profitability/?apikey=16d28c2ba974467494b30c53dec66b21ca&algo=all");
+
+            Rootobject cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY1}&algo=all");
+
+            if (cotacao.Success == false)
+            {
+                cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY2}&algo=all");
+                if (cotacao.Success == false)
+                    cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY3}&algo=all");
+            }
 
             foreach (var item in cotacao.Data)
             {
@@ -248,31 +277,6 @@ namespace Bitocin.Content {
             }
             }
             return null;
-            
-         
-
-            //switch (idmoeda)
-            //{
-            //    case 1:
-            //        novo = Decimal.Round(cotacao.btc_brl.last, 2);
-            //        break;
-            //    case 2:
-            //        novo = Decimal.Round(cotacao.eth_brl.last, 2);
-            //        break;
-            //    case 3:
-            //        novo = Decimal.Round(cotacao.ltc_brl.last, 2);
-            //        break;
-            //    case 4:
-            //        novo = Decimal.Round(cotacao.xmr_brl.last, 2);
-            //        break;
-            //    case 5:
-            //        novo = Decimal.Round(cotacao.dash_brl.last, 2);
-            //        break;
-            //    case 6:
-            //        novo = Decimal.Round(cotacao.zec_brl.last, 2);
-            //        break;
-            //}
-
         }
 
 

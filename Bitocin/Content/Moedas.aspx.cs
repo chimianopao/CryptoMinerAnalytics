@@ -130,7 +130,7 @@ namespace Bitocin.Content {
 
         public void GetCotacao(string sigla, int idmoeda)
         {
-            Rootobject cotacao = _download_serialized_json_data<Rootobject>($"https://braziliex.com/api/v1/public/ticker");
+            BraziliexAPI.Rootobject cotacao = _download_serialized_json_data<Rootobject>($"https://braziliex.com/api/v1/public/ticker");
             var dataCotacao = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             Decimal novo = 0;
             switch (idmoeda)

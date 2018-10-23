@@ -47,6 +47,8 @@
                 <%--AllowSorting="True" onsorting="GridView2_Sorting"--%>
                 <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed table-sm dataTable sorting" AllowSorting="True" onsorting="GridView2_Sorting" AutoGenerateColumns="false">
                     <Columns> 
+                        <asp:BoundField DataField="pais"
+                            HeaderText="País" sortexpression="pais"/>
                         <asp:BoundField DataField="cidade"
                             HeaderText="Cidade" sortexpression="cidade"/>
                         <asp:BoundField DataField="estado"
