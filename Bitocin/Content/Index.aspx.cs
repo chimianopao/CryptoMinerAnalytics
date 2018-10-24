@@ -176,9 +176,12 @@ namespace Bitocin.Content {
                 #endregion
 
                 #region busca processamento, unidade e consumo
+                var nomeMoeda = Request.Form["selectMoeda"];
                 using (MySqlCommand cmd = new MySqlCommand($"SELECT pro.processamentoPorSegundo, pro.unidade, hw.consumo, hw.preco FROM hardwares hw " +
-                    $"JOIN processamento pro ON hw.idHardware = pro.idHardware WHERE hw.modelo = '{hardware}';", cn))
-                {
+                    $"JOIN processamento pro ON hw.idHardware = pro.idHardware " +
+                    $"JOIN criptomoedas c on c.idCriptomoeda = pro.idCriptomoeda " +
+                    $"WHERE hw.modelo = '{hardware}' AND c.nome = '{nomeMoeda}';", cn))
+                {//where moeda = selecionada
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = cn;
                     cn.Open();
@@ -241,9 +244,9 @@ namespace Bitocin.Content {
                 resultado = resultado * 24449;
             }
 
-            labelCustoDia.InnerText = (consumoTotal * custoKWh).ToString();
-            labelGanhoDia.InnerText = resultado.ToString();
-            labelLucroDia.InnerText = (resultado-(decimal)(custoKWh*consumoTotal)).ToString();
+            labelCustoDia.InnerText = (consumoTotal * custoKWh).ToString("0.00");
+            labelGanhoDia.InnerText = resultado.ToString("0.00");
+            labelLucroDia.InnerText = (resultado-(decimal)(custoKWh*consumoTotal)).ToString("0.00");
 
         }
 
@@ -259,6 +262,7 @@ namespace Bitocin.Content {
             string KEY1 = "a8bb5bb5ebb44218b75b8130410d77ca";
             string KEY2 = "dcd1f4eac4584a9eb7f6e8009a4af9b7";
             string KEY3 = "16d28c2ba974467494b30c53dec66b21";
+            string KEY4 = "2223d1f34d9a4788b74c6baeea2b7181";
 
 
             Rootobject cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY1}&algo=all");
@@ -267,9 +271,12 @@ namespace Bitocin.Content {
             {
                 cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY2}&algo=all");
                 if (cotacao.Success == false)
+                {
                     cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY3}&algo=all");
+                    if (cotacao.Success == false)
+                        cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY4}&algo=all");
+                }
             }
-
             foreach (var item in cotacao.Data)
             {
                 if (item.CoinName.Equals(Request.Form["selectMoeda"])) {

@@ -108,14 +108,10 @@ namespace Bitocin.Content {
         public void ButtonCotacao_Click(Object sender, EventArgs e)
         {
 
-           // try
-          //  {
-                GetCotacao("BTC", 1);
-                GetCotacao("ETH", 2);
-                GetCotacao("LTC", 3);
-                GetCotacao("XMR", 4);
-                GetCotacao("DASH", 5);
-                GetCotacao("ZEC", 6);
+            // try
+            //  {
+        
+            GetCotacao2();
                 Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Cotações obtidas com sucesso.');", true);
             GeraTabelaMoedas();
          //   }
@@ -128,32 +124,17 @@ namespace Bitocin.Content {
         }
 
 
-        public void GetCotacao(string sigla, int idmoeda)
+
+        public void GetCotacao2()
         {
             BraziliexAPI.Rootobject cotacao = _download_serialized_json_data<Rootobject>($"https://braziliex.com/api/v1/public/ticker");
             var dataCotacao = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            Decimal novo = 0;
-            switch (idmoeda)
-            {
-                case 1:
-                    novo = Decimal.Round(cotacao.btc_brl.last, 2);
-                    break;
-                case 2:
-                    novo = Decimal.Round(cotacao.eth_brl.last, 2);
-                    break;
-                case 3:
-                    novo = Decimal.Round(cotacao.ltc_brl.last, 2);
-                    break;
-                case 4:
-                    novo = Decimal.Round(cotacao.xmr_brl.last, 2);
-                    break;
-                case 5:
-                    novo = Decimal.Round(cotacao.dash_brl.last, 2);
-                    break;
-                case 6:
-                    novo = Decimal.Round(cotacao.zec_brl.last, 2);
-                    break;
-            }
+                    var btc = Decimal.Round(cotacao.btc_brl.last, 2);
+                    var eth = Decimal.Round(cotacao.eth_brl.last, 2);
+                    var ltc = Decimal.Round(cotacao.ltc_brl.last, 2);
+                    var xmr = Decimal.Round(cotacao.xmr_brl.last, 2);
+                    var dash = Decimal.Round(cotacao.dash_brl.last, 2);
+                    var zec = Decimal.Round(cotacao.zec_brl.last, 2);
 
             MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
             String name_table = "historicocotacao";
@@ -162,7 +143,12 @@ namespace Bitocin.Content {
             try
             {
                 SQL_conection.Open();
-                MySqlCommand cmd = new MySqlCommand($"INSERT INTO {name_table} (idCriptomoeda,cotacao,dataCotacao) VALUES ({idmoeda}, '{novo}', '{dataCotacao}');", SQL_conection);
+                MySqlCommand cmd = new MySqlCommand($"INSERT INTO {name_table} (idCriptomoeda,cotacao,dataCotacao) VALUES (1, '{btc}', '{dataCotacao}')," +
+                    $"(2, '{eth}', '{dataCotacao}')," +
+                    $"(3, '{ltc}', '{dataCotacao}')," +
+                    $"(4, '{xmr}', '{dataCotacao}')," +
+                    $"(5, '{dash}', '{dataCotacao}')," +
+                    $"(6, '{zec}', '{dataCotacao}');", SQL_conection);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
@@ -172,6 +158,7 @@ namespace Bitocin.Content {
                 Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Não foi possível obter a cotação.');", true);
             }
         }
+
 
 
         public void GetHistorico(int quantidade)
