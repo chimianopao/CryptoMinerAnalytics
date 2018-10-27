@@ -20,29 +20,10 @@ namespace Bitocin.Content {
             GeraTabelaHardware();
         }
 
-        
-        //public string rodaQuery()
-        //{
-        //    string sql = " SELECT senha FROM usuarios  ";
-        //    MySqlConnection con = new MySqlConnection("host=localhost;user=root;password='';database=twitter_clone;SslMode=none");
-        //    MySqlCommand cmd = new MySqlCommand(sql, con);
-        //    string temp = "";
-        //    con.Open();
-
-        //    MySqlDataReader reader = cmd.ExecuteReader();
-
-        //    while (reader.Read())
-        //    {
-        //        temp = reader.GetString("senha");
-
-        //    }
-        //    con.Close();
-        //    return temp;
-        //}
-
         public void CarregaMenuMoedas()
         {
-                
+            //if (!IsPostBack)
+            //{
                 string QueryString = "select nome from criptomoedas";
 
                 MySqlConnection myConnection = new MySqlConnection(ConnectString);
@@ -55,12 +36,13 @@ namespace Bitocin.Content {
                 selectMoeda.DataValueField = "nome";
                 selectMoeda.DataBind();
 
-            selectMoedaCadastro.DataSource = ds;
-            selectMoedaCadastro.DataTextField = "nome";
-            selectMoedaCadastro.DataValueField = "nome";
-            selectMoedaCadastro.DataBind();
-            //labelUnidade.InnerText = "asd"; //select e jogar aqui
-            myConnection.Close();
+                //selectMoedaCadastro.DataSource = ds;
+                //selectMoedaCadastro.DataTextField = "nome";
+                //selectMoedaCadastro.DataValueField = "nome";
+                //selectMoedaCadastro.DataBind();
+                ////labelUnidade.InnerText = "asd"; //select e jogar aqui
+                myConnection.Close();
+           // }
         }
 
         public void GeraTabelaHardware()
@@ -106,6 +88,11 @@ namespace Bitocin.Content {
             GeraTabelaHardware();
         }
 
+        
+        public void MoedaDropDown_Change(Object sender, EventArgs e)
+        {
+            GeraTabelaHardware();
+        }
 
         public void ButtonCadastro_Click(Object sender, EventArgs e)
         {

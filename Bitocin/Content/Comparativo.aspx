@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Bitocin.Content.Index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Comparativo.aspx.cs" Inherits="Bitocin.Content.Comparativo" %>
 
 <!DOCTYPE html>
 
@@ -20,9 +20,9 @@
         </div>
         <div class="navigation-bar col-md-12">
             <ul>
-                <li><a href="Index.aspx" data-toggle="tab" class="active">Simulador</a>
+                <li><a href="Index.aspx" data-toggle="tab">Simulador</a>
                 </li>
-                <li><a href="Comparativo.aspx" data-toggle="tab">Comparativo</a>
+                <li><a href="Comparativo.aspx" data-toggle="tab" class="active">Comparativo</a>
                 </li>
                 <li><a href="Moedas.aspx" data-toggle="tab">Moedas</a>
                 </li>
@@ -47,30 +47,32 @@
     </div>
   </div>  -->
 
-        <h2>Simulador</h2>
+        <h2>Comparativo</h2>
         <form runat="server">
-            <asp:ScriptManager ID="ScriptManager1" runat="server">
+       <%--     <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
+                <ContentTemplate>--%>
                     Moeda: 
-        <asp:DropDownList ID="selectMoeda" runat="server" AutoPostBack="true" OnSelectedIndexChanged="moedaDropDown_Change" AppendDataBoundItems="true"></asp:DropDownList>
-
+        <asp:DropDownList ID="selectMoeda" runat="server" AutoPostBack="true" OnSelectedIndexChanged="moedaDropDown_Change" AppendDataBoundItems="true" class="col-md-2" size="10" style="height: 100%"></asp:DropDownList>
+              <div class="multiselect">
+    <div class="selectBox">
                     Hardware: 
-        <select id="selectHardware" multiple="false" name="selectHardware" runat="server"></select>
+        <select id="selectHardware" multiple="true" name="selectHardware" runat="server" aria-multiselectable="true" class="col-md-2" size="10" style="height: 100%"></select>
                     Quantidade:
-                    <input type="number" id="quantidadeHw" name="quantidadeHw" value="1" class="col-md-1" runat="server" min="1" />
+                    <input type="number" id="quantidadeHw" name="quantidadeHw" value="1" class="col-md-2" size="10" style="height: 100%" runat="server" min="1" />
                     <br />
-
+        </div></div>
+            
                     Cidade: 
-        <select id="selectCidade" multiple="false" name="selectCidade" runat="server"></select>
+        <select id="selectCidade" multiple="true" name="selectCidade" runat="server" class="col-md-2" size="10" style="height: 100%"></select>
                     Consumo de outros components do hardware:
                     <input type="number" id="ConsumoOutros" name="ConsumoOutros" class="col-md-1" runat="server" pattern="[0-9]+([,\.][0-9]+)?" step="any" value="0" min="0" />
                     Watts    
         <br />
-
-                </ContentTemplate>
-            </asp:UpdatePanel>
+ 
+         <%--       </ContentTemplate>
+            </asp:UpdatePanel>--%>
             <asp:Button ID="ButtonCalcular" Text="Calcular Rentabilidade" OnClick="ButtonCalcular_Click" runat="server" />
         </form>
         <br />
@@ -137,5 +139,5 @@
 </body>
 </html>
 <script>
-    function Recupera() { alert('<%= valor %>'); }
+
 </script>

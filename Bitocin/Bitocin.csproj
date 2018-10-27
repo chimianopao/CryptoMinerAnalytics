@@ -110,9 +110,15 @@
     <Content Include="Content\CSS\bootstrap.css" />
     <Content Include="Content\CSS\estilo.css" />
     <Content Include="Content\Energia.aspx" />
+    <Content Include="Content\Comparativo.aspx" />
     <Content Include="Content\Moedas.aspx" />
     <Content Include="Content\Index.aspx" />
     <Content Include="Content\Hardwares.aspx" />
+    <None Include="scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="scripts\jquery-3.3.1.js" />
+    <Content Include="scripts\jquery-3.3.1.min.js" />
+    <Content Include="scripts\jquery-3.3.1.slim.js" />
+    <Content Include="scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="scripts\JS\bootstrap.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -126,6 +132,13 @@
     </Compile>
     <Compile Include="Content\Energia.aspx.designer.cs">
       <DependentUpon>Energia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Comparativo.aspx.cs">
+      <DependentUpon>Comparativo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Comparativo.aspx.designer.cs">
+      <DependentUpon>Comparativo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Content\Moedas.aspx.cs">
       <DependentUpon>Moedas.aspx</DependentUpon>
@@ -152,6 +165,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="scripts\jquery-3.3.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

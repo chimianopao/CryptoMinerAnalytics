@@ -41,19 +41,14 @@
         <br />
         <form id="form1" runat="server">
             <div>
-<%--                Selecione o Hardware:
-      <select id="selectHardware" name="selectHardware" runat="server">
-          <option value="ASIC">ASIC</option>
-          <option value="CPU">CPU</option>
-          <option value="GPU">GPU</option>
-      </select>--%>
+                <asp:ScriptManager ID="ScriptManager2" runat="server">
+            </asp:ScriptManager>
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
                 Selecione a Moeda
-      <select id="selectMoeda" name="selectMoeda" runat="server">
-          <%--<option>Bitcoin</option>
-          <option>Monero</option>
-          <option>Ethereum</option>
-          <option>Zcash</option>--%>
-      </select>
+          <asp:DropDownList ID="selectMoeda" runat="server" AutoPostBack="false" AppendDataBoundItems="true"></asp:DropDownList>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
                 <asp:Button ID="loadTableButton" Text="Recarregar Tabela" OnClick="loadTableButton_Click" runat="server" />
             </div>
             <h3>Moeda: <%= valor %></h3>
@@ -147,6 +142,17 @@
             </div>
 
     </form>
+                <footer>
+            <br />
+            <br />
+            <hr noshade>
+            <p style="color: #132235;"><b>Contato</b></p>
+            <p>
+                <a href="mailto:theilor@gmail.com">theilor@gmail.com</a><br />
+                <a href="mailto:pedro.fraga@acad.pucrs.br">pedro.fraga@acad.pucrs.br</a><br />
+                +55 (51) 3320-3525
+            </p>
+        </footer>
          </div>
 </body>
 </html>

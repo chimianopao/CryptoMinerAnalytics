@@ -137,3 +137,10 @@ table.dataTable thead .sorting_asc_disabled,
 table.dataTable thead .sorting_desc_disabled {
     background: transparent;
 }
+
+hr {
+    height: 5px;
+    color: #132235;
+    background-color: #132235;
+    border: none;
+}
