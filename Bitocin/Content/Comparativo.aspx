@@ -49,36 +49,32 @@
 
         <h2>Comparativo</h2>
         <form runat="server">
-       <%--     <asp:ScriptManager ID="ScriptManager1" runat="server">
-            </asp:ScriptManager>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>--%>
-                    Moeda: 
-        <asp:DropDownList ID="selectMoeda" runat="server" AutoPostBack="true" OnSelectedIndexChanged="moedaDropDown_Change" AppendDataBoundItems="true" class="col-md-2" size="10" style="height: 100%"></asp:DropDownList>
-              <div class="multiselect">
-    <div class="selectBox">
                     Hardware: 
-        <select id="selectHardware" multiple="true" name="selectHardware" runat="server" aria-multiselectable="true" class="col-md-2" size="10" style="height: 100%"></select>
+        <select id="selectHardware" multiple="false" name="selectHardware" runat="server"></select>
                     Quantidade:
                     <input type="number" id="quantidadeHw" name="quantidadeHw" value="1" class="col-md-2" size="10" style="height: 100%" runat="server" min="1" />
                     <br />
-        </div></div>
-            
-                    Cidade: 
-        <select id="selectCidade" multiple="true" name="selectCidade" runat="server" class="col-md-2" size="10" style="height: 100%"></select>
-                    Consumo de outros components do hardware:
-                    <input type="number" id="ConsumoOutros" name="ConsumoOutros" class="col-md-1" runat="server" pattern="[0-9]+([,\.][0-9]+)?" step="any" value="0" min="0" />
-                    Watts    
-        <br />
- 
-         <%--       </ContentTemplate>
-            </asp:UpdatePanel>--%>
-            <asp:Button ID="ButtonCalcular" Text="Calcular Rentabilidade" OnClick="ButtonCalcular_Click" runat="server" />
-        </form>
+            <asp:Button ID="ButtonCalcular" Text="Calcular Desempenho" OnClick="ButtonCalcular_Click" runat="server" />
+        
         <br />
         <br />
         <h2>Resultado</h2>
-        Moeda:
+            <br />
+            <%= hardwareSelecionado %>
+         <asp:GridView ID="GridProcessamento" runat="server" class="table table-striped table-bordered table-hover table-condensed col-md-4" AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="nome"
+                            HeaderText="Moeda" />
+                        <asp:BoundField DataField="processamentoPorSegundo"
+                            HeaderText="Processamento" />
+                        <asp:BoundField DataField="unidade"
+                            HeaderText="Unidade" /> 
+                    </Columns>
+                </asp:GridView>
+        </form>
+
+
+      <%--  Moeda:
         <label id="labelMoeda" runat="server"></label>
         <br />
         Algoritmo:
@@ -121,7 +117,7 @@
         Estimativa de lucro: R$
         <label id="labelLucroDia" runat="server" />
         <br />
-        <br />
+        <br />--%>
 
         <footer>
             <br />

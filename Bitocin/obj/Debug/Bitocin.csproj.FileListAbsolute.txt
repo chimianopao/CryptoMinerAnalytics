@@ -152,3 +152,4 @@ C:\Users\Theilor\source\repos\CryptoMinerAnalytics\Bitocin\obj\Debug\Bitocin.pdb
 C:\Users\Theilor\source\repos\CryptoMinerAnalytics\Bitocin\bin\roslyn\System.Security.Cryptography.Algorithms.dll
 C:\Users\Theilor\source\repos\CryptoMinerAnalytics\Bitocin\bin\roslyn\System.Security.Cryptography.Primitives.dll
 C:\Users\Theilor\source\repos\CryptoMinerAnalytics\Bitocin\bin\roslyn\System.ValueTuple.dll
+C:\Users\Theilor\source\repos\Bitocin\Bitocin\obj\Debug\Bitocin.csprojAssemblyReference.cache
