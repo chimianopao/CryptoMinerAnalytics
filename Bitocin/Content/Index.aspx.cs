@@ -244,9 +244,17 @@ namespace Bitocin.Content {
                 resultado = resultado * 24449;
             }
 
-            labelCustoDia.InnerText = (consumoTotal * custoKWh).ToString("0.00");
-            labelGanhoDia.InnerText = resultado.ToString("0.00");
-            labelLucroDia.InnerText = (resultado-(decimal)(custoKWh*consumoTotal)).ToString("0.00");
+            labelCustoHora.InnerText = (consumoTotal * custoKWh).ToString("0.00");
+            labelGanhoHora.InnerText = resultado.ToString("0.00");
+            labelLucroHora.InnerText = (resultado-(decimal)(custoKWh*consumoTotal)).ToString("0.00");
+
+            labelCustoDia.InnerText = ((consumoTotal * custoKWh)*24).ToString("0.00");
+            labelGanhoDia.InnerText = (resultado*24).ToString("0.00");
+            labelLucroDia.InnerText = ((resultado - (decimal)(custoKWh * consumoTotal))*24).ToString("0.00");
+
+            labelCustoMes.InnerText = ((consumoTotal * custoKWh) * 24*30).ToString("0.00");
+            labelGanhoMes.InnerText = (resultado * 24*30).ToString("0.00");
+            labelLucroMes.InnerText = ((resultado - (decimal)(custoKWh * consumoTotal)) * 24*30).ToString("0.00");
 
         }
 

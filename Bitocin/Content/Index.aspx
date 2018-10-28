@@ -108,8 +108,20 @@
         Custo aquisitivo do hardware: R$
         <label id="labelCustoAquisitivo" runat="server" />
         <br />
+        <br />
+       <b>Remuneração por hora:</b><br />
+        Estimativa de ganho na mineração:
+        <label id="labelGanhoHora" runat="server" />
+        <br />
+        Gasto com energia: R$
+        <label id="labelCustoHora" runat="server" />
+        <br />
+        Estimativa de lucro: R$
+        <label id="labelLucroHora" runat="server" />
+        <br />
+        <br />
 
-        Remuneração por hora:<br />
+          <b>Remuneração por dia:</b><br />
         Estimativa de ganho na mineração:
         <label id="labelGanhoDia" runat="server" />
         <br />
@@ -118,6 +130,18 @@
         <br />
         Estimativa de lucro: R$
         <label id="labelLucroDia" runat="server" />
+        <br />
+        <br />
+
+          <b>Remuneração por mês:</b><br />
+        Estimativa de ganho na mineração:
+        <label id="labelGanhoMes" runat="server" />
+        <br />
+        Gasto com energia: R$
+        <label id="labelCustoMes" runat="server" />
+        <br />
+        Estimativa de lucro: R$
+        <label id="labelLucroMes" runat="server" />
         <br />
         <br />
 
