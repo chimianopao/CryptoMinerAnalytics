@@ -32,7 +32,7 @@
                 </li>
                 <li><a href="Energia.aspx" data-toggle="tab" class="active">Energia</a>
                 </li>
-                <li><a href="Faq.aspx" data-toggle="tab">FAQ</a>
+                <li><a href="Emissao.aspx" data-toggle="tab">Emissão CO²</a>
                 </li>
                 <li><a href="Sobre.aspx" data-toggle="tab">Sobre</a>
                 </li>
