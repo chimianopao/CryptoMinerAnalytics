@@ -119,6 +119,9 @@
         Estimativa de lucro: R$
         <label id="labelLucroHora" runat="server" />
         <br />
+        Emissão de CO²: 
+        <label id="labelEmissaoHora" runat="server" /> Kgs
+        <br />
         <br />
 
           <b>Remuneração por dia:</b><br />
@@ -131,6 +134,9 @@
         Estimativa de lucro: R$
         <label id="labelLucroDia" runat="server" />
         <br />
+        Emissão de CO²: 
+        <label id="labelEmissaoDia" runat="server" /> Kgs
+        <br />
         <br />
 
           <b>Remuneração por mês:</b><br />
@@ -142,6 +148,9 @@
         <br />
         Estimativa de lucro: R$
         <label id="labelLucroMes" runat="server" />
+        <br />
+        Emissão de CO²: 
+        <label id="labelEmissaoMes" runat="server" /> Kgs
         <br />
         <br />
 

@@ -61,17 +61,11 @@
             </asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <%--Moeda: 
-        <asp:DropDownList ID="selectMoeda" runat="server" AutoPostBack="true" OnSelectedIndexChanged="moedaDropDown_Change" AppendDataBoundItems="true"></asp:DropDownList>--%>
-
                     Hardware: 
         <select id="selectHardware" multiple="false" name="selectHardware" runat="server"></select>
                     Quantidade:
                     <input type="number" id="quantidadeHw" name="quantidadeHw" value="1" class="col-md-1" runat="server" min="1" />
                     <br />
-
-                   
-
                 </ContentTemplate>
             </asp:UpdatePanel>
             <asp:Button ID="ButtonCalcular" Text="Calcular Emissão" OnClick="ButtonCalcular_Click" runat="server" />

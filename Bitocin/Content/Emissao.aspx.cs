@@ -88,12 +88,12 @@ namespace Bitocin.Content {
                     {
                         double.TryParse(sdr["consumo"].ToString(), out double c);
    //                     c = (c * quantidade * 0.000051);//quilos por hora
-                        c = (c * quantidade * 0.000051);//quilos por mes
-                        labelTotalEmissao.InnerText = c.ToString();
+                        c = (c * quantidade * 0.000051);//quilos por hora
+                        labelTotalEmissao.InnerText = c.ToString("0.00");
                         c = c * 24;
-                        labelEmissaoDia.InnerText = c.ToString();
+                        labelEmissaoDia.InnerText = c.ToString("0.00");
                         c = c * 30;
-                        labelEmissaoMes.InnerText = c.ToString();
+                        labelEmissaoMes.InnerText = c.ToString("0.00");
                             CalculaEmissao(c, quantidade, 0);
                     }
                 }

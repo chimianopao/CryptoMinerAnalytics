@@ -200,6 +200,9 @@ namespace Bitocin.Content {
 
 
                             labelTotalConsumo.InnerText = c.ToString();
+                            labelEmissaoHora.InnerText = (c * 0.000051).ToString("0.00");
+                            labelEmissaoDia.InnerText = (c * 0.000051 * 24).ToString("0.00");
+                            labelEmissaoMes.InnerText = (c * 0.000051 * 24 * 30).ToString("0.00");
 
                             labelUnidade.InnerText = sdr["unidade"].ToString();
 
