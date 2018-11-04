@@ -103,45 +103,45 @@
         <label id="labelCustoAquisitivo" runat="server" />
         <br />
         <br />
-       <b>Remuneração por hora:</b><br />
+       <h5><b>Remuneração por hora:</b></h5>
         Estimativa de ganho na mineração:
         <label id="labelGanhoHora" runat="server" />
         <br />
         Gasto com energia: R$
         <label id="labelCustoHora" runat="server" />
         <br />
-        Estimativa de lucro: R$
-        <label id="labelLucroHora" runat="server" />
+       <b>Estimativa de lucro: R$
+        <label id="labelLucroHora" runat="server" /></b>
         <br />
         Emissão de CO²: 
         <label id="labelEmissaoHora" runat="server" /> Kgs
         <br />
         <br />
 
-          <b>Remuneração por dia:</b><br />
+          <h5><b>Remuneração por dia:</b></h5>
         Estimativa de ganho na mineração:
         <label id="labelGanhoDia" runat="server" />
         <br />
         Gasto com energia: R$
         <label id="labelCustoDia" runat="server" />
         <br />
-        Estimativa de lucro: R$
-        <label id="labelLucroDia" runat="server" />
+        <b>Estimativa de lucro: R$
+        <label id="labelLucroDia" runat="server" /></b>
         <br />
         Emissão de CO²: 
         <label id="labelEmissaoDia" runat="server" /> Kgs
         <br />
         <br />
 
-          <b>Remuneração por mês:</b><br />
+        <h5><b>Remuneração por mês:</b></h5>
         Estimativa de ganho na mineração:
         <label id="labelGanhoMes" runat="server" />
         <br />
         Gasto com energia: R$
         <label id="labelCustoMes" runat="server" />
         <br />
-        Estimativa de lucro: R$
-        <label id="labelLucroMes" runat="server" />
+       <b> Estimativa de lucro: R$
+        <label id="labelLucroMes" runat="server" /></b>
         <br />
         Emissão de CO²: 
         <label id="labelEmissaoMes" runat="server" /> Kgs

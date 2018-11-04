@@ -21,15 +21,7 @@ namespace Bitocin.Content {
             CarregaMenuMoedas();
             CarregaMenuHardwares();
             CarregaMenuCidades();
-            //   Button1.Click(sender, e);
         }
-
-        //   MySqlConnection SQL_koneksi = new MySqlConnection("SERVER=localhost;PORT=3306;UID=root;PWD=;");
-        //   String nama_tabel = "twitter_clone.usuarios";
-        //   MySqlDataAdapter db_select;
-        //  DataSet db_data;
-        //   MySqlCommand SQL_cmd;
-        //   string Query;
 
         public void CarregaMenuMoedas()
         {
@@ -55,7 +47,6 @@ namespace Bitocin.Content {
         public void moedaDropDown_Change(Object sender, EventArgs e)
         {
             CarregaMenuHardwares();
-
         }
 
         public void CarregaMenuHardwares()
@@ -65,7 +56,6 @@ namespace Bitocin.Content {
             {
                 moeda = Request.Form["selectMoeda"];
             }
-            //    string moeda = Request.Form["selectMoeda"];
 
             string QueryString = "select hw.modelo from hardwares hw " +
                     "JOIN processamento pr ON hw.idHardware = pr.idHardware " +
@@ -236,16 +226,31 @@ namespace Bitocin.Content {
             //decimal resultado = (((decimal)poderProcessamento*1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
             //resultado = resultado * 24449;
             decimal resultado = 0;
-            if (Request.Form["selectMoeda"].Equals("Zcash") || Request.Form["selectMoeda"].Equals("Ethereum"))
-            {
-                resultado = ((decimal)poderProcessamento * 1000000) / 19006000000000 * (3600 / moeda.BlockTimeInSeconds * moeda.BlockReward) * moeda.ExchangeRate;
-                resultado = resultado * 573;
-            }
+            //if (Request.Form["selectMoeda"].Equals("Zcash") || Request.Form["selectMoeda"].Equals("Ethereum"))
+            //{
+            //    resultado = ((decimal)poderProcessamento * 1000000) / 19006000000000 * (3600 / moeda.BlockTimeInSeconds * moeda.BlockReward) * moeda.ExchangeRate;
+            //    resultado = resultado * 573;
+            //}
+            //else
+            //{
+            //    resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
+            //    resultado = resultado * 24449;
+            //}
+
+            if (Request.Form["selectMoeda"].Equals("Ethereum"))
+                resultado = (((decimal)poderProcessamento * 1000000 * moeda.BlockReward) / moeda.Difficulty) * 3600; //ethereum
+
+            else if (Request.Form["selectMoeda"].Equals("Monero"))
+                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600; //monero. tá em kH/s. si pa divide por 1000
+            else if (Request.Form["selectMoeda"].Equals("Litecoin"))
+                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / (moeda.Difficulty * (decimal)Math.Pow(2, 32))) * 3600; //litecoin. nao tem nada cadastrado. ai teria que ver os mega e tera.
+            else if (Request.Form["selectMoeda"].Equals("Zcash"))
+                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty * (decimal)Math.Pow(2, 13)) * 3600; //Zcash
             else
-            {
                 resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
-                resultado = resultado * 24449;
-            }
+
+            resultado = resultado * 23998;
+
 
             labelCustoHora.InnerText = (consumoTotal * custoKWh).ToString("0.00");
             labelGanhoHora.InnerText = resultado.ToString("0.00");
