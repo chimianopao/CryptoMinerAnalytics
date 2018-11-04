@@ -22,13 +22,17 @@
             <ul>
                 <li><a href="Index.aspx" data-toggle="tab">Simulador</a>
                 </li>
-                <li><a href="Comparativo.aspx" data-toggle="tab" class="active">Comparativo</a>
-                </li>
                 <li><a href="Moedas.aspx" data-toggle="tab">Moedas</a>
                 </li>
-                <li><a href="Hardwares.aspx" data-toggle="tab">Hardwares</a>
+                <li class="dropdown">
+                    <button class="dropbtn">Hardwares</button>
+                    <div class="dropdown-content">
+                        <a href="Hardwares.aspx">Melhor hardware para Moeda</a>
+                        <a href="Comparativo.aspx">Desempenho do Hardware</a>
+                        <a href="CadastroHardwares.aspx">Cadastrar Hardware</a>
+                    </div>
                 </li>
-                <li><a href="Energia.aspx" data-toggle="tab">Energia</a>
+                <li><a href="Energia.aspx" data-toggle="tab">Cidades</a>
                 </li>
                 <li><a href="Emissao.aspx" data-toggle="tab">Emissão CO²</a>
                 </li>
@@ -36,23 +40,12 @@
                 </li>
             </ul>
         </div>
-        <!--   <div class="dropdown">
-    <button class="dropbtn">Selecione Hardware 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">CPU</a>
-      <a href="#">GPU</a>
-      <a href="#">ASIC</a>
-    </div>
-  </div>  -->
-
-        <h2>Comparativo</h2>
+        <br />
+        <h2>Desempenho do Hardware em cada Criptomoeda</h2>
+        <br />
         <form runat="server">
                     Hardware: 
         <select id="selectHardware" multiple="false" name="selectHardware" runat="server"></select>
-                    Quantidade:
-                    <input type="number" id="quantidadeHw" name="quantidadeHw" value="1" class="col-md-2" size="10" style="height: 100%" runat="server" min="1" />
                     <br />
             <asp:Button ID="ButtonCalcular" Text="Calcular Desempenho" OnClick="ButtonCalcular_Click" runat="server" />
         

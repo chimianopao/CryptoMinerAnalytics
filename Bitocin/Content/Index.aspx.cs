@@ -70,7 +70,7 @@ namespace Bitocin.Content {
             string QueryString = "select hw.modelo from hardwares hw " +
                     "JOIN processamento pr ON hw.idHardware = pr.idHardware " +
                     "JOIN criptomoedas cm ON cm.idCriptomoeda = pr.idCriptomoeda " +
-                    $"WHERE cm.nome = '{moeda}';";
+                    $"WHERE cm.nome = '{moeda}' ORDER BY hw.modelo;";
 
             MySqlConnection myConnection = new MySqlConnection(ConnectString);
             MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, myConnection);

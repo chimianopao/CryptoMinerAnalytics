@@ -39,7 +39,7 @@ namespace Bitocin.Content {
             }
             
 
-            string QueryString = "select hw.modelo from hardwares hw; ";
+            string QueryString = "select hw.modelo from hardwares hw ORDER BY hw.modelo;";
              
 
             MySqlConnection myConnection = new MySqlConnection(ConnectString);

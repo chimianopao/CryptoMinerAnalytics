@@ -23,19 +23,23 @@
             <ul>
                 <li><a href="Index.aspx" data-toggle="tab">Simulador</a>
                 </li>
-                <li><a href="Comparativo.aspx" data-toggle="tab">Comparativo</a>
-                </li>
                 <li><a href="Moedas.aspx" data-toggle="tab" class="active">Moedas</a>
                 </li>
-                <li><a href="Hardwares.aspx" data-toggle="tab">Hardwares</a>
+                <li class="dropdown">
+                    <button class="dropbtn">Hardwares</button>
+                    <div class="dropdown-content">
+                        <a href="Hardwares.aspx">Melhor hardware para Moeda</a>
+                        <a href="Comparativo.aspx">Desempenho do Hardware</a>
+                        <a href="CadastroHardwares.aspx">Cadastrar Hardware</a>
+                    </div>
                 </li>
-                <li><a href="Energia.aspx" data-toggle="tab">Energia</a>
+                <li><a href="Energia.aspx" data-toggle="tab">Cidades</a>
                 </li>
                 <li><a href="Emissao.aspx" data-toggle="tab">Emissão CO²</a>
                 </li>
                 <li><a href="Sobre.aspx" data-toggle="tab">Sobre</a>
                 </li>
-                </ul>
+            </ul>
         </div>
         <br />
         <br />

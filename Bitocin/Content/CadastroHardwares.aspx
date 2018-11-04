@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Hardwares.aspx.cs" Inherits="Bitocin.Content.Hardwares" EnableViewState="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroHardwares.aspx.cs" Inherits="Bitocin.Content.CadastroHardwares" EnableViewState="false" %>
 
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
                 </li>
                 <li><a href="Moedas.aspx" data-toggle="tab">Moedas</a>
                 </li>
-                <li class="dropdown">
+                 <li class="dropdown">
                     <button class="dropbtn">Hardwares</button>
                     <div class="dropdown-content">
                         <a href="Hardwares.aspx">Melhor hardware para Moeda</a>
@@ -43,22 +43,33 @@
         </div>
         <br />
         <br />
-        <h3>Melhor Hardware para cada Criptomoeda</h3><br />
         <form id="form1" runat="server">
-            <div>
-                <asp:ScriptManager ID="ScriptManager2" runat="server">
-            </asp:ScriptManager>
-            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                <ContentTemplate>
-                Selecione a Moeda
-          <asp:DropDownList ID="selectMoeda" runat="server" AutoPostBack="false" AppendDataBoundItems="true"></asp:DropDownList>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-                <asp:Button ID="loadTableButton" Text="Recarregar Tabela" OnClick="loadTableButton_Click" runat="server" />
+
+    <h3>Cadastre um novo hardware:</h3>
+            <div class="col-md-6">
+                <input type="text" class="form-control col-md-7" id="marca" name="marca" placeholder="Marca" />
+                <input type="text" class="form-control col-md-7" id="modelo" name="modelo" placeholder="Modelo" />
+                Tipo: 
+                <select id="selectTypeCreation" name="selectTypeCreation" runat="server">
+                    <option value="CPU">CPU</option>
+                    <option value="GPU">GPU</option>
+                    <option value="ASIC">ASIC</option>
+                </select><br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="consumo" name="consumo" placeholder="Consumo" /> Watts<br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="preco" name="preco" placeholder="Preço" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" /> Reais<br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="ano" name="ano" placeholder="Ano" /><br />
+                Moeda:
+                <select id="selectMoedaCadastro" name="selectMoedaCadastro" runat="server" onclick="MoedaCadastroChange" onselect="MoedaCadastroChange" onchange="MoedaCadastroChange"/><br />
+                <input type="number" class="form-control col-md-7 inlineClass" id="processamento" name="processamento" placeholder="Processamento" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" />
+                <label id="labelUnidade" name="labelUnidade" class="inlineClass" runat="server">MH/s</label><br />
+                <asp:Button ID="ButtonCadastro" Text="Cadastrar" OnClick="ButtonCadastro_Click" runat="server" />
             </div>
-            <br />
-            <h3>Moeda: <%= valor %></h3>
-            <div class="background-branco">
+
+    
+        <br /><br />
+
+            <h3>Hardwares cadastrados:</h3>
+        <div class="background-branco">
                 <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed" AutoGenerateColumns="false">
                     <Columns>
                         <asp:BoundField DataField="tipo"
@@ -67,6 +78,8 @@
                             HeaderText="Marca" />
                         <asp:BoundField DataField="modelo"
                             HeaderText="Modelo" /> 
+                        <asp:BoundField DataField="nome"
+                            HeaderText="Criptomoeda" />
 
                         <asp:TemplateField HeaderText="Processamento">
                             <ItemTemplate>
@@ -91,42 +104,7 @@
                     </Columns>
                 </asp:GridView>
             </div>
-            <br />
-            <br />
-            
-        
-   
-      <br /><br />  
-        <div>
-            <h2>Gráfico de poder de processamento</h2>
-       <asp:Chart ID="ChartProcessamento" runat="server" Width="900px" Height="800">
-            <Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-            </ChartAreas>
-            <Legends>
-                <asp:Legend Name="Legend1">
-                </asp:Legend>
-            </Legends>
-        </asp:Chart>
-    </div>
-  <br />
-        <div>
-            <h2>Gráfico de consumo energético</h2>
-       <asp:Chart ID="ChartConsumo" runat="server" Width="900px" Height="800">
-            <Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-            </ChartAreas>
-            <Legends>
-                <asp:Legend Name="Legend1">
-                </asp:Legend>
-            </Legends>
-        </asp:Chart>
-    </div>
-    </form>
+        </form> 
                 <footer>
             <br />
             <br />

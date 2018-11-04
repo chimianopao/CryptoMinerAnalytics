@@ -10,7 +10,7 @@
 namespace Bitocin.Content {
     
     
-    public partial class Moedas {
+    public partial class CadastroHardwares {
         
         /// <summary>
         /// form1 control.
@@ -22,13 +22,40 @@ namespace Bitocin.Content {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ButtonCotacao control.
+        /// selectTypeCreation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonCotacao;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect selectTypeCreation;
+        
+        /// <summary>
+        /// selectMoedaCadastro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect selectMoedaCadastro;
+        
+        /// <summary>
+        /// labelUnidade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl labelUnidade;
+        
+        /// <summary>
+        /// ButtonCadastro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonCadastro;
         
         /// <summary>
         /// GridView2 control.
@@ -38,23 +65,5 @@ namespace Bitocin.Content {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView2;
-        
-        /// <summary>
-        /// ChartCotacao control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart ChartCotacao;
-        
-        /// <summary>
-        /// ChartHistorico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart ChartHistorico;
     }
 }

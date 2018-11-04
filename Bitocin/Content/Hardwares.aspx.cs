@@ -35,12 +35,6 @@ namespace Bitocin.Content {
                 selectMoeda.DataTextField = "nome";
                 selectMoeda.DataValueField = "nome";
                 selectMoeda.DataBind();
-
-                //selectMoedaCadastro.DataSource = ds;
-                //selectMoedaCadastro.DataTextField = "nome";
-                //selectMoedaCadastro.DataValueField = "nome";
-                //selectMoedaCadastro.DataBind();
-                ////labelUnidade.InnerText = "asd"; //select e jogar aqui
                 myConnection.Close();
            // }
         }
@@ -92,86 +86,6 @@ namespace Bitocin.Content {
         public void MoedaDropDown_Change(Object sender, EventArgs e)
         {
             GeraTabelaHardware();
-        }
-
-        public void ButtonCadastro_Click(Object sender, EventArgs e)
-        {
-            MySqlConnection SQL_conection = new MySqlConnection(ConnectString);
-            String name_tabel = "hardwares";
-
-            string marca = Request.Form["marca"];
-            string modelo = Request.Form["modelo"];
-            string tipo = Request.Form["selectTypeCreation"];
-            string consumo = Request.Form["consumo"];
-            string preco = Request.Form["preco"];
-            string ano = Request.Form["ano"];
-            string processamento = Request.Form["processamento"];
-
-            try
-            {
-                SQL_conection.Open();
-                MySqlCommand cmd = new MySqlCommand($"INSERT INTO {name_tabel} (marca,modelo,tipo,consumo,preco,ano,aprovado) VALUES ('{marca}','{modelo}','{tipo}',{consumo},'{preco}',{ano},0);", SQL_conection);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-                SQL_conection.Close();
-
-              
-                #region Pega idHardware do hw novo
-                int idHardware;
-                string temp = "";
-
-                cmd = new MySqlCommand($"SELECT idHardware from hardwares WHERE marca = '{marca}' AND modelo = '{modelo}';", SQL_conection);
-                SQL_conection.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    temp = reader.GetString("idHardware");
-                }
-                SQL_conection.Close();
-                idHardware = int.Parse(temp);
-                #endregion
-
-                #region Pega idCriptomoeda do hw novo
-                int idCriptomoeda = 0;
-                string unidade = "";
-                temp = "";
-                cmd = new MySqlCommand($"SELECT cm.idCriptomoeda, pro.unidade from criptomoedas cm " +
-                    $"JOIN processamento pro on cm.idCriptomoeda = pro.idCriptomoeda " +
-                    $"WHERE cm.nome = '{Request.Form["selectMoedaCadastro"]}';", SQL_conection);
-                SQL_conection.Open();
-                reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    idCriptomoeda = int.Parse(reader.GetString("idCriptomoeda"));
-                    unidade = reader.GetString("unidade");
-                }
-                SQL_conection.Close();
-                #endregion
-
-                #region Insere processamento
-                SQL_conection.Open();
-                cmd = new MySqlCommand($"INSERT INTO processamento (idHardware,idCriptomoeda,processamentoPorSegundo,unidade) VALUES ({idHardware}, {idCriptomoeda}, '{processamento}', '{labelUnidade.InnerText}');", SQL_conection);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-                SQL_conection.Close();
-                #endregion
-
-                Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Hardware cadastrado com sucesso');", true);
-
-            }
-            catch (Exception e2)
-            {
-                Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", $"alert('Erro ao cadastrar. Por favor, preencha todos os campos.\nErro: {e2.Message}');", true);
-            }
-
-
-        }
-
-        public void MoedaCadastroChange(Object sender, EventArgs e)
-        {
-            labelUnidade.InnerText = selectMoedaCadastro.Value;
         }
 
         public void GeraGraficoProcessamento(string moeda)

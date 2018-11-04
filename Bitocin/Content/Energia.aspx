@@ -24,13 +24,17 @@
             <ul>
                 <li><a href="Index.aspx" data-toggle="tab">Simulador</a>
                 </li>
-                <li><a href="Comparativo.aspx" data-toggle="tab">Comparativo</a>
-                </li>
                 <li><a href="Moedas.aspx" data-toggle="tab">Moedas</a>
                 </li>
-                <li><a href="Hardwares.aspx" data-toggle="tab">Hardwares</a>
+                 <li class="dropdown">
+                    <button class="dropbtn">Hardwares</button>
+                    <div class="dropdown-content">
+                        <a href="Hardwares.aspx">Melhor hardware para Moeda</a>
+                        <a href="Comparativo.aspx">Desempenho do Hardware</a>
+                        <a href="CadastroHardwares.aspx">Cadastrar Hardware</a>
+                    </div>
                 </li>
-                <li><a href="Energia.aspx" data-toggle="tab" class="active">Energia</a>
+                <li><a href="Energia.aspx" data-toggle="tab" class="active">Cidades</a>
                 </li>
                 <li><a href="Emissao.aspx" data-toggle="tab">Emissão CO²</a>
                 </li>
@@ -40,12 +44,13 @@
         </div>
         <br />
         <br />
+        <h3>Preço da energia elétrica por cidade</h3><br />
         <form id="form1" runat="server">
             <div>
             </div>
             <div class="background-branco">
                 <%--AllowSorting="True" onsorting="GridView2_Sorting"--%>
-                <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed table-sm dataTable sorting" AllowSorting="True" onsorting="GridView2_Sorting" AutoGenerateColumns="false">
+                <asp:GridView ID="GridView2" runat="server" class="table table-striped table-bordered table-hover table-condensed table-sm dataTable sorting" AllowSorting="false" onsorting="GridView2_Sorting" AutoGenerateColumns="false">
                     <Columns> 
                         <asp:BoundField DataField="pais"
                             HeaderText="País" sortexpression="pais"/>
