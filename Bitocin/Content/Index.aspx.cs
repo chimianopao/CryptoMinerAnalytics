@@ -248,8 +248,8 @@ namespace Bitocin.Content {
                 resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty * (decimal)Math.Pow(2, 13)) * 3600; //Zcash
             else
                 resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
-
-            resultado = resultado * 23998;
+           // Double.valueOf(labelCotacao.ToString().Replace(",", "."));
+            resultado = resultado * (decimal)double.Parse(labelCotacao.InnerText);
 
 
             labelCustoHora.InnerText = (consumoTotal * custoKWh).ToString("0.00");
