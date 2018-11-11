@@ -76,6 +76,7 @@ margin-left: 17%;
 .dropdown {
     position: relative;
     display: inline-block;
+  
 }
 
 /* Dropdown button */
@@ -88,11 +89,13 @@ margin-left: 17%;
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
         /* margin-top: 10px; */ /* Important for vertical align on mobile phones */
+        position: relative;
         background-color: #333;
         color: white;
         padding: 14px 16px;
         font-size: 16px;
         border: none;
+    
     }
 
 /* Add a red background color to navbar links on hover */

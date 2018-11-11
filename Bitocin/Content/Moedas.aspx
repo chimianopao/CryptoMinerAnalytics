@@ -103,7 +103,7 @@
             <hr noshade>
             <p style="color: #132235;"><b>Contato</b></p>
             <p>
-                <a href="mailto:theilor@gmail.com">theilor@gmail.com</a><br />
+                <a href="mailto:theilor.raddatz@edu.pucrs.br">theilor.raddatz@edu.pucrs.br</a><br />
                 <a href="mailto:pedro.fraga@acad.pucrs.br">pedro.fraga@acad.pucrs.br</a><br />
                 +55 (51) 3320-3525
             </p>

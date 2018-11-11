@@ -109,6 +109,7 @@
   <ItemGroup>
     <Content Include="Content\CSS\bootstrap.css" />
     <Content Include="Content\CSS\estilo.css" />
+    <Content Include="Content\Sobre.aspx" />
     <Content Include="Content\Emissao.aspx" />
     <Content Include="Content\Energia.aspx" />
     <Content Include="Content\Comparativo.aspx" />
@@ -128,6 +129,13 @@
     <Compile Include="Content\API\BraziliexAPI.cs" />
     <Compile Include="Content\API\CoinWarzAPI.cs" />
     <Compile Include="Content\API\CryptoCompareAPI.cs" />
+    <Compile Include="Content\Sobre.aspx.cs">
+      <DependentUpon>Sobre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\Sobre.aspx.designer.cs">
+      <DependentUpon>Sobre.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Content\Emissao.aspx.cs">
       <DependentUpon>Emissao.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
