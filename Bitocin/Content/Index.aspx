@@ -34,7 +34,7 @@
                 </li>
                 <li><a href="Energia.aspx" data-toggle="tab">Cidades</a>
                 </li>
-                <li><a href="Emissao.aspx" data-toggle="tab">Emissão CO²</a>
+                <li><a href="Emissao.aspx" data-toggle="tab">Emissão CO<sub>2</sub></a>
                 </li>
                 <li><a href="Sobre.aspx" data-toggle="tab">Sobre</a>
                 </li>
@@ -113,7 +113,7 @@
        <b>Estimativa de lucro: R$
         <label id="labelLucroHora" runat="server" /></b>
         <br />
-        Emissão de CO²: 
+        Emissão de CO<sub>2</sub>: 
         <label id="labelEmissaoHora" runat="server" /> Kgs
         <br />
         <br />
@@ -128,7 +128,7 @@
         <b>Estimativa de lucro: R$
         <label id="labelLucroDia" runat="server" /></b>
         <br />
-        Emissão de CO²: 
+        Emissão de CO<sub>2</sub>: 
         <label id="labelEmissaoDia" runat="server" /> Kgs
         <br />
         <br />
@@ -143,7 +143,7 @@
        <b> Estimativa de lucro: R$
         <label id="labelLucroMes" runat="server" /></b>
         <br />
-        Emissão de CO²: 
+        Emissão de CO<sub>2</sub>: 
         <label id="labelEmissaoMes" runat="server" /> Kgs
         <br />
         <br />

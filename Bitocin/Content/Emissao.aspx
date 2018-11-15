@@ -35,7 +35,7 @@
                 </li>
                 <li><a href="Energia.aspx" data-toggle="tab">Cidades</a>
                 </li>
-                <li><a href="Emissao.aspx" data-toggle="tab"class="active">Emissão CO²</a>
+                <li><a href="Emissao.aspx" data-toggle="tab"class="active">Emissão CO<sub>2</sub></a>
                 </li>
                 <li><a href="Sobre.aspx" data-toggle="tab">Sobre</a>
                 </li>
@@ -58,7 +58,7 @@
 
 
 
-        <h3>Calculadora de Emissão de CO²</h3>
+        <h3>Calculadora de Emissão de CO<sub>2</sub></h3>
         <br />
         <form runat="server">
             <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -88,7 +88,7 @@
         <label id="labelTotalConsumo" runat="server"></label>
         Watts<br />
       
-        Quantidade de CO² emitido:
+        Quantidade de CO<sub>2</sub> emitido:
         <label id="labelTotalEmissao" runat="server"></label>
         Kgs por hora<br />
         <label id="labelEmissaoDia" runat="server"></label>
