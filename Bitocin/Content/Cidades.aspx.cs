@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 
 namespace Bitocin.Content {
-    public partial class Energia : System.Web.UI.Page {
+    public partial class Cidades : System.Web.UI.Page {
         public string valor = "Bitcoin";
   
         protected void Page_Load(object sender, EventArgs e)

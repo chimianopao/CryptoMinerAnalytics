@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using static Bitocin.Content.API.CoinWarzAPI;
 
 namespace Bitocin.Content {
-    public partial class Comparativo : System.Web.UI.Page {
+    public partial class DesempenhoHardware : System.Web.UI.Page {
         string ConnectString = "host=localhost;user=root;password='';database=cripto;SslMode=none";
         public string hardwareSelecionado = "";
         protected void Page_Load(object sender, EventArgs e)

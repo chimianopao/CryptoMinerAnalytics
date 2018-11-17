@@ -21,7 +21,7 @@
         </div>
         <div class="navigation-bar col-md-12">
             <ul>
-                <li><a href="Index.aspx" data-toggle="tab">Simulador</a>
+                <li><a href="Simulador.aspx" data-toggle="tab">Simulador</a>
                 </li>
                 <li><a href="Moedas.aspx" data-toggle="tab" class="active">Moedas</a>
                 </li>
@@ -29,11 +29,11 @@
                     <button class="dropbtn">Hardwares</button>
                     <div class="dropdown-content">
                         <a href="Hardwares.aspx">Melhor hardware para Moeda</a>
-                        <a href="Comparativo.aspx">Desempenho do Hardware</a>
+                        <a href="DesempenhoHardware.aspx">Desempenho do Hardware</a>
                         <a href="CadastroHardwares.aspx">Cadastrar Hardware</a>
                     </div>
                 </li>
-                <li><a href="Energia.aspx" data-toggle="tab">Cidades</a>
+                <li><a href="Cidades.aspx" data-toggle="tab">Cidades</a>
                 </li>
                 <li><a href="Emissao.aspx" data-toggle="tab">Emissão CO<sub>2</sub></a>
                 </li>

@@ -95,25 +95,26 @@ margin-left: 17%;
         padding: 14px 16px;
         font-size: 16px;
         border: none;
-    
+    /*width:100%;*/
     }
 
 /* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: black;
-  overflow: visible;
-}
+    .navbar a:hover, .dropdown:hover .dropbtn {
+        background-color: black;
+        overflow: visible;
+    }
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
     display: none;
-    position: fixed;
+    position: relative;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     width: auto;
     height: auto;
+    /*column-width: inherit;*/
 }
 
 /* Links inside the dropdown */

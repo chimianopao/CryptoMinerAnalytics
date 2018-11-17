@@ -10,7 +10,7 @@
 namespace Bitocin.Content {
     
     
-    public partial class Comparativo {
+    public partial class DesempenhoHardware {
         
         /// <summary>
         /// selectHardware control.

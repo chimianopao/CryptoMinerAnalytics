@@ -10,7 +10,7 @@
 namespace Bitocin.Content {
     
     
-    public partial class Energia {
+    public partial class Cidades {
         
         /// <summary>
         /// form1 control.

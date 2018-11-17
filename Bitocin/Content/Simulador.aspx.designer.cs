@@ -10,7 +10,7 @@
 namespace Bitocin.Content {
     
     
-    public partial class Index {
+    public partial class Simulador {
         
         /// <summary>
         /// ScriptManager1 control.

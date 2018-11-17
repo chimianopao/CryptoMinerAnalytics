@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Energia.aspx.cs" Inherits="Bitocin.Content.Energia" EnableViewState="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cidades.aspx.cs" Inherits="Bitocin.Content.Cidades" EnableViewState="false" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
@@ -22,7 +22,7 @@
         </div>
         <div class="navigation-bar col-md-10">
             <ul>
-                <li><a href="Index.aspx" data-toggle="tab">Simulador</a>
+                <li><a href="Simulador.aspx" data-toggle="tab">Simulador</a>
                 </li>
                 <li><a href="Moedas.aspx" data-toggle="tab">Moedas</a>
                 </li>
@@ -30,11 +30,11 @@
                     <button class="dropbtn">Hardwares</button>
                     <div class="dropdown-content">
                         <a href="Hardwares.aspx">Melhor hardware para Moeda</a>
-                        <a href="Comparativo.aspx">Desempenho do Hardware</a>
+                        <a href="DesempenhoHardware.aspx">Desempenho do Hardware</a>
                         <a href="CadastroHardwares.aspx">Cadastrar Hardware</a>
                     </div>
                 </li>
-                <li><a href="Energia.aspx" data-toggle="tab" class="active">Cidades</a>
+                <li><a href="Cidades.aspx" data-toggle="tab" class="active">Cidades</a>
                 </li>
                 <li><a href="Emissao.aspx" data-toggle="tab">Emissão CO<sub>2</sub></a>
                 </li>
