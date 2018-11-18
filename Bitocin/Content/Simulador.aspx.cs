@@ -16,6 +16,7 @@ namespace Bitocin.Content {
     public partial class Simulador : System.Web.UI.Page {
         string ConnectString = "host=localhost;user=root;password='';database=cripto;SslMode=none";
         public string valor;
+        public string formula = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             CarregaMenuMoedas();
@@ -96,6 +97,7 @@ namespace Bitocin.Content {
 
         public void ButtonCalcular_Click(Object sender, EventArgs e)
         {
+            Content.Cidades.ChamaAtualizadorCotacao();
             string moeda = Request.Form["selectMoeda"];
             string hardware = Request.Form["selectHardware"];
             string cidade = Request.Form["selectCidade"];
@@ -238,7 +240,10 @@ namespace Bitocin.Content {
             //}
 
             if (Request.Form["selectMoeda"].Equals("Ethereum"))
-                resultado = (((decimal)poderProcessamento * 1000000 * moeda.BlockReward) / moeda.Difficulty) * 3600; //ethereum
+            {
+                resultado = (((decimal)poderProcessamento * 1000000 * moeda.BlockReward) / moeda.Difficulty) * 3600;
+                formula = "Fórmula de cálculo: ((Hash/s * BlockReward) / Dificuldade) * 3600";
+            }
 
             else if (Request.Form["selectMoeda"].Equals("Monero"))
                 resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600; //monero. tá em kH/s. si pa divide por 1000

@@ -129,6 +129,7 @@
     <Compile Include="Content\API\BraziliexAPI.cs" />
     <Compile Include="Content\API\CoinWarzAPI.cs" />
     <Compile Include="Content\API\CryptoCompareAPI.cs" />
+    <Compile Include="Content\API\CurrencyConverterAPI.cs" />
     <Compile Include="Content\Sobre.aspx.cs">
       <DependentUpon>Sobre.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

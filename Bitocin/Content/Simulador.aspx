@@ -96,7 +96,7 @@
         Consumo energético total:
         <label id="labelTotalConsumo" runat="server"></label>
         Watts<br />
-        <br />
+        <%= formula %>
         <br />
 
         Custo aquisitivo do hardware: R$

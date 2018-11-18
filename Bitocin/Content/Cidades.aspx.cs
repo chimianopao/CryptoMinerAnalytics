@@ -5,11 +5,14 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
+using Bitocin.Content.API;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 
 namespace Bitocin.Content {
     public partial class Cidades : System.Web.UI.Page {
@@ -17,31 +20,59 @@ namespace Bitocin.Content {
   
         protected void Page_Load(object sender, EventArgs e)
         {
+            AtualizaCotacaoDolar();
             GeraTabelaCidades();
             GeraGraficoCidades();
 
       
         }
 
-        
-        //public string rodaQuery()
-        //{
-        //    string sql = " SELECT senha FROM usuarios  ";
-        //    MySqlConnection con = new MySqlConnection("host=localhost;user=root;password='';database=twitter_clone;SslMode=none");
-        //    MySqlCommand cmd = new MySqlCommand(sql, con);
-        //    string temp = "";
-        //    con.Open();
 
-        //    MySqlDataReader reader = cmd.ExecuteReader();
+        private static T _download_serialized_json_data<T>(string url) where T : new()
+        {
+            using (var w = new WebClient())
+            {
+                var json_data = string.Empty;
+                // attempt to download JSON data as a string
+                try
+                {
+                    json_data = w.DownloadString(url);
+                }
+                catch (Exception) { }
+                // if string with JSON data is not empty, deserialize it to class and return its instance 
+                return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data) : new T();
+            }
+        }
 
-        //    while (reader.Read())
-        //    {
-        //        temp = reader.GetString("senha");
+        public static void ChamaAtualizadorCotacao()
+        {
+           Cidades cidades = new Cidades();
+            cidades.AtualizaCotacaoDolar();
+        }
 
-        //    }
-        //    con.Close();
-        //    return temp;
-        //}
+        public void AtualizaCotacaoDolar()
+        {
+            CurrencyConverterAPI.Rootobject cotacao = _download_serialized_json_data<CurrencyConverterAPI.Rootobject>("https://free.currencyconverterapi.com/api/v6/convert?q=USD_BRL&compact=ultra");
+
+            MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
+
+            string valorCotacao = cotacao.USD_BRL.ToString().Replace(",", ".");
+
+            try
+            {
+                SQL_conection.Open();
+                MySqlCommand cmd = new MySqlCommand($"UPDATE custoenergia SET custoKWh = (custoEmDolar*{valorCotacao}) " +
+                    "WHERE pais = 'EUA';", SQL_conection);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                SQL_conection.Close();
+             //   Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Cidade cadastrada com sucesso');", true);
+            }
+            catch (Exception e2)
+            {
+                Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", $"alert('Erro ao tentar atualizar a cotação do dolar. Tente novamente mais tarde.\nErro: {e2.Message}');", true);
+            }
+        }
 
        
         public void GeraTabelaCidades()
