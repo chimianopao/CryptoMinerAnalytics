@@ -248,9 +248,9 @@ namespace Bitocin.Content {
             else if (Request.Form["selectMoeda"].Equals("Monero"))
                 resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600; //monero. tá em kH/s. si pa divide por 1000
             else if (Request.Form["selectMoeda"].Equals("Litecoin"))
-                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / (moeda.Difficulty * (decimal)Math.Pow(2, 32))) * 3600; //litecoin. nao tem nada cadastrado. ai teria que ver os mega e tera.
+                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / (moeda.Difficulty * (decimal)Math.Pow(2, 32))) * 3600;
             else if (Request.Form["selectMoeda"].Equals("Zcash"))
-                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty * (decimal)Math.Pow(2, 13)) * 3600; //Zcash
+                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty * (decimal)Math.Pow(2, 13)) * 3600;
             else
                 resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
            // Double.valueOf(labelCotacao.ToString().Replace(",", "."));
@@ -300,9 +300,9 @@ namespace Bitocin.Content {
             }
             foreach (var item in cotacao.Data)
             {
-                if (item.CoinName.Equals(Request.Form["selectMoeda"])) {
+                if (item.CoinName.Equals(Request.Form["selectMoeda"].Replace(" ", ""))) {
                     return item;
-            }
+                }
             }
             return null;
         }

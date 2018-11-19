@@ -36,7 +36,7 @@ namespace Bitocin.Content {
 
             try
             {
-                db_select = new MySqlDataAdapter("SELECT distinct cm.sigla as sigla, cm.nome, cm.algoritmo, hc.cotacao, hc.dataCotacao from criptomoedas cm JOIN historicocotacao hc on cm.idCriptomoeda = hc.idCriptomoeda order BY hc.dataCotacao desc LIMIT 6;", SQL_conection);
+                db_select = new MySqlDataAdapter("SELECT distinct cm.sigla as sigla, cm.nome, cm.algoritmo, hc.cotacao, hc.dataCotacao from criptomoedas cm JOIN historicocotacao hc on cm.idCriptomoeda = hc.idCriptomoeda order BY hc.dataCotacao desc LIMIT 5;", SQL_conection);
                 db_data = new System.Data.DataSet();
                 db_select.Fill(db_data, name_table);
                 GridView2.DataSource = db_data;
@@ -44,7 +44,7 @@ namespace Bitocin.Content {
             }
             catch
             {
-                valor = "deu pau";
+                valor = "Erro";
             }
 
             GeraGraficoConsumo();
@@ -131,9 +131,9 @@ namespace Bitocin.Content {
             var dataCotacao = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     var btc = Decimal.Round(cotacao.btc_brl.last, 2);
                     var eth = Decimal.Round(cotacao.eth_brl.last, 2);
-                    var ltc = Decimal.Round(cotacao.ltc_brl.last, 2);
+                    var bch = Decimal.Round(cotacao.bch_brl.last, 2);
                     var xmr = Decimal.Round(cotacao.xmr_brl.last, 2);
-                    var dash = Decimal.Round(cotacao.dash_brl.last, 2);
+                  //  var dash = Decimal.Round(cotacao.dash_brl.last, 2);
                     var zec = Decimal.Round(cotacao.zec_brl.last, 2);
 
             MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
@@ -145,9 +145,8 @@ namespace Bitocin.Content {
                 SQL_conection.Open();
                 MySqlCommand cmd = new MySqlCommand($"INSERT INTO {name_table} (idCriptomoeda,cotacao,dataCotacao) VALUES (1, '{btc}', '{dataCotacao}')," +
                     $"(2, '{eth}', '{dataCotacao}')," +
-                    $"(3, '{ltc}', '{dataCotacao}')," +
+                    $"(3, '{bch}', '{dataCotacao}')," +
                     $"(4, '{xmr}', '{dataCotacao}')," +
-                    $"(5, '{dash}', '{dataCotacao}')," +
                     $"(6, '{zec}', '{dataCotacao}');", SQL_conection);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
@@ -204,13 +203,13 @@ namespace Bitocin.Content {
                 dtMonero.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
             }
 
-            CryptoCompareAPI.Rootobject historicoDash = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=DASH&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
-            DataTable dtDash = new DataTable();
-            dtDash.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
+            CryptoCompareAPI.Rootobject historicoBitcoinCash = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=BCH&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
+            DataTable dtCash = new DataTable();
+            dtCash.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
 
-            foreach (var item in historicoDash.Data)
+            foreach (var item in historicoBitcoinCash.Data)
             {
-                dtDash.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
+                dtCash.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
             }
 
             CryptoCompareAPI.Rootobject historicoZcash = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=ZEC&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
@@ -221,16 +220,6 @@ namespace Bitocin.Content {
             {
                 dtZcash.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
             }
-
-            CryptoCompareAPI.Rootobject historicoLitecoin = _download_serialized_json_data<CryptoCompareAPI.Rootobject>($"https://min-api.cryptocompare.com/data/histoday?fsym=LTC&tsym=BRL&limit={quantidade}&aggregate=1&e=CCCAGG");
-            DataTable dtLitecoin = new DataTable();
-            dtLitecoin.Columns.AddRange(new DataColumn[2] { new DataColumn("close"), new DataColumn("time") });
-
-            foreach (var item in historicoLitecoin.Data)
-            {
-                dtLitecoin.Rows.Add(item.close.ToString(), epoch2string(item.time).ToString());
-            }
-
 
 
             //return listaDatatable;
@@ -272,7 +261,7 @@ namespace Bitocin.Content {
             ChartHistorico.Series[2].IsValueShownAsLabel = true;
             ChartHistorico.Series[2].MarkerStep = 1;
 
-            ChartHistorico.Series.Add("Dash");
+            ChartHistorico.Series.Add("Bitcoin Cash");
             ChartHistorico.Series[3].ChartType = SeriesChartType.Line;
             ChartHistorico.Series[3].IsValueShownAsLabel = true;
             ChartHistorico.Series[3].MarkerStep = 1;
@@ -282,20 +271,13 @@ namespace Bitocin.Content {
             ChartHistorico.Series[4].IsValueShownAsLabel = true;
             ChartHistorico.Series[4].MarkerStep = 1;
 
-            ChartHistorico.Series.Add("Litecoin");
-            ChartHistorico.Series[5].ChartType = SeriesChartType.Line;
-            ChartHistorico.Series[5].IsValueShownAsLabel = true;
-            ChartHistorico.Series[5].MarkerStep = 1;
-
-
             for (int i = 0; i < dtBitcoin.Rows.Count; i++)
             {
              //   ChartHistorico.Series[0].Points.AddXY(dtBitcoin.Rows[i]["time"].ToString(), Convert.ToDouble(dtBitcoin.Rows[i]["close"].ToString()));
                 ChartHistorico.Series[1].Points.AddXY(dtEthereum.Rows[i]["time"].ToString(), Convert.ToDouble(dtEthereum.Rows[i]["close"].ToString()));
                 ChartHistorico.Series[2].Points.AddXY(dtMonero.Rows[i]["time"].ToString(), Convert.ToDouble(dtMonero.Rows[i]["close"].ToString()));
-                ChartHistorico.Series[3].Points.AddXY(dtDash.Rows[i]["time"].ToString(), Convert.ToDouble(dtDash.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[3].Points.AddXY(dtCash.Rows[i]["time"].ToString(), Convert.ToDouble(dtCash.Rows[i]["close"].ToString()));
                 ChartHistorico.Series[4].Points.AddXY(dtZcash.Rows[i]["time"].ToString(), Convert.ToDouble(dtZcash.Rows[i]["close"].ToString()));
-                ChartHistorico.Series[5].Points.AddXY(dtLitecoin.Rows[i]["time"].ToString(), Convert.ToDouble(dtLitecoin.Rows[i]["close"].ToString()));
             }
 
 
@@ -331,7 +313,7 @@ namespace Bitocin.Content {
             using (MySqlConnection cn = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none"))
             {
                 string sql = "SELECT distinct cm.sigla as sigla, cm.nome, cm.algoritmo, hc.cotacao, hc.dataCotacao from criptomoedas cm " +
-                    "JOIN historicocotacao hc on cm.idCriptomoeda = hc.idCriptomoeda order BY hc.dataCotacao desc LIMIT 6;"
+                    "JOIN historicocotacao hc on cm.idCriptomoeda = hc.idCriptomoeda order BY hc.dataCotacao desc LIMIT 5;"
         ;
                 using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                 {
