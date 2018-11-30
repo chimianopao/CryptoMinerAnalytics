@@ -246,38 +246,39 @@ namespace Bitocin.Content {
             //            }
             //    }
 
-            ChartHistorico.Series.Add("Bitcoin");
+            ChartHistoricoBitcoin.Series.Add("Bitcoin");
+            ChartHistoricoBitcoin.Series[0].ChartType = SeriesChartType.Line;
+            ChartHistoricoBitcoin.Series[0].IsValueShownAsLabel = true;
+            ChartHistoricoBitcoin.Series[0].MarkerStep = 1;
+
+
+            ChartHistorico.Series.Add("Ethereum");
             ChartHistorico.Series[0].ChartType = SeriesChartType.Line;
             ChartHistorico.Series[0].IsValueShownAsLabel = true;
             ChartHistorico.Series[0].MarkerStep = 1;
 
-            ChartHistorico.Series.Add("Ethereum");
+            ChartHistorico.Series.Add("Monero");
             ChartHistorico.Series[1].ChartType = SeriesChartType.Line;
             ChartHistorico.Series[1].IsValueShownAsLabel = true;
             ChartHistorico.Series[1].MarkerStep = 1;
 
-            ChartHistorico.Series.Add("Monero");
+            ChartHistorico.Series.Add("Bitcoin Cash");
             ChartHistorico.Series[2].ChartType = SeriesChartType.Line;
             ChartHistorico.Series[2].IsValueShownAsLabel = true;
             ChartHistorico.Series[2].MarkerStep = 1;
 
-            ChartHistorico.Series.Add("Bitcoin Cash");
+            ChartHistorico.Series.Add("Zcash");
             ChartHistorico.Series[3].ChartType = SeriesChartType.Line;
             ChartHistorico.Series[3].IsValueShownAsLabel = true;
             ChartHistorico.Series[3].MarkerStep = 1;
 
-            ChartHistorico.Series.Add("Zcash");
-            ChartHistorico.Series[4].ChartType = SeriesChartType.Line;
-            ChartHistorico.Series[4].IsValueShownAsLabel = true;
-            ChartHistorico.Series[4].MarkerStep = 1;
-
             for (int i = 0; i < dtBitcoin.Rows.Count; i++)
             {
-             //   ChartHistorico.Series[0].Points.AddXY(dtBitcoin.Rows[i]["time"].ToString(), Convert.ToDouble(dtBitcoin.Rows[i]["close"].ToString()));
-                ChartHistorico.Series[1].Points.AddXY(dtEthereum.Rows[i]["time"].ToString(), Convert.ToDouble(dtEthereum.Rows[i]["close"].ToString()));
-                ChartHistorico.Series[2].Points.AddXY(dtMonero.Rows[i]["time"].ToString(), Convert.ToDouble(dtMonero.Rows[i]["close"].ToString()));
-                ChartHistorico.Series[3].Points.AddXY(dtCash.Rows[i]["time"].ToString(), Convert.ToDouble(dtCash.Rows[i]["close"].ToString()));
-                ChartHistorico.Series[4].Points.AddXY(dtZcash.Rows[i]["time"].ToString(), Convert.ToDouble(dtZcash.Rows[i]["close"].ToString()));
+                ChartHistoricoBitcoin.Series[0].Points.AddXY(dtBitcoin.Rows[i]["time"].ToString(), Convert.ToDouble(dtBitcoin.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[0].Points.AddXY(dtEthereum.Rows[i]["time"].ToString(), Convert.ToDouble(dtEthereum.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[1].Points.AddXY(dtMonero.Rows[i]["time"].ToString(), Convert.ToDouble(dtMonero.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[2].Points.AddXY(dtCash.Rows[i]["time"].ToString(), Convert.ToDouble(dtCash.Rows[i]["close"].ToString()));
+                ChartHistorico.Series[3].Points.AddXY(dtZcash.Rows[i]["time"].ToString(), Convert.ToDouble(dtZcash.Rows[i]["close"].ToString()));
             }
 
 

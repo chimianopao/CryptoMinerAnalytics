@@ -83,9 +83,22 @@
                 </asp:Legend>
             </Legends>
         </asp:Chart>
-
+              <br /> <br />
                   <h2>Gráfico de histórico de cotações</h2>   
        <asp:Chart ID="ChartHistorico" runat="server" Width="1300px" Height="500" AlternateText="olaaaaaa">
+            <Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+            </ChartAreas>
+            <Legends>
+                <asp:Legend Name="Legend1">
+                </asp:Legend>
+            </Legends>
+        </asp:Chart>
+              <br /> <br />
+                <h2>Gráfico de histórico de cotações da Bitcoin</h2>   
+       <asp:Chart ID="ChartHistoricoBitcoin" runat="server" Width="1300px" Height="300" AlternateText="olaaaaaa">
             <Series>
             </Series>
             <ChartAreas>
