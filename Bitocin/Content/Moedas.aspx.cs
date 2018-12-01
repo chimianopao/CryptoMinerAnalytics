@@ -123,6 +123,11 @@ namespace Bitocin.Content {
 
         }
 
+        public static void AtualizaCotacaoMoedas()
+        {
+            Moedas moedas = new Moedas();
+            moedas.GetCotacao2();
+        }
 
 
         public void GetCotacao2()

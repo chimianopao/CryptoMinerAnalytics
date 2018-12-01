@@ -98,6 +98,7 @@ namespace Bitocin.Content {
         public void ButtonCalcular_Click(Object sender, EventArgs e)
         {
             Content.Cidades.ChamaAtualizadorCotacao();
+            Content.Moedas.AtualizaCotacaoMoedas();
             string moeda = Request.Form["selectMoeda"];
             string hardware = Request.Form["selectHardware"];
             string cidade = Request.Form["selectCidade"];
