@@ -110,8 +110,9 @@ namespace Bitocin.Content {
 
             // try
             //  {
-        
-            GetCotacao2();
+
+            //  GetCotacao2();
+            GetCotacaoCrypto();
                 Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Cotações obtidas com sucesso.');", true);
             GeraTabelaMoedas();
          //   }
@@ -140,6 +141,40 @@ namespace Bitocin.Content {
                     var xmr = Decimal.Round(cotacao.xmr_brl.last, 2);
                   //  var dash = Decimal.Round(cotacao.dash_brl.last, 2);
                     var zec = Decimal.Round(cotacao.zec_brl.last, 2);
+
+            MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
+            String name_table = "historicocotacao";
+
+
+            try
+            {
+                SQL_conection.Open();
+                MySqlCommand cmd = new MySqlCommand($"INSERT INTO {name_table} (idCriptomoeda,cotacao,dataCotacao) VALUES (1, '{btc}', '{dataCotacao}')," +
+                    $"(2, '{eth}', '{dataCotacao}')," +
+                    $"(3, '{bch}', '{dataCotacao}')," +
+                    $"(4, '{xmr}', '{dataCotacao}')," +
+                    $"(6, '{zec}', '{dataCotacao}');", SQL_conection);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch (Exception)
+            {
+
+                Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Não foi possível obter a cotação.');", true);
+            }
+        }
+
+
+        public void GetCotacaoCrypto()
+        {
+            CryptoCompareAtualAPI.Rootobject cotacao = _download_serialized_json_data<CryptoCompareAtualAPI.Rootobject>($"https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,XMR,BCH,ZEC&tsyms=BRL");
+            var dataCotacao = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            var btc = Decimal.Round(cotacao.BTC.BRL, 2);
+            var eth = Decimal.Round(cotacao.ETH.BRL, 2);
+            var bch = Decimal.Round(cotacao.BCH.BRL, 2);
+            var xmr = Decimal.Round(cotacao.XMR.BRL, 2);
+            //  var dash = Decimal.Round(cotacao.dash_brl.last, 2);
+            var zec = Decimal.Round(cotacao.ZEC.BRL, 2);
 
             MySqlConnection SQL_conection = new MySqlConnection("host=localhost;user=root;password='';database=cripto;SslMode=none");
             String name_table = "historicocotacao";
