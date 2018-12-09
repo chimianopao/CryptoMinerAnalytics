@@ -64,6 +64,3 @@
     
 </body>
 </html>
-<%--<script>
-    function Recupera() { alert('<%= valor %>'); }
-</script>--%>

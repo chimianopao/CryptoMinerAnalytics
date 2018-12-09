@@ -23,10 +23,7 @@ namespace Bitocin.Content {
             AtualizaCotacaoDolar();
             GeraTabelaCidades();
             GeraGraficoCidades();
-
-      
         }
-
 
         private static T _download_serialized_json_data<T>(string url) where T : new()
         {
@@ -66,7 +63,6 @@ namespace Bitocin.Content {
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 SQL_conection.Close();
-             //   Page.ClientScript.RegisterStartupScript(GetType(), "MyKey", "alert('Cidade cadastrada com sucesso');", true);
             }
             catch (Exception e2)
             {
@@ -96,10 +92,6 @@ namespace Bitocin.Content {
                 db_select.Fill(db_data, name_tabel);
                 GridView2.DataSource = db_data;
                 GridView2.DataBind();
-
-         //   Chart1.DataSource = db_data;
-         //   Chart1.DataBind();
-
 
             SQL_conection.Close();
 
@@ -148,7 +140,7 @@ namespace Bitocin.Content {
 
         protected void GridView2_Sorting(object sender, GridViewSortEventArgs e)
         {
-            Response.Write(GridView2.DataSource.GetType()); //Add this line
+            Response.Write(GridView2.DataSource.GetType());
 
             DataTable m_DataTable = GridView2.DataSource as DataTable;
 
@@ -186,20 +178,13 @@ namespace Bitocin.Content {
                             
                             Chart2.Series.Add(dt.Rows[i]["cidade"].ToString());
                             Chart2.Series[dt.Rows[i]["cidade"].ToString()].Points.AddY(Convert.ToDouble(dt.Rows[i]["custoKWh"].ToString()));
-                          //  Chart2.Series[i].IsValueShownAsLabel = true;
                             Chart2.Series[i].ChartType = SeriesChartType.Bar;
                             Chart2.Series[i].Label = dt.Rows[i]["cidade"].ToString() + " R$ " + dt.Rows[i]["custoKWh"].ToString();
                         }
                     }
-                    
-
                 }
             }
-
-
         }
-
-
     }
 }
 

@@ -18,16 +18,12 @@ namespace Bitocin.Content {
         public string valor;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             CarregaMenuHardwares();
-          
         }
-        
 
         public void moedaDropDown_Change(Object sender, EventArgs e)
         {
             CarregaMenuHardwares();
-
         }
 
         public void CarregaMenuHardwares()
@@ -40,7 +36,6 @@ namespace Bitocin.Content {
             
 
             string QueryString = "select hw.modelo from hardwares hw ORDER BY hw.modelo;";
-             
 
             MySqlConnection myConnection = new MySqlConnection(ConnectString);
             MySqlDataAdapter myCommand = new MySqlDataAdapter(QueryString, myConnection);
@@ -51,7 +46,7 @@ namespace Bitocin.Content {
             selectHardware.DataSource = ds;
             selectHardware.DataTextField = "modelo";
             selectHardware.DataValueField = "modelo";
-            selectHardware.DataBind();//adicionei
+            selectHardware.DataBind();
 
             myConnection.Close();
         }
@@ -87,7 +82,6 @@ namespace Bitocin.Content {
                     while (sdr.Read())
                     {
                         double.TryParse(sdr["consumo"].ToString(), out double c);
-   //                     c = (c * quantidade * 0.000051);//quilos por hora
                         c = (c * quantidade * 0.000051);//quilos por hora
                         labelTotalEmissao.InnerText = c.ToString("0.00");
                         c = c * 24;
@@ -113,8 +107,6 @@ namespace Bitocin.Content {
                     {
                         while (sdr.Read())
                         {
-
-
                             double.TryParse(sdr["consumo"].ToString(), out double c);
                             c = (c * quantidade);
                             labelTotalConsumo.InnerText = c.ToString();
@@ -126,11 +118,8 @@ namespace Bitocin.Content {
                     cn.Close();
                 }
                 #endregion
-
             }
         }
-
-
         
 
         public void CalculaConsumo(double consumoTotal, int quantidade)
@@ -139,8 +128,6 @@ namespace Bitocin.Content {
 
             consumoTotal = consumoTotal / 1000;  
             decimal resultado = 0;
-            
-
         }
 
         public void CalculaEmissao(double consumoTotal, int quantidade, double emissao)
@@ -148,18 +135,12 @@ namespace Bitocin.Content {
             emissao = consumoTotal * quantidade * 0.000051;
         }
 
-
-
         public Datum GetCotacao()
         {
-            //a8bb5bb5ebb44218b75b8130410d77ca
-            //dcd1f4eac4584a9eb7f6e8009a4af9b7
-            //16d28c2ba974467494b30c53dec66b21
             string KEY1 = "a8bb5bb5ebb44218b75b8130410d77ca";
             string KEY2 = "dcd1f4eac4584a9eb7f6e8009a4af9b7";
             string KEY3 = "16d28c2ba974467494b30c53dec66b21";
             string KEY4 = "2223d1f34d9a4788b74c6baeea2b7181";
-
 
             Rootobject cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY1}&algo=all");
 
@@ -177,7 +158,7 @@ namespace Bitocin.Content {
             {
                 if (item.CoinName.Equals(Request.Form["selectMoeda"])) {
                     return item;
-            }
+                }
             }
             return null;
         }

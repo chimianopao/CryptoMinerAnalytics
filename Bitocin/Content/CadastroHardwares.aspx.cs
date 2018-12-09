@@ -21,8 +21,6 @@ namespace Bitocin.Content {
 
         public void CarregaMenuMoedas()
         {
-            //if (!IsPostBack)
-            //{
                 string QueryString = "select nome from criptomoedas";
 
                 MySqlConnection myConnection = new MySqlConnection(ConnectString);
@@ -34,14 +32,8 @@ namespace Bitocin.Content {
             selectMoedaCadastro.DataTextField = "nome";
             selectMoedaCadastro.DataValueField = "nome";
             selectMoedaCadastro.DataBind();
-            ////labelUnidade.InnerText = "asd"; //select e jogar aqui
             myConnection.Close();
-           // }
         }
-
-   
-        
-
 
         public void ButtonCadastro_Click(Object sender, EventArgs e)
         {
@@ -118,7 +110,6 @@ namespace Bitocin.Content {
 
         }
 
-
         public void GeraTabelaHardware()
         {
             string moeda = "";
@@ -142,8 +133,6 @@ namespace Bitocin.Content {
                 db_select.Fill(db_data, name_tabel);
                 GridView2.DataSource = db_data;
                 GridView2.DataBind();
-                //   string unidade = db_data.Tables[0].Rows[0]["unidade"].ToString(); botava a unidade no nome da coluna
-                //   GridView2.Columns[3].HeaderText = unidade;
                 SQL_conection.Close();
             }
             catch (Exception e)

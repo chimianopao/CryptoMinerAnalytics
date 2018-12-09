@@ -22,8 +22,6 @@ namespace Bitocin.Content {
 
         public void CarregaMenuMoedas()
         {
-            //if (!IsPostBack)
-            //{
                 string QueryString = "select nome from criptomoedas";
 
                 MySqlConnection myConnection = new MySqlConnection(ConnectString);
@@ -36,7 +34,6 @@ namespace Bitocin.Content {
                 selectMoeda.DataValueField = "nome";
                 selectMoeda.DataBind();
                 myConnection.Close();
-           // }
         }
 
         public void GeraTabelaHardware()
@@ -63,8 +60,6 @@ namespace Bitocin.Content {
                 db_select.Fill(db_data, name_tabel);
                 GridView2.DataSource = db_data;
                 GridView2.DataBind();
-             //   string unidade = db_data.Tables[0].Rows[0]["unidade"].ToString(); botava a unidade no nome da coluna
-             //   GridView2.Columns[3].HeaderText = unidade;
                 SQL_conection.Close();
 
                 valor = moeda;
@@ -117,7 +112,6 @@ namespace Bitocin.Content {
 
                             ChartProcessamento.Series.Add(dt.Rows[i]["modelo"].ToString());
                             ChartProcessamento.Series[dt.Rows[i]["modelo"].ToString()].Points.AddY(Convert.ToDouble(dt.Rows[i]["processamentoPorSegundo"].ToString()));
-                            //  Chart2.Series[i].IsValueShownAsLabel = true;
                             ChartProcessamento.Series[i].ChartType = SeriesChartType.Bar;
                             ChartProcessamento.Series[i].Label = dt.Rows[i]["modelo"].ToString() + " " + dt.Rows[i]["processamentoPorSegundo"].ToString() + " " + dt.Rows[i]["unidade"].ToString();
                             
@@ -160,21 +154,14 @@ namespace Bitocin.Content {
 
                             ChartConsumo.Series.Add(dt.Rows[i]["modelo"].ToString());
                             ChartConsumo.Series[dt.Rows[i]["modelo"].ToString()].Points.AddY(Convert.ToDouble(dt.Rows[i]["consumo"].ToString()));
-                            //  Chart2.Series[i].IsValueShownAsLabel = true;
                             ChartConsumo.Series[i].ChartType = SeriesChartType.Bar;
                             ChartConsumo.Series[i].Label = dt.Rows[i]["modelo"].ToString() + " " + dt.Rows[i]["consumo"].ToString() + " Watts";
 
                         }
                     }
-
-
                 }
             }
-
-
         }
-
-
     }
 }
 

@@ -120,7 +120,6 @@
 </body>
 </html>
 <script>
-   <%-- function Recupera() { alert('<%= valor %>'); }--%>
     function f1() {
         
           form1.submit();

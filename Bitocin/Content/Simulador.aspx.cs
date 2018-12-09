@@ -174,7 +174,7 @@ namespace Bitocin.Content {
                     $"JOIN processamento pro ON hw.idHardware = pro.idHardware " +
                     $"JOIN criptomoedas c on c.idCriptomoeda = pro.idCriptomoeda " +
                     $"WHERE hw.modelo = '{hardware}' AND c.nome = '{nomeMoeda}';", cn))
-                {//where moeda = selecionada
+                {
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = cn;
                     cn.Open();
@@ -190,7 +190,6 @@ namespace Bitocin.Content {
                             c = (c * quantidade) + double.Parse(ConsumoOutros.Value);
 
                             labelCustoAquisitivo.InnerText = ((double.Parse(sdr["preco"].ToString())*quantidade).ToString());
-
 
                             labelTotalConsumo.InnerText = c.ToString();
                             labelEmissaoHora.InnerText = (c * 0.000051).ToString("0.00");
@@ -213,32 +212,9 @@ namespace Bitocin.Content {
         {
             double consumoOutros = double.Parse(ConsumoOutros.Value);
             consumoTotal = (consumoTotal * quantidade) + consumoOutros;
-
             consumoTotal = consumoTotal / 1000;  //kWh
-          //  consumoTotal = consumoTotal * 24; //final kWh
-
             var moeda = GetCotacao();
-
-            //  decimal resultado = ( ((decimal)poderProcessamento/51041010300000) * moeda.BlockReward * moeda.BlockTimeInSeconds * moeda.ExchangeRate) - ((decimal)custoKWh * (decimal)consumoTotal);
-            // decimal resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600;
-
-            //decimal resultado = (decimal)(poderProcessamento * 3600) / ((decimal)Math.Pow(2,32) * moeda.Difficulty);
-            //resultado = resultado * moeda.BlockReward;
-            //resultado = resultado * 24449;
-
-            //decimal resultado = (((decimal)poderProcessamento*1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
-            //resultado = resultado * 24449;
             decimal resultado = 0;
-            //if (Request.Form["selectMoeda"].Equals("Zcash") || Request.Form["selectMoeda"].Equals("Ethereum"))
-            //{
-            //    resultado = ((decimal)poderProcessamento * 1000000) / 19006000000000 * (3600 / moeda.BlockTimeInSeconds * moeda.BlockReward) * moeda.ExchangeRate;
-            //    resultado = resultado * 573;
-            //}
-            //else
-            //{
-            //    resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
-            //    resultado = resultado * 24449;
-            //}
 
             if (Request.Form["selectMoeda"].Equals("Ethereum"))
             {
@@ -247,16 +223,12 @@ namespace Bitocin.Content {
             }
 
             else if (Request.Form["selectMoeda"].Equals("Monero"))
-                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600; //monero. tá em kH/s. si pa divide por 1000
-            else if (Request.Form["selectMoeda"].Equals("Litecoin"))
-                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / (moeda.Difficulty * (decimal)Math.Pow(2, 32))) * 3600;
+                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600;
             else if (Request.Form["selectMoeda"].Equals("Zcash"))
                 resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty * (decimal)Math.Pow(2, 13)) * 3600;
             else
                 resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
-           // Double.valueOf(labelCotacao.ToString().Replace(",", "."));
             resultado = resultado * (decimal)double.Parse(labelCotacao.InnerText);
-
 
             labelCustoHora.InnerText = (consumoTotal * custoKWh).ToString("0.00");
             labelGanhoHora.InnerText = resultado.ToString("0.00");
@@ -269,23 +241,14 @@ namespace Bitocin.Content {
             labelCustoMes.InnerText = ((consumoTotal * custoKWh) * 24*30).ToString("0.00");
             labelGanhoMes.InnerText = (resultado * 24*30).ToString("0.00");
             labelLucroMes.InnerText = ((resultado - (decimal)(custoKWh * consumoTotal)) * 24*30).ToString("0.00");
-
         }
 
-
- 
-        
-    
         public Datum GetCotacao()
         {
-            //a8bb5bb5ebb44218b75b8130410d77ca
-            //dcd1f4eac4584a9eb7f6e8009a4af9b7
-            //16d28c2ba974467494b30c53dec66b21
             string KEY1 = "a8bb5bb5ebb44218b75b8130410d77ca";
             string KEY2 = "dcd1f4eac4584a9eb7f6e8009a4af9b7";
             string KEY3 = "16d28c2ba974467494b30c53dec66b21";
             string KEY4 = "2223d1f34d9a4788b74c6baeea2b7181";
-
 
             Rootobject cotacao = _download_serialized_json_data<Rootobject>($"https://www.coinwarz.com/v1/api/profitability/?apikey={KEY1}&algo=all");
 

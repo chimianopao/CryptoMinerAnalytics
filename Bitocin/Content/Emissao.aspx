@@ -46,7 +46,6 @@
             para a vida na terra, este composto causa danos diretamente à camada de ozônio. É possível calcular a quantidade de CO² emitida através da calculadora abaixo: </div>
         <br />
            <div class="dropdown">
-   <%-- <button class="dropbtn"> Selecione Hardware --%>
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
@@ -95,7 +94,6 @@
         Kgs por dia<br />
         <label id="labelEmissaoMes" runat="server"></label>
         Kgs por mês<br />
-        <%--colocar dia e mes--%>
         <br />
 
         <br />
@@ -115,6 +113,4 @@
     
 </body>
 </html>
-<%--<script>
-    function Recupera() { alert('<%= valor %>'); }
-</script>--%>
+s

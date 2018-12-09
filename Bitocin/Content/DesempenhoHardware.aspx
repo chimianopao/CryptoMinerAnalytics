@@ -66,52 +66,6 @@
                 </asp:GridView>
         </form>
 
-
-      <%--  Moeda:
-        <label id="labelMoeda" runat="server"></label>
-        <br />
-        Algoritmo:
-        <label id="labelAlgoritmo" runat="server"></label>
-        <br />
-        Cotação do dia: R$
-        <label id="labelCotacao" runat="server"></label>
-        <br />
-        Hardware:
-        <label id="labelHardware" runat="server"></label>
-        <label id="labelQuantidade" runat="server"></label>
-        <br />
-        Cidade:
-        <label id="labelCidade" name="labelCidade" runat="server"></label>
-        <br />
-        Custo de energia: R$
-        <label id="labelCusto" runat="server"></label>
-        <br />
-        Poder total de processamento:
-        <label id="labelTotalProcessamento" runat="server"></label>
-        <label id="labelUnidade" runat="server"></label>
-        <br />
-        Consumo energético total:
-        <label id="labelTotalConsumo" runat="server"></label>
-        Watts<br />
-        <br />
-        <br />
-
-        Custo aquisitivo do hardware: R$
-        <label id="labelCustoAquisitivo" runat="server" />
-        <br />
-
-        Remuneração por hora:<br />
-        Estimativa de ganho na mineração:
-        <label id="labelGanhoDia" runat="server" />
-        <br />
-        Gasto com energia: R$
-        <label id="labelCustoDia" runat="server" />
-        <br />
-        Estimativa de lucro: R$
-        <label id="labelLucroDia" runat="server" />
-        <br />
-        <br />--%>
-
         <footer>
             <br />
             <br />

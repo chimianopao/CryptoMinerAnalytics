@@ -19,17 +19,7 @@ namespace Bitocin.Content {
         protected void Page_Load(object sender, EventArgs e)
         {
             CarregaMenuHardwares();
-            //   Button1.Click(sender, e);
         }
-
-        //   MySqlConnection SQL_koneksi = new MySqlConnection("SERVER=localhost;PORT=3306;UID=root;PWD=;");
-        //   String nama_tabel = "twitter_clone.usuarios";
-        //   MySqlDataAdapter db_select;
-        //  DataSet db_data;
-        //   MySqlCommand SQL_cmd;
-        //   string Query;
-
-
 
         public void CarregaMenuHardwares()
         {
@@ -38,7 +28,6 @@ namespace Bitocin.Content {
             {
                 moeda = Request.Form["selectMoeda"];
             }
-            //    string moeda = Request.Form["selectMoeda"];
 
             string QueryString = "select marca, modelo from hardwares ORDER BY modelo;";
 
@@ -47,8 +36,6 @@ namespace Bitocin.Content {
             myConnection.Open();
             DataSet ds = new DataSet();
             myCommand.Fill(ds, "modelo");
-
-            //ver depois como colocar marca e hardware. rodar while pra encher lista com os 2, aí preenche com essa lista
 
             selectHardware.DataSource = ds;
             selectHardware.DataTextField = "modelo";
@@ -63,8 +50,6 @@ namespace Bitocin.Content {
         {
             GeraTabelaHardware();
         }
-
-
 
         public void GeraTabelaHardware()
         {
@@ -93,45 +78,5 @@ namespace Bitocin.Content {
                 
             }
         }
-
-
-
-        //public void CalculaConsumo(double consumoTotal, int quantidade, double custoKWh, double poderProcessamento)
-        //{
-        //    double consumoOutros = double.Parse(ConsumoOutros.Value);
-        //    consumoTotal = (consumoTotal * quantidade) + consumoOutros;
-
-        //    consumoTotal = consumoTotal / 1000;  //kWh
-        //  //  consumoTotal = consumoTotal * 24; //final kWh
-
-        //    var moeda = GetCotacao();
-
-        //    //  decimal resultado = ( ((decimal)poderProcessamento/51041010300000) * moeda.BlockReward * moeda.BlockTimeInSeconds * moeda.ExchangeRate) - ((decimal)custoKWh * (decimal)consumoTotal);
-        //    // decimal resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600;
-
-        //    //decimal resultado = (decimal)(poderProcessamento * 3600) / ((decimal)Math.Pow(2,32) * moeda.Difficulty);
-        //    //resultado = resultado * moeda.BlockReward;
-        //    //resultado = resultado * 24449;
-
-        //    //decimal resultado = (((decimal)poderProcessamento*1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
-        //    //resultado = resultado * 24449;
-        //    decimal resultado = 0;
-        //    if (Request.Form["selectMoeda"].Equals("Zcash") || Request.Form["selectMoeda"].Equals("Ethereum"))
-        //    {
-        //        resultado = ((decimal)poderProcessamento * 1000000) / 19006000000000 * (3600 / moeda.BlockTimeInSeconds * moeda.BlockReward) * moeda.ExchangeRate;
-        //        resultado = resultado * 573;
-        //    }
-        //    else
-        //    {
-        //        resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
-        //        resultado = resultado * 24449;
-        //    }
-
-        //    labelCustoDia.InnerText = (consumoTotal * custoKWh).ToString("0.00");
-        //    labelGanhoDia.InnerText = resultado.ToString("0.00");
-        //    labelLucroDia.InnerText = (resultado-(decimal)(custoKWh*consumoTotal)).ToString("0.00");
-
-        //}
-
     }
 }
