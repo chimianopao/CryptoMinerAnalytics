@@ -225,7 +225,7 @@ namespace Bitocin.Content {
             else if (Request.Form["selectMoeda"].Equals("Monero"))
                 resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty) * 3600;
             else if (Request.Form["selectMoeda"].Equals("Zcash"))
-                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty * (decimal)Math.Pow(2, 13)) * 3600;
+                resultado = (((decimal)poderProcessamento * moeda.BlockReward) / moeda.Difficulty / (decimal)Math.Pow(2, 13)) * 3600;
             else
                 resultado = (((decimal)poderProcessamento * 1000000) * (decimal)moeda.BlockReward * 3600) / ((decimal)Math.Pow(2, 32) * moeda.Difficulty);
             resultado = resultado * (decimal)double.Parse(labelCotacao.InnerText);
